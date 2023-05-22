@@ -1,4 +1,4 @@
-package ucr.proyecto.proyectogrupo1;
+package ucr.proyecto.proyectogrupo1.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
