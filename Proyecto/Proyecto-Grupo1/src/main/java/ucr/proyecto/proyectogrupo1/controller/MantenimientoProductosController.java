@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class ControlDeCostosController {
+public class MantenimientoProductosController {
 
     @FXML
     private TableView<?> tableView;
@@ -15,6 +15,11 @@ public class ControlDeCostosController {
 
     @FXML
     private TextField txtNombreUsuario1;
+
+    @FXML
+    void btnAgregarNuevoProducto(ActionEvent event) {
+
+    }
 
     @FXML
     void btnConfiguracionSistema(ActionEvent event) {
@@ -53,11 +58,6 @@ public class ControlDeCostosController {
 
     @FXML
     void btnPrevisionDemanda(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReporte(ActionEvent event) {
 
     }
 

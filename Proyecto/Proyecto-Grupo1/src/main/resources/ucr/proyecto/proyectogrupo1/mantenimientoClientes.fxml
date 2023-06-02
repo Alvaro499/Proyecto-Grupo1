@@ -98,7 +98,7 @@
                   <Insets top="10.0" />
                </padding>
             </VBox>
-            <Button layoutX="229.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnReporte" prefHeight="42.0" prefWidth="258.0" style="-fx-background-color: #868178; -fx-background-radius: 25;" text="Agregar nuevo cliente">
+            <Button layoutX="229.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnAgregarNuevoCliente" prefHeight="42.0" prefWidth="258.0" style="-fx-background-color: #868178; -fx-background-radius: 25;" text="Agregar nuevo cliente">
                <font>
                   <Font name="Century Schoolbook" size="18.0" />
                </font></Button>
@@ -107,7 +107,7 @@
                   <Font name="Century Schoolbook" size="18.0" />
                </font>
             </Text>
-            <TableView layoutX="214.0" layoutY="326.0" prefHeight="294.0" prefWidth="710.0">
+            <TableView fx:id="tableView" layoutX="214.0" layoutY="326.0" prefHeight="294.0" prefWidth="710.0">
               <columns>
                 <TableColumn prefWidth="140.0" text="ID" />
                 <TableColumn prefWidth="140.0" text="NOMBRE" />

@@ -107,7 +107,7 @@
                   <Font name="Century Schoolbook" size="18.0" />
                </font>
             </Text>
-            <TableView layoutX="214.0" layoutY="166.0" prefHeight="360.0" prefWidth="710.0">
+            <TableView fx:id="tableView" layoutX="214.0" layoutY="166.0" prefHeight="360.0" prefWidth="710.0">
               <columns>
                   <TableColumn prefWidth="75.0" text="Column X" />
                 <TableColumn prefWidth="75.0" text="ID" />

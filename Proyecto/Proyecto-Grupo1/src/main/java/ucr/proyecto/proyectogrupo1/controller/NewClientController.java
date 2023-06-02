@@ -7,10 +7,25 @@ import javafx.scene.control.TextField;
 public class NewClientController {
 
     @FXML
+    private TextField txtDireccionActual;
+
+    @FXML
+    private TextField txtEmail;
+
+    @FXML
+    private TextField txtID;
+
+    @FXML
+    private TextField txtNombre;
+
+    @FXML
     private TextField txtNombreUsuario;
 
     @FXML
     private TextField txtNombreUsuario1;
+
+    @FXML
+    private TextField txtTelefono;
 
     @FXML
     void borrarOnAction(ActionEvent event) {

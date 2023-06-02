@@ -137,32 +137,32 @@
                   </VBox>
                   <VBox fillWidth="false" layoutX="240.0" layoutY="-1.0" prefHeight="398.0" prefWidth="426.0" spacing="30.0">
                      <children>
-                        <TextField prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
+                        <TextField fx:id="txtID" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                            <font>
                               <Font name="Century Schoolbook" size="13.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
+                        <TextField fx:id="txtDescripcion" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                            <font>
                               <Font name="Century Schoolbook" size="13.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
+                        <TextField fx:id="txtPrecio" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                            <font>
                               <Font name="Century Schoolbook" size="13.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
+                        <TextField fx:id="txtStockActual" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                            <font>
                               <Font name="Century Schoolbook" size="13.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
+                        <TextField fx:id="txtStockMinimo" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                            <font>
                               <Font name="Century Schoolbook" size="13.0" />
                            </font>
                         </TextField>
-                        <TextField prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
+                        <TextField fx:id="txtProveedor" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                            <font>
                               <Font name="Century Schoolbook" size="13.0" />
                            </font>

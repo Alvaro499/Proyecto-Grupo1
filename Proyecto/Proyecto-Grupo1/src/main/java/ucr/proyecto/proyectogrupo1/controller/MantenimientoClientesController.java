@@ -2,15 +2,24 @@ package ucr.proyecto.proyectogrupo1.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
 public class MantenimientoClientesController {
+
+    @FXML
+    private TableView<?> tableView;
 
     @FXML
     private TextField txtNombreUsuario;
 
     @FXML
     private TextField txtNombreUsuario1;
+
+    @FXML
+    void btnAgregarNuevoCliente(ActionEvent event) {
+
+    }
 
     @FXML
     void btnConfiguracionSistema(ActionEvent event) {
@@ -49,11 +58,6 @@ public class MantenimientoClientesController {
 
     @FXML
     void btnPrevisionDemanda(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReporte(ActionEvent event) {
 
     }
 

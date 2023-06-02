@@ -2,19 +2,25 @@ package ucr.proyecto.proyectogrupo1.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 
-public class ControlDeCostosController {
+public class ConfiguracionSistemaController {
 
     @FXML
-    private TableView<?> tableView;
+    private ImageView logoImagen;
+
+    @FXML
+    private TextField txtLogoEditar;
 
     @FXML
     private TextField txtNombreUsuario;
 
     @FXML
     private TextField txtNombreUsuario1;
+
+    @FXML
+    private TextField txtnombreEditar;
 
     @FXML
     void btnConfiguracionSistema(ActionEvent event) {
@@ -57,12 +63,17 @@ public class ControlDeCostosController {
     }
 
     @FXML
-    void btnReporte(ActionEvent event) {
+    void btnReportes(ActionEvent event) {
 
     }
 
     @FXML
-    void btnReportes(ActionEvent event) {
+    void confirmarCambiosOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editarLogoOnAction(ActionEvent event) {
 
     }
 

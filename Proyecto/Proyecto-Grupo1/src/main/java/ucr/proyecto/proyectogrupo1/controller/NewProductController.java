@@ -7,10 +7,28 @@ import javafx.scene.control.TextField;
 public class NewProductController {
 
     @FXML
+    private TextField txtDescripcion;
+
+    @FXML
+    private TextField txtID;
+
+    @FXML
     private TextField txtNombreUsuario;
 
     @FXML
     private TextField txtNombreUsuario1;
+
+    @FXML
+    private TextField txtPrecio;
+
+    @FXML
+    private TextField txtProveedor;
+
+    @FXML
+    private TextField txtStockActual;
+
+    @FXML
+    private TextField txtStockMinimo;
 
     @FXML
     void borrarOnAction(ActionEvent event) {
