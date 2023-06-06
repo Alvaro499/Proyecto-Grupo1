@@ -15,11 +15,11 @@ import java.util.logging.Logger;
  */
 public class EnvioCorreos extends javax.swing.JFrame {
 
-    private static String emailFrom = "tiendalaberintodelibros@gmail.com";
-    private static String passwordFrom = "nqqazzxyxhrvyitn";
-    private String emailTo;
-    private String subject;
-    private String content;
+    private static final String emailFrom = "tiendalaberintodelibros@gmail.com";
+    private static final String passwordFrom = "nqqazzxyxhrvyitn";
+    private String emailTo;//destinatario
+    private String subject;//motivo
+    private String content;//contenido
 
     private Properties mProperties;
     private Session mSession;
@@ -31,9 +31,9 @@ public class EnvioCorreos extends javax.swing.JFrame {
     }
 
     public void createEmail() {
-        emailTo = "zjeancarlo42@gmail.com";
-        subject = "Prueba";
-        content = "Correo enviado por Java";
+        //emailTo = "zjeancarlo42@gmail.com";
+        //subject = "Prueba";
+        //content = "Correo enviado por Java";
 
         // Simple mail transfer protocol
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
@@ -75,5 +75,17 @@ public class EnvioCorreos extends javax.swing.JFrame {
         } catch (MessagingException ex) {
             Logger.getLogger(EnvioCorreos.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public void setEmailTo(String emailTo) {
+        this.emailTo = emailTo;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 }
