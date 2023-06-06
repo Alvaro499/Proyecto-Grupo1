@@ -29,11 +29,26 @@ public class EnvioCorreos extends javax.swing.JFrame {
         //initComponents();
         mProperties = new Properties();
     }
+    class EmailExcepcion extends Exception {
+        public EmailExcepcion(String mensaje) {
+            super(mensaje);
+        }
+    }
 
-    public void createEmail() {
+    public void createEmail() throws EmailExcepcion {
         //emailTo = "zjeancarlo42@gmail.com";
         //subject = "Prueba";
         //content = "Correo enviado por Java";
+
+        if (emailTo == null){
+            throw new EmailExcepcion("Email without recipient(s)");
+        }
+        if (subject == null){
+            throw new EmailExcepcion("Email without subject");
+        }
+        if (content == null){
+            throw new EmailExcepcion("Email without content");
+        }
 
         // Simple mail transfer protocol
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
@@ -75,6 +90,10 @@ public class EnvioCorreos extends javax.swing.JFrame {
         } catch (MessagingException ex) {
             Logger.getLogger(EnvioCorreos.class.getName()).log(Level.SEVERE, null, ex);
         }
+
+        emailTo = null;//destinatario
+        subject = null;//motivo
+        content = null;//contenido
     }
 
     public void setEmailTo(String emailTo) {
