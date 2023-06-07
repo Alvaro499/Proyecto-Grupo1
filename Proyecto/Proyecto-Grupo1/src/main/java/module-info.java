@@ -4,6 +4,7 @@ module ucr.proyecto.proyectogrupo1 {
     requires java.logging;
     requires java.desktop;
     requires mail;
+    requires javax.activation;
 
     opens ucr.proyecto.proyectogrupo1 to javafx.fxml;
     exports ucr.proyecto.proyectogrupo1;
