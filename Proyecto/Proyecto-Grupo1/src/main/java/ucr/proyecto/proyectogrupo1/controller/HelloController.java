@@ -14,6 +14,7 @@ import javafx.scene.image.ImageView;
 import java.io.IOException;
 
 public class HelloController {
+    @FXML
     private BorderPane bp;
     @FXML
     private TextField txtNombreUsuario;
@@ -31,6 +32,6 @@ public class HelloController {
 
     @FXML
     void btnEntrar(ActionEvent event) {
-        loadPage("plantilla.fxml");
+        loadPage("menu.fxml");
     }
 }

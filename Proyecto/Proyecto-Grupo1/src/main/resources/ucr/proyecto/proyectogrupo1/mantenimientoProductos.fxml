@@ -4,119 +4,43 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucr.proyecto.proyectogrupo1.controller.MantenimientoProductosController">
+<BorderPane stylesheets="@../../../stylesheet/buttonStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucr.proyecto.proyectogrupo1.controller.MantenimientoProductosController">
    <center>
-      <AnchorPane prefHeight="652.0" prefWidth="933.0">
+      <AnchorPane prefHeight="652.0" prefWidth="933.0" style="-fx-background-color: beige;">
          <children>
-            <Pane layoutX="199.0" prefHeight="97.0" prefWidth="734.0" style="-fx-background-color: #FFD700;">
+            <VBox prefHeight="537.0" prefWidth="793.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <padding>
+                  <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+               </padding>
                <children>
-                  <TextField fx:id="txtNombreUsuario" alignment="CENTER" editable="false" layoutX="544.0" layoutY="13.0" promptText="Nombre de usuario" style="-fx-background-color: #FFD700;">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registro de Productos">
                      <font>
-                        <Font name="Century Schoolbook" size="13.0" />
-                     </font>
-                  </TextField>
-                  <Text layoutX="212.0" layoutY="60.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Laberinto de Libros">
-                     <font>
-                        <Font name="Century Schoolbook" size="35.0" />
+                        <Font name="Century Schoolbook" size="18.0" />
                      </font>
                   </Text>
-                  <Button layoutX="41.0" layoutY="26.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="143.0" style="-fx-background-color: #FFD700;" text="←Salir del sistema">
+                  <Button mnemonicParsing="false" onAction="#btnAgregarNuevoProducto" prefHeight="42.0" prefWidth="258.0" text="Agregar nuevo producto">
                      <font>
-                        <Font name="Century Schoolbook Bold" size="12.0" />
+                        <Font name="Century Schoolbook" size="18.0" />
                      </font>
                   </Button>
-                  <TextField fx:id="txtNombreUsuario1" alignment="CENTER" editable="false" layoutX="569.0" layoutY="47.0" prefHeight="24.0" prefWidth="131.0" promptText="Tipo usuario" style="-fx-background-color: #FFD700;">
-                     <font>
-                        <Font name="Century Schoolbook" size="13.0" />
-                     </font>
-                  </TextField>
+                  <TableView fx:id="tableView" prefHeight="386.0" prefWidth="710.0">
+                    <columns>
+                      <TableColumn prefWidth="110.0" text="ID" />
+                      <TableColumn prefWidth="120.0" text="NOMBRE" />
+                        <TableColumn prefWidth="120.0" text="Precio" />
+                        <TableColumn prefWidth="120.0" text="Stock Actual" />
+                        <TableColumn minWidth="8.0" prefWidth="120.0" text="Stock Min" />
+                        <TableColumn prefWidth="120.0" text="Proveedor" />
+                    </columns>
+                  </TableView>
                </children>
-            </Pane>
-            <ImageView fitHeight="100.0" fitWidth="210.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../images/banner2.png" />
-               </image></ImageView>
-            <VBox alignment="TOP_CENTER" fillWidth="false" layoutY="97.0" prefHeight="555.0" prefWidth="205.0" spacing="13.0" style="-fx-background-color: #FFD700;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="729.0" AnchorPane.topAnchor="97.0">
-               <children>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnMantenimientoProveedores" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Mantenimiento Proveedores" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnMantenimientoProductos" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Mantenimiento Productos" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnMantenimientoClientes" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Mantenimiento de Clientes" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnControlInventarios" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Control de Inventario" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnGestionPedidos" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Gestión de Pedidos" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnPrevisionDemanda" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Previsión de la Demanda" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnControlCostos" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Control de Costos" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnReportes" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Reportes" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#btnConfiguracionSistema" prefHeight="46.0" prefWidth="183.0" style="-fx-background-color: #525259;" text="Configuración del Sistema" textFill="WHITE">
-                     <font>
-                        <Font name="Century Schoolbook" size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-               <padding>
-                  <Insets top="10.0" />
-               </padding>
             </VBox>
-            <Button layoutX="229.0" layoutY="261.0" mnemonicParsing="false" onAction="#btnAgregarNuevoProducto" prefHeight="42.0" prefWidth="258.0" style="-fx-background-color: #868178; -fx-background-radius: 25;" text="Agregar nuevo producto">
-               <font>
-                  <Font name="Century Schoolbook" size="18.0" />
-               </font></Button>
-            <Text layoutX="229.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registro de Productos">
-               <font>
-                  <Font name="Century Schoolbook" size="18.0" />
-               </font>
-            </Text>
-            <TableView fx:id="tableView" layoutX="214.0" layoutY="326.0" prefHeight="294.0" prefWidth="710.0">
-              <columns>
-                <TableColumn prefWidth="110.0" text="ID" />
-                <TableColumn prefWidth="120.0" text="NOMBRE" />
-                  <TableColumn prefWidth="120.0" text="Precio" />
-                  <TableColumn prefWidth="120.0" text="Stock Actual" />
-                  <TableColumn minWidth="8.0" prefWidth="120.0" text="Stock Min" />
-                  <TableColumn prefWidth="120.0" text="Proveedor" />
-              </columns>
-            </TableView>
          </children>
       </AnchorPane>
    </center>

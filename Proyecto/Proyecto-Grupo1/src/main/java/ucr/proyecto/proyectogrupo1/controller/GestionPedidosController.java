@@ -33,51 +33,6 @@ public class GestionPedidosController {
     }
 
     @FXML
-    void btnConfiguracionSistema(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnControlCostos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnControlInventarios(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGestionPedidos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoClientes(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoProductos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoProveedores(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPrevisionDemanda(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReportes(ActionEvent event) {
-
-    }
-
-    @FXML
     void confirmarPedidoOnAction(ActionEvent event) {
 
     }

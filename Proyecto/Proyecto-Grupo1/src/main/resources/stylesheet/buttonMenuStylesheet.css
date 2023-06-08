@@ -1,0 +1,6 @@
+.button{
+    -fx-background-color: gray;
+    -fx-background-radius: 5 5 5 5;
+    -fx-font-family: "Century Schoolbook";
+    -fx-text-fill: white;
+}

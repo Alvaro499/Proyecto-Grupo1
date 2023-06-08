@@ -13,52 +13,7 @@ public class ReportesController {
     private TextField txtNombreUsuario1;
 
     @FXML
-    void btnConfiguracionSistema(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnControlCostos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnControlInventarios(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGestionPedidos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoClientes(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoProductos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoProveedores(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPrevisionDemanda(ActionEvent event) {
-
-    }
-
-    @FXML
     void btnReporte(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReportes(ActionEvent event) {
 
     }
 

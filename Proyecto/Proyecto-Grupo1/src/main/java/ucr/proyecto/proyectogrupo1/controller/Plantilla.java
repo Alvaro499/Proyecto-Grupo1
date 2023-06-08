@@ -13,6 +13,11 @@ public class Plantilla {
     @FXML
     private TextField txtNombreUsuario1;
 
+    @javafx.fxml.FXML
+    public void initialize() {
+
+    }
+
     @FXML
     void btnConfiguracionSistema(ActionEvent event) {
 
