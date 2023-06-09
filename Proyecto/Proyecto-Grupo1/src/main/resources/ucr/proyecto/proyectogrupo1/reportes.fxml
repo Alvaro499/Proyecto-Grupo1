@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -22,7 +23,24 @@
                         <Font name="Century Schoolbook" size="18.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#btnReporte" prefHeight="68.0" prefWidth="258.0" text="Button" />
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#reporteClientesOnAction" prefHeight="68.0" prefWidth="258.0" text="Reporte Clientes" />
+                        <Button mnemonicParsing="false" onAction="#reporteProductosonAction" prefHeight="68.0" prefWidth="258.0" text="Reporte Productos" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="100.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#reporteProveedoresOnaction" prefHeight="68.0" prefWidth="258.0" text="Reporte Proveedores" />
+                        <Button mnemonicParsing="false" onAction="#reporteInventarioOnAction" prefHeight="68.0" prefWidth="258.0" text="Reporte Inventario" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
+                     </VBox.margin>
+                  </HBox>
                </children>
             </VBox>
          </children>

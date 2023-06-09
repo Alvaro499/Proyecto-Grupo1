@@ -9,6 +9,8 @@ public class ControlInventarioController {
 
     @FXML
     private TableView<?> tableView;
+    @FXML
+    private TextField txtBuscar;
 
 
     @javafx.fxml.FXML
@@ -24,5 +26,7 @@ public class ControlInventarioController {
     void btnConfirmar(ActionEvent event) {
 
     }
-
+    @FXML
+    public void buscarOnAction(ActionEvent actionEvent) {
+    }
 }

@@ -9,7 +9,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 
 import java.io.IOException;
 
-public class Menu {
+public class MenuAdministradorController {
 
     @FXML
     private BorderPane bp;
@@ -80,5 +80,16 @@ public class Menu {
         System.exit(0);
     }
 
+    public void carritoOnAction(ActionEvent actionEvent) {
+    }
+
+    public void buscarOnAction(ActionEvent actionEvent) {
+    }
+
+    public void gestiónOnAction(ActionEvent actionEvent) {
+    }
+
+    public void reporteOnAction(ActionEvent actionEvent) {
+    }
 }
 

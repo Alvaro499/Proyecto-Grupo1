@@ -13,7 +13,22 @@ public class ReportesController {
     private TextField txtNombreUsuario1;
 
     @FXML
-    void btnReporte(ActionEvent event) {
+    void reporteClientesOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void reporteInventarioOnAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void reporteProductosonAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void reporteProveedoresOnaction(ActionEvent event) {
 
     }
 
