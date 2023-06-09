@@ -1,15 +1,43 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
-import java.time.LocalDateTime;
-
 public class Order {
-    private int identity ;
-    private LocalDateTime orderDate;
+    private Integer ID;
+    private String orderDate;
     private String orderStatus;
-    private int suplierdId;
+    private String supplierName;
     private Double totalCost;
     private String remarks;
 
-    //este no me queda claro si está bien
+    public Order(Integer ID, String orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
+        this.ID = ID;
+        this.orderDate = orderDate;
+        this.orderStatus = orderStatus;
+        this.supplierName = supplierName;
+        this.totalCost = totalCost;
+        this.remarks = remarks;
+    }
 
+    public Integer getID() {
+        return ID;
+    }
+
+    public String getOrderDate() {
+        return orderDate;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public String getSupplierName() {
+        return supplierName;
+    }
+
+    public Double getTotalCost() {
+        return totalCost;
+    }
+
+    public String getRemarks() {
+        return remarks;
+    }
 }
