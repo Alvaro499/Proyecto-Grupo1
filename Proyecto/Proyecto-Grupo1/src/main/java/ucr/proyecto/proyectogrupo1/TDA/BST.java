@@ -1,4 +1,6 @@
-package TDA;
+package ucr.proyecto.proyectogrupo1.TDA;
+
+import ucr.proyecto.proyectogrupo1.util.Utility;
 
 public class BST implements Tree {
     private BTreeNode root;
@@ -47,9 +49,9 @@ public class BST implements Tree {
     private boolean binarySearch(BTreeNode node, Object element){
         if(node==null)
             return false;
-        else if(util.Utility.compare(node.data, element)==0)
+        else if(Utility.compare(node.data, element)==0)
             return true; //ya lo encontro
-        else if(util.Utility.compare(element, node.data)< 0)
+        else if(Utility.compare(element, node.data)< 0)
                 return binarySearch(node.left, element);
         else return binarySearch(node.right, element);
     }
@@ -63,9 +65,9 @@ public class BST implements Tree {
         if(node==null){ //el arbol esta vacio
             node = new BTreeNode(element);
         }else
-            if(util.Utility.compare(element, node.data)< 0)
+            if(Utility.compare(element, node.data)< 0)
                 node.left = add(node.left, element);
-            else if(util.Utility.compare(element, node.data)> 0)//va como hijo der
+            else if(Utility.compare(element, node.data)> 0)//va como hijo der
                     node.right = add(node.right, element);
         return node;
     }
@@ -80,11 +82,11 @@ public class BST implements Tree {
 
     private BTreeNode remove(BTreeNode node, Object element){
         if(node!=null){
-            if(util.Utility.compare(element, node.data)< 0)
+            if(Utility.compare(element, node.data)< 0)
                 node.left = remove(node.left, element);
-            else if(util.Utility.compare(element, node.data)> 0)
+            else if(Utility.compare(element, node.data)> 0)
                 node.right = remove(node.right, element);
-            else if(util.Utility.compare(node.data, element)==0){ //ya encontramos el elemento a eliminar
+            else if(Utility.compare(node.data, element)==0){ //ya encontramos el elemento a eliminar
                 //Caso 1. Es un nodo sin hijos. Es una hoja
                 if(node.left==null && node.right==null)
                     return null;
@@ -115,10 +117,10 @@ public class BST implements Tree {
     private int height(BTreeNode node, Object element, int counter){
         if(node==null)
             return -1;
-        else if(util.Utility.compare(node.data, element)==0)
+        else if(Utility.compare(node.data, element)==0)
             return counter;
         else //en este caso debe buscar por la izq y por la der
-        if(util.Utility.compare(element, node.data)< 0)
+        if(Utility.compare(element, node.data)< 0)
             return height(node.left, element, ++counter);
         else return height(node.right, element, ++counter);
             //return Math.max(height(node.left, element, ++counter), height(node.right, element, counter));

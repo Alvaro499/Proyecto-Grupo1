@@ -1,6 +1,7 @@
-package TDA;
+package ucr.proyecto.proyectogrupo1.TDA;
 
-import util.Utility;
+
+import ucr.proyecto.proyectogrupo1.util.Utility;
 
 public class SinglyLinkedList implements List {
     private Node first; //apunta al inicio de la lista

@@ -1,4 +1,7 @@
-package TDA;
+package ucr.proyecto.proyectogrupo1.TDA;
+
+
+import ucr.proyecto.proyectogrupo1.util.Utility;
 
 public class AVL implements Tree {
     private BTreeNode root;
@@ -47,9 +50,9 @@ public class AVL implements Tree {
     private boolean binarySearch(BTreeNode node, Object element){
         if(node==null)
             return false;
-        else if(util.Utility.compare(node.data, element)==0)
+        else if(Utility.compare(node.data, element)==0)
             return true; //ya lo encontro
-        else if(util.Utility.compare(element, node.data)< 0)
+        else if(Utility.compare(element, node.data)< 0)
                 return binarySearch(node.left, element);
         else return binarySearch(node.right, element);
     }
@@ -62,35 +65,35 @@ public class AVL implements Tree {
     private BTreeNode add(BTreeNode node, Object element, String sequence){
         if(node==null) //el arbol esta vacio
             node = new BTreeNode(element, "Added as "+sequence);
-        else if(util.Utility.compare(element, node.data)< 0)
+        else if(Utility.compare(element, node.data)< 0)
             node.left = add(node.left, element, sequence+"/left");
-        else if(util.Utility.compare(element, node.data)> 0)//va como hijo der
+        else if(Utility.compare(element, node.data)> 0)//va como hijo der
             node.right = add(node.right, element, sequence+"/right");
 
         //se debe verificar que el arbol este balanceado
         int balance = getBalanceFactor(node);
 
         //Left Left Case
-        if(balance>1&&util.Utility.compare(element, node.left.data)<0) {
+        if(balance>1&&Utility.compare(element, node.left.data)<0) {
             node.path += ". Simple right rotate";
             return rightRotate(node);
         }
 
         //Right Right Case
-        if(balance<-1&&util.Utility.compare(element, node.right.data)>0) {
+        if(balance<-1&& Utility.compare(element, node.right.data)>0) {
             node.path += ". Simple left rotate";
             return leftRotate(node);
         }
 
         //Left Right Case
-        if(balance>1&&util.Utility.compare(element, node.left.data)>0) {
+        if(balance>1&& Utility.compare(element, node.left.data)>0) {
             node.path += ". Double left/right rotate";
             node.left = leftRotate(node.left);
             return rightRotate(node);
         }
 
         //Right Left Case
-        if(balance<-1&&util.Utility.compare(element, node.right.data)<0) {
+        if(balance<-1&& Utility.compare(element, node.right.data)<0) {
             node.path += ". Double right/left rotate";
             node.right = rightRotate(node.right);
             return leftRotate(node);
@@ -137,11 +140,11 @@ public class AVL implements Tree {
 
     private BTreeNode remove(BTreeNode node, Object element){
         if(node!=null) {
-            if (util.Utility.compare(element, node.data) < 0)
+            if (Utility.compare(element, node.data) < 0)
                 node.left = remove(node.left, element);
-            else if (util.Utility.compare(element, node.data) > 0)
+            else if (Utility.compare(element, node.data) > 0)
                 node.right = remove(node.right, element);
-            else if (util.Utility.compare(node.data, element) == 0) { //ya encontramos el elemento a eliminar
+            else if (Utility.compare(node.data, element) == 0) { //ya encontramos el elemento a eliminar
                 //Caso 1. Es un nodo sin hijos. Es una hoja
                 if (node.left == null && node.right == null)
                     return null;
@@ -199,10 +202,10 @@ public class AVL implements Tree {
     private int height(BTreeNode node, Object element, int counter){
         if(node==null)
             return -1;
-        else if(util.Utility.compare(node.data, element)==0)
+        else if(Utility.compare(node.data, element)==0)
             return counter;
         else //en este caso debe buscar por la izq y por la der
-        if(util.Utility.compare(element, node.data)< 0)
+        if(Utility.compare(element, node.data)< 0)
             return height(node.left, element, ++counter);
         else return height(node.right, element, ++counter);
             //return Math.max(height(node.left, element, ++counter), height(node.right, element, counter));
@@ -339,7 +342,7 @@ public class AVL implements Tree {
     private String getSequence(BTreeNode node) {
         String sequence = "";
 
-        if (node != null && util.Utility.compare(node.data, root.data) == 0){
+        if (node != null && Utility.compare(node.data, root.data) == 0){
             sequence = "Se insertó " + node.data + " como " + node.path;
         }
 

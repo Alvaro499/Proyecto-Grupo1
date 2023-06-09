@@ -1,4 +1,4 @@
-package TDA;
+package ucr.proyecto.proyectogrupo1.TDA;
 
 public interface Tree {
     //devuelve el número de elementos en el árbol

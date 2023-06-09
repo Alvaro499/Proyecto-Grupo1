@@ -1,4 +1,4 @@
-package TDA;
+package ucr.proyecto.proyectogrupo1.TDA;
 
 public class ArrayStack implements Stack{
     private int n; //tam max de la pila

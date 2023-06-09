@@ -1,4 +1,6 @@
-package TDA;
+package ucr.proyecto.proyectogrupo1.TDA;
+
+import ucr.proyecto.proyectogrupo1.util.Utility;
 
 public class LinkedQueue implements Queue {
 
@@ -37,7 +39,7 @@ public class LinkedQueue implements Queue {
         int i = 1;
         int j = -1; // si es -1 no existe el elemento en la cola
         while (!isEmpty()) {
-            if (util.Utility.compare(front(), element) == 0) {
+            if (Utility.compare(front(), element) == 0) {
                 j = i;
             }
             aux.enQueue(deQueue());
@@ -89,7 +91,7 @@ public class LinkedQueue implements Queue {
         LinkedQueue aux = new LinkedQueue();
         boolean encontrado = false;
         while (!isEmpty()) {
-            if (util.Utility.compare(front(), element) == 0) {
+            if (Utility.compare(front(), element) == 0) {
                 encontrado = true;
             }
             aux.enQueue(deQueue());

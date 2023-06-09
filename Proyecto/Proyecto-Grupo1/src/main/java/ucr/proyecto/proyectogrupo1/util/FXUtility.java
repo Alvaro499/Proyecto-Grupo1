@@ -1,9 +1,9 @@
-package util;
+package ucr.proyecto.proyectogrupo1.util;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import ucr.lab.HelloApplication;
+import ucr.proyecto.proyectogrupo1.HelloApplication;
 
 import java.io.IOException;
 import java.util.Optional;

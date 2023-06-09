@@ -1,6 +1,6 @@
-package util;
+package ucr.proyecto.proyectogrupo1.util;
 
-import TDA.*;
+import ucr.proyecto.proyectogrupo1.TDA.*;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
