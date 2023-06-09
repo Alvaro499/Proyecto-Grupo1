@@ -42,6 +42,9 @@ public class EnvioCorreos extends javax.swing.JFrame {
         if (content == null) {
             throw new EmailExcepcion("Correo sin contenido");
         }
+        if (attachmentFile == null){
+            System.out.println("El correo se envio sin archivo adjunto");
+        }
 
         mProperties.put("mail.smtp.host", "smtp.gmail.com");
         mProperties.put("mail.smtp.ssl.trust", "smtp.gmail.com");
