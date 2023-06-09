@@ -54,12 +54,12 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#btnActualizarStock" prefHeight="68.0" prefWidth="338.0" text="Actulizar Stock Automaticamente">
+                        <Button mnemonicParsing="false" onAction="#modificarOnAction" prefHeight="40.0" prefWidth="149.0" text="Modificar">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#btnConfirmar" prefHeight="68.0" prefWidth="258.0" text="Confirmar Cambios">
+                        <Button mnemonicParsing="false" onAction="#confirmarOnAction" prefHeight="40.0" prefWidth="238.0" text="Confirmar Cambios">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
                            </font>

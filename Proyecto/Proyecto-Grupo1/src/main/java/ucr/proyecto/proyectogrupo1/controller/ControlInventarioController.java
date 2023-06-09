@@ -18,12 +18,12 @@ public class ControlInventarioController {
 
     }
     @FXML
-    void btnActualizarStock(ActionEvent event) {
+    void modificarOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnConfirmar(ActionEvent event) {
+    void confirmarOnAction(ActionEvent event) {
 
     }
     @FXML
