@@ -9,20 +9,16 @@ public class ControlInventarioController {
 
     @FXML
     private TableView<?> tableView;
+    @FXML
+    private TextField txtBuscar;
+
 
     @FXML
-    private TextField txtNombreUsuario;
-
-    @FXML
-    private TextField txtNombreUsuario1;
-
-    @FXML
-    void btnActualizarStock(ActionEvent event) {
+    public void initialize() {
 
     }
-
     @FXML
-    void btnConfiguracionSistema(ActionEvent event) {
+    void btnActualizarStock(ActionEvent event) {
 
     }
 
@@ -30,45 +26,7 @@ public class ControlInventarioController {
     void btnConfirmar(ActionEvent event) {
 
     }
-
     @FXML
-    void btnControlCostos(ActionEvent event) {
-
+    public void buscarOnAction(ActionEvent actionEvent) {
     }
-
-    @FXML
-    void btnControlInventarios(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnGestionPedidos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoClientes(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoProductos(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnMantenimientoProveedores(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnPrevisionDemanda(ActionEvent event) {
-
-    }
-
-    @FXML
-    void btnReportes(ActionEvent event) {
-
-    }
-
 }

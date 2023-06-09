@@ -1,0 +1,8 @@
+.button{
+    -fx-background-color: #2E2F38;
+    -fx-background-radius: 20 20 20 20;
+    -fx-font-family: "Century Schoolbook";
+    -width: 80px;
+     -height: 19px;
+    -fx-text-fill: white;
+}

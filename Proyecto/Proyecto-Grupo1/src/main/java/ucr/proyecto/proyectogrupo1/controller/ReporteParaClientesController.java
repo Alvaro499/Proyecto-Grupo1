@@ -4,20 +4,20 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 
-public class ControlDeCostosController {
+public class ReporteParaClientesController {
 
     @FXML
     private TableView<?> tableView;
 
-
     @FXML
-    public void initialize() {
+    void actualizarOnAction(ActionEvent event) {
 
     }
 
     @FXML
-    void btnReporte(ActionEvent event) {
+    void generarReporteOnAction(ActionEvent event) {
 
     }
+
 
 }

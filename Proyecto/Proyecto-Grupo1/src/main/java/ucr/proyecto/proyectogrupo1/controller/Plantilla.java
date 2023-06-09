@@ -14,6 +14,11 @@ public class Plantilla {
     private TextField txtNombreUsuario1;
 
     @FXML
+    public void initialize() {
+
+    }
+
+    @FXML
     void btnConfiguracionSistema(ActionEvent event) {
 
     }
