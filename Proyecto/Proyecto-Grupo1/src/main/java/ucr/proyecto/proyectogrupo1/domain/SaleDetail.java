@@ -1,13 +1,36 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
 public class SaleDetail {
+    private Integer ID;
+    private Integer saleID;//FK con Sale.ID
+    private Integer productID;//FK con Product.ID
+    private Integer quantity;
+    private Double uniPrice;
+    public SaleDetail(Integer ID, Integer saleID, Integer productID, Integer quantity, Double uniPrice) {
+        this.ID = ID;
+        this.saleID = saleID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.uniPrice = uniPrice;
+    }
 
-    private int id;
-    private int quantity;
-    private Double unitPrice;
-    private int saleID;
-    private int productId;
+    public Integer getID() {
+        return ID;
+    }
 
-    //este no me queda claro si está bien //  private int ;
+    public Integer getSaleID() {
+        return saleID;
+    }
 
+    public Integer getProductID() {
+        return productID;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public Double getUniPrice() {
+        return uniPrice;
+    }
 }
