@@ -6,7 +6,9 @@ module ucr.proyecto.proyectogrupo1 {
     requires mail;
     requires javax.activation;
     requires org.apache.pdfbox;
-   // requires javax.mail.api;
+    //requires jackson.core;
+    requires jackson.databind;
+    // requires javax.mail.api;
 
     opens ucr.proyecto.proyectogrupo1 to javafx.fxml;
     exports ucr.proyecto.proyectogrupo1;
