@@ -7,13 +7,22 @@ public class Product {
     private String name;
     private Integer currentStock;
     private Integer minimunStock;
-    public Product(Integer ID, Integer supplierID, String description, String name, Integer currentStock, Integer minimunStock) {
+    private Double price;
+    public Product(Integer ID, Integer supplierID, String description, String name, Integer currentStock, Integer minimunStock, Double price) {
         this.ID = ID;
         this.supplierID = supplierID;
         this.description = description;
         this.name = name;
         this.currentStock = currentStock;
         this.minimunStock = minimunStock;
+        this.price = price;
+    }
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Integer getID() {
