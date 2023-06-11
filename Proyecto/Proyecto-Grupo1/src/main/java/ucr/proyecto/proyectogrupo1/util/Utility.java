@@ -1,7 +1,9 @@
 package ucr.proyecto.proyectogrupo1.util;
 
 import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Security;
+import ucr.proyecto.proyectogrupo1.domain.Supplier;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -10,18 +12,27 @@ import java.util.Date;
 import java.util.Random;
 
 public class Utility {
-
-    private static ArrayList<Security> security;
-
     public static CircularLinkedList getLoginCircularLinkedList() {
         return loginCircularLinkedList;
     }
-
     public static void setLoginCircularLinkedList(CircularLinkedList loginCircularLinkedList) {
         Utility.loginCircularLinkedList = loginCircularLinkedList;
     }
-
-    private static CircularLinkedList loginCircularLinkedList;
+    public static AVL getProductAVL() {
+        return productAVL;
+    }
+    public static void setProductAVL(AVL productAVL) {
+        Utility.productAVL = productAVL;
+    }
+    public static AVL getSupplierAVL() {
+        return supplierAVL;
+    }
+    public static void setSupplierAVL(AVL supplierAVL) {
+        Utility.supplierAVL = supplierAVL;
+    }
+    private static CircularLinkedList loginCircularLinkedList; //table security
+    private static AVL productAVL; //table product
+    private static AVL supplierAVL; //table supplier
 
 
     private static Random random;    // pseudo-random number generator
@@ -29,21 +40,99 @@ public class Utility {
 
     // static initializer
     static {
-        security = new ArrayList<>();
-        loginCircularLinkedList = new CircularLinkedList();
         // this is how the seed was set in Java 1.4
         seed = System.currentTimeMillis();
         random = new Random(seed);
 
-        //admin 0 a 999
-        //consulta 1000 a 1999
-        //cliente 2000 a 2999
+        //Tabla security
+        ArrayList<Security> security = new ArrayList<>();
+        loginCircularLinkedList = new CircularLinkedList();
+        //admin 0 a 999 | consulta 1000 a 1999 | cliente 2000 a 2999
         security.add(new Security(0, "592 383 318 421 279 174", "592 383 318 421 279 174"));
         security.add(new Security(1000, "619 398 331 673 448 333 406 277 161", "619 398 331 673 448 333 406 277 161"));
         security.add(new Security(2000, "598 385 318 669 443 342 261 197 96", "598 385 318 669 443 342 261 197 96"));
-
         for (int i = 0; i < security.size(); i++) {
             loginCircularLinkedList.add(security.get(i));
+        }
+
+        //Tabla Supplier
+        supplierAVL = new AVL();
+        ArrayList<Supplier> supplier = new ArrayList<>();
+        supplier.add(new Supplier(1,"Editorial Alma",78904345,"info@editorialalma.com","Calle Principal, Ciudad"));
+        supplier.add(new Supplier(2,"Esfera de los libros",83940594,"contacto@esferadeloslibros.com","Avenida Central, Ciudad"));
+        supplier.add(new Supplier(3,"Alianza",69834759,"info@alianzaeditorial.com","Calle Secundaria, Ciudad"));
+        supplier.add(new Supplier(4,"Diana",74903928,"contacto@dianaeditorial.com","Calle Principal, Ciudad"));
+        supplier.add(new Supplier(5,"Flamboyant",83497459,"info@flamboyanteditorial.com","Avenida Central, Ciudad"));
+        supplier.add(new Supplier(6,"Gredos",64849403,"contacto@gredoseditorial.com","Calle Secundaria, Ciudad"));
+        supplier.add(new Supplier(7,"B de bolsillo",89409049,"info@bdebolsilloeditorial.com","Avenida Central, Ciudad"));
+        for (int i = 0; i < supplier.size(); i++) {
+            supplierAVL.add(supplier.get(i));
+        }
+
+        //Tabla Product
+        productAVL = new AVL();
+        ArrayList<Product> product = new ArrayList<>();
+        product.add(new Product(
+                1,
+                1,
+                "Autor: LOUISA MAY ALCOTT\nFecha de publicación: 2022\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Clásicos",
+                "Mujercitas",
+                6900.00,
+                Utility.random(100),
+                Utility.random(10,50),
+                "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418008658_1.jpg"));
+
+        product.add(new Product(
+                2,
+                2,
+                "Autor: JAVIER SANTAOLALLA\nFecha de publicación: 2018\nFormato: Pasta suave\nIdioma: Español\nTema(s): No Ficción,Referencia,Ciencia",
+                "El Bosón de Higgs No Te Va a Hacer la Cama",
+                18000.00,
+                Utility.random(100),
+                Utility.random(10,50),
+                "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788490607725_4fp637xaigispfzz.jpg"));
+
+        product.add(new Product(
+                3,
+                3,
+                "Autor: EDGAR ALLAN POE\nFecha de publicación: 2017\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Poesía",
+                "Cuervo y otros poemas",
+                11900.00,
+                Utility.random(100),
+                Utility.random(10,50),
+                "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788491047087_1.jpg"));
+
+        product.add(new Product(
+                4,
+                4,
+                "Autor: GABRIEL GARCIA MARQUEZ\nFecha de publicación: 2015\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Latinoamericana",
+                "Cien años de soledad",
+                11900.00,
+                Utility.random(100),
+                Utility.random(10,50),
+                "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9786070728792_1_1.jpg"));
+
+        product.add(new Product(
+                5,
+                4,
+                "Autor: GABRIEL GARCIA MARQUEZ\nFecha de publicación: 2015\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Latinoamericana",
+                "Crónica de una muerte anunciada",
+                8900.00,
+                Utility.random(100),
+                Utility.random(10,50),
+                "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9786070729560_1.jpg"));
+
+        product.add(new Product(
+                6,
+                5,
+                "Autor: JACOB GRIMM\nFecha de publicación: 2021\nFormato: Pasta dura\nIdioma: Español\nTema(s): Infantil,3 a 5 años,Lectores tempranos\nCrónica de una muerte anunciada",
+                "Caperucita roja",
+                14800.00,
+                Utility.random(100),
+                Utility.random(10,50),
+                "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418304316_1.jpg"));
+        for (int i = 0; i < product.size(); i++) {
+            productAVL.add(product.get(i));
         }
     }
 
