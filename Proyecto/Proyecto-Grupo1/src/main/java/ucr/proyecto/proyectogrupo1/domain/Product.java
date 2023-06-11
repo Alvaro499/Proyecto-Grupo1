@@ -7,13 +7,34 @@ public class Product {
     private String name;
     private Integer currentStock;
     private Integer minimunStock;
-    public Product(Integer ID, Integer supplierID, String description, String name, Integer currentStock, Integer minimunStock) {
+    private Double price;
+    private String url_img;
+
+    public Product(Integer ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
         this.ID = ID;
         this.supplierID = supplierID;
         this.description = description;
         this.name = name;
         this.currentStock = currentStock;
         this.minimunStock = minimunStock;
+        this.price = price;
+        this.url_img = url_img;
+    }
+
+    public String getUrl_img() {
+        return url_img;
+    }
+
+    public void setUrl_img(String url_img) {
+        this.url_img = url_img;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 
     public Integer getID() {

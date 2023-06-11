@@ -31,12 +31,12 @@
                   </Button>
                   <TableView fx:id="tableView" prefHeight="386.0" prefWidth="710.0">
                     <columns>
-                      <TableColumn prefWidth="110.0" text="ID" />
-                      <TableColumn prefWidth="120.0" text="NOMBRE" />
-                        <TableColumn prefWidth="120.0" text="Precio" />
-                        <TableColumn prefWidth="120.0" text="Stock Actual" />
-                        <TableColumn minWidth="8.0" prefWidth="120.0" text="Stock Min" />
-                        <TableColumn prefWidth="120.0" text="Proveedor" />
+                      <TableColumn fx:id="img" prefWidth="255.99999845027924" text="Imagen" />
+                      <TableColumn fx:id="name" prefWidth="183.20001220703125" text="NOMBRE" />
+                        <TableColumn fx:id="price" prefWidth="86.39996337890625" text="Precio" />
+                        <TableColumn fx:id="stock" prefWidth="85.60003662109375" text="Stock Actual" />
+                        <TableColumn fx:id="Stockmin" minWidth="8.0" prefWidth="67.99993896484375" text="Stock Min" />
+                        <TableColumn fx:id="supplier" prefWidth="152.0" text="Proveedor " />
                     </columns>
                   </TableView>
                </children>

@@ -1,21 +1,50 @@
 package ucr.proyecto.proyectogrupo1.util;
 
 import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Security;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
 public class Utility {
+
+    private static ArrayList<Security> security;
+
+    public static CircularLinkedList getLoginCircularLinkedList() {
+        return loginCircularLinkedList;
+    }
+
+    public static void setLoginCircularLinkedList(CircularLinkedList loginCircularLinkedList) {
+        Utility.loginCircularLinkedList = loginCircularLinkedList;
+    }
+
+    private static CircularLinkedList loginCircularLinkedList;
+
+
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
 
     // static initializer
     static {
+        security = new ArrayList<>();
+        loginCircularLinkedList = new CircularLinkedList();
         // this is how the seed was set in Java 1.4
         seed = System.currentTimeMillis();
         random = new Random(seed);
+
+        //admin 0 a 999
+        //consulta 1000 a 1999
+        //cliente 2000 a 2999
+        security.add(new Security(0, "592 383 318 421 279 174", "592 383 318 421 279 174"));
+        security.add(new Security(1000, "619 398 331 673 448 333 406 277 161", "619 398 331 673 448 333 406 277 161"));
+        security.add(new Security(2000, "598 385 318 669 443 342 261 197 96", "598 385 318 669 443 342 261 197 96"));
+
+        for (int i = 0; i < security.size(); i++) {
+            loginCircularLinkedList.add(security.get(i));
+        }
     }
 
     public static int random(){
