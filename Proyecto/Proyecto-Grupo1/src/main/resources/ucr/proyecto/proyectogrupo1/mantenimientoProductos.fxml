@@ -29,14 +29,15 @@
                         <Font name="Century Schoolbook" size="18.0" />
                      </font>
                   </Button>
-                  <TableView fx:id="tableView" prefHeight="386.0" prefWidth="710.0">
+                  <TableView fx:id="tableView" prefHeight="386.0" prefWidth="877.0">
                     <columns>
-                      <TableColumn fx:id="img" prefWidth="255.99999845027924" text="Imagen" />
-                      <TableColumn fx:id="name" prefWidth="183.20001220703125" text="NOMBRE" />
-                        <TableColumn fx:id="price" prefWidth="86.39996337890625" text="Precio" />
-                        <TableColumn fx:id="stock" prefWidth="85.60003662109375" text="Stock Actual" />
-                        <TableColumn fx:id="Stockmin" minWidth="8.0" prefWidth="67.99993896484375" text="Stock Min" />
-                        <TableColumn fx:id="supplier" prefWidth="152.0" text="Proveedor " />
+                      <TableColumn fx:id="img" prefWidth="204.799986243248" text="Imagen" />
+                      <TableColumn fx:id="name" prefWidth="139.20001220703125" text="Nombre" />
+                        <TableColumn fx:id="dec" prefWidth="176.0" text="Detalle" />
+                        <TableColumn fx:id="price" minWidth="0.0" prefWidth="73.60003662109375" text="Precio" />
+                        <TableColumn fx:id="stock" prefWidth="48.0" text="Stock Actual" />
+                        <TableColumn fx:id="Stockmin" minWidth="8.0" prefWidth="68.79998779296875" text="Stock Min" />
+                        <TableColumn fx:id="supplier" minWidth="0.0" prefWidth="125.5999755859375" text="Proveedor " />
                     </columns>
                   </TableView>
                </children>

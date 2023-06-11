@@ -42,7 +42,8 @@ public class MantenimientoProductosController {
     private TableColumn<List<String>, String> Stockmin;
     @FXML
     private TableColumn<List<String>, String> supplier;
-
+    @FXML
+    private TableColumn<List<String>, String> dec;
     private AVL product;
     private AVL supplierName;
 
@@ -57,17 +58,20 @@ public class MantenimientoProductosController {
         this.name.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(1)));
 
-        this.price.setCellValueFactory(data ->
+        this.dec.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(2)));
 
-        this.stock.setCellValueFactory(data ->
+        this.price.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(3)));
 
-        this.Stockmin.setCellValueFactory(data ->
+        this.stock.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(4)));
 
-        this.supplier.setCellValueFactory(data ->
+        this.Stockmin.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(5)));
+
+        this.supplier.setCellValueFactory(data ->
+                new ReadOnlyStringWrapper(data.getValue().get(6)));
 
         this.img.setCellFactory(col -> new ImageTableCell<>());
 
@@ -83,6 +87,7 @@ public class MantenimientoProductosController {
             Product p = (Product) product.get(i);
             arrayList.add(p.getUrl_img());
             arrayList.add(p.getName());
+            arrayList.add(p.getDescription());
             arrayList.add(String.valueOf(p.getPrice()));
             arrayList.add(String.valueOf(p.getCurrentStock()));
             arrayList.add(String.valueOf(p.getMinimunStock()));

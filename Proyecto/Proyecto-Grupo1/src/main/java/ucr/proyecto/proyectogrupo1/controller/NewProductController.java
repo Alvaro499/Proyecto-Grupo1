@@ -60,6 +60,7 @@ public class NewProductController {
                 borrarOnAction(new ActionEvent());
                 Utility.setProductAVL(product);
                 System.out.println("Producto guardado");
+
                 break;
             }
 
