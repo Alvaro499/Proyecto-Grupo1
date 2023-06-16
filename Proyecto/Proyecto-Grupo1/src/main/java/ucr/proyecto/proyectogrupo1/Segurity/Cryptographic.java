@@ -4,7 +4,7 @@ public class Cryptographic {
     private static final int[][] key = new int[][]{{1, 2, 3}, {1, 1, 2}, {0, 1, 2}};//Matriz
     private static final int[][] keyI = new int[][]{{0, 1, -1}, {2, -2, -1}, {-1, 1, 1}};//Matriz inversa
 
-    public static String condificar(String frase) {
+    public static String codificar(String frase) {
 
         //Primero: Descomponemos el mensajo en unidades de igual longitud y cada caracter lo pasamos a su valor en ascii
 

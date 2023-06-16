@@ -88,7 +88,7 @@ public class MantenimientoProductosController {
             arrayList.add(p.getUrl_img());
             arrayList.add(p.getName());
             arrayList.add(p.getDescription());
-            arrayList.add(String.valueOf(p.getPrice()));
+            arrayList.add("₡"+String.valueOf(p.getPrice()));
             arrayList.add(String.valueOf(p.getCurrentStock()));
             arrayList.add(String.valueOf(p.getMinimunStock()));
 
@@ -127,7 +127,7 @@ public class MantenimientoProductosController {
             setGraphic(imageView);
         }
 
-        @Override
+        @FXML
         protected void updateItem(Image image, boolean empty) {
             super.updateItem(image, empty);
 

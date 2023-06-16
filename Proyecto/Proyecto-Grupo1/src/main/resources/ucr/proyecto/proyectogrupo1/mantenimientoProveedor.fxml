@@ -31,12 +31,11 @@
                   </Button>
                   <TableView fx:id="tableView" prefHeight="409.0" prefWidth="710.0">
                     <columns>
-                      <TableColumn fx:id="idCl" prefWidth="110.0" text="ID" />
-                      <TableColumn fx:id="nombreCl" prefWidth="120.0" text="NOMBRE" />
-                        <TableColumn fx:id="productosCl" prefWidth="120.0" text="Productos" />
-                        <TableColumn fx:id="telefonoCl" prefWidth="120.0" text="Teléfono" />
-                        <TableColumn fx:id="emailCl" minWidth="8.0" prefWidth="120.0" text="Email" />
-                        <TableColumn fx:id="direccionCl" prefWidth="120.0" text="Dirección" />
+                      <TableColumn fx:id="tableName" prefWidth="175.99999845027924" text="Nombre" />
+                      <TableColumn fx:id="tablePhone" prefWidth="147.20001220703125" text="Phone" />
+                        <TableColumn fx:id="tableEmail" prefWidth="194.39996337890625" text="Email" />
+                        <TableColumn fx:id="tableAddress" prefWidth="176.0" text="Dirección" />
+                        <TableColumn fx:id="tableBook" prefWidth="139.199951171875" text="Libros" />
                     </columns>
                   </TableView>
                </children>
