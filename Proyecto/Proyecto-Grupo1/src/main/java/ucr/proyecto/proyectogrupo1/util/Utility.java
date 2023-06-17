@@ -1,6 +1,5 @@
 package ucr.proyecto.proyectogrupo1.util;
 
-import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
 import ucr.proyecto.proyectogrupo1.TDA.*;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
@@ -61,12 +60,19 @@ public class Utility {
         //tabla cliente
         clientSinglyLinkedList = new SinglyLinkedList();
         clientSinglyLinkedList.add(new Customer(123456789, "Jean","70790629","zjeancarlo42@gmail.com","Cartago"));
+        clientSinglyLinkedList.add(new Customer(111111111, "user","70790629","user@gmail.com","lugar"));
+        clientSinglyLinkedList.add(new Customer(222222222, "user2","70790629","user@gmail.com","lugar"));
+        clientSinglyLinkedList.add(new Customer(333333333, "user3","70790629","user@gmail.com","lugar"));
+
         //Tabla security
         loginCircularLinkedList = new CircularLinkedList();
         //admin 0 a 999 | consulta 1000 a 1999 | cliente 2000 a 2999
-        loginCircularLinkedList.add(new Security(0, "Admin", Cryptographic.descodificar("592 383 318 421 279 174")));
-        loginCircularLinkedList.add(new Security(1000, "Consulta", Cryptographic.descodificar("619 398 331 673 448 333 406 277 161")));
-        loginCircularLinkedList.add(new Security(123456789, "Cliente", Cryptographic.descodificar("598 385 318 669 443 342 261 197 96")));
+        loginCircularLinkedList.add(new Security(0, "Admin", "Admin"));
+        loginCircularLinkedList.add(new Security(1000, "Consulta", "Consulta"));
+        loginCircularLinkedList.add(new Security(123456789, "Cliente", "Cliente"));
+        loginCircularLinkedList.add(new Security(111111111, "Cliente", "Cliente"));
+        loginCircularLinkedList.add(new Security(222222222, "Cliente", "Cliente"));
+        loginCircularLinkedList.add(new Security(333333333, "Cliente", "Cliente"));
 
         //Tabla Supplier
         supplierAVL = new AVL();
@@ -235,6 +241,21 @@ public class Utility {
                 BTree bTree2 = (BTree) b;
                 return bTree1.toString().compareToIgnoreCase(bTree2.toString()) < 0 ? -1 :
                         bTree1.toString().compareToIgnoreCase(bTree2.toString()) > 0 ? 1 : 0;
+            case "Supplier":
+                Supplier supplier1 = (Supplier) a;
+                Supplier supplier2 = (Supplier) b;
+                return supplier1.toString().compareToIgnoreCase(supplier2.toString()) < 0 ? -1 :
+                        supplier1.toString().compareToIgnoreCase(supplier2.toString()) > 0 ? 1 : 0;
+            case "Customer":
+                Customer customer1 = (Customer) a;
+                Customer customer2 = (Customer) b;
+                return customer1.toString().compareToIgnoreCase(customer2.toString()) < 0 ? -1 :
+                        customer1.toString().compareToIgnoreCase(customer2.toString()) > 0 ? 1 : 0;
+            case "Security":
+                Security security1 = (Security) a;
+                Security security2 = (Security) b;
+                return security1.toString().compareToIgnoreCase(security2.toString()) < 0 ? -1 :
+                        security1.toString().compareToIgnoreCase(security2.toString()) > 0 ? 1 : 0;
         }
         return 2; //Unknown
     }
@@ -258,6 +279,9 @@ public class Utility {
         if (a instanceof ArrayStack && b instanceof ArrayStack) return "ArrayStack";
         if (a instanceof LinkedQueue && b instanceof LinkedQueue) return "LinkedQueue";
         if (a instanceof BTree && b instanceof BTree) return "BTree";
+        if (a instanceof Supplier && b instanceof Supplier) return "Supplier";
+        if (a instanceof Customer && b instanceof Customer) return "Customer";
+        if (a instanceof Security && b instanceof Security) return "Security";
         return "Unknown"; //desconodo
     }
 
