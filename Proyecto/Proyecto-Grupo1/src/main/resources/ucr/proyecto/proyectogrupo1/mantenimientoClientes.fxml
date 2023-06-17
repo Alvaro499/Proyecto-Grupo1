@@ -31,11 +31,12 @@
                   </Button>
                   <TableView fx:id="tableView" prefHeight="378.0" prefWidth="758.0">
                     <columns>
-                      <TableColumn prefWidth="140.0" text="ID" />
-                      <TableColumn prefWidth="140.0" text="NOMBRE" />
-                        <TableColumn prefWidth="140.0" text="Número Telefono" />
-                        <TableColumn prefWidth="140.0" text="Email" />
-                        <TableColumn minWidth="8.0" prefWidth="148.0" text="Adress" />
+                      <TableColumn fx:id="tableID" prefWidth="95.99999463558197" text="ID" />
+                      <TableColumn fx:id="tableName" prefWidth="139.20003509521484" text="Nombre" />
+                        <TableColumn fx:id="tableUser" prefWidth="128.79998779296875" text="Usuario" />
+                        <TableColumn fx:id="tablePhone" prefWidth="105.60003662109375" text="Número Telefono" />
+                        <TableColumn fx:id="tableEmail" prefWidth="221.59994506835938" text="Email" />
+                        <TableColumn fx:id="tableAddress" minWidth="8.0" prefWidth="138.4000244140625" text="Dirección" />
                     </columns>
                      <VBox.margin>
                         <Insets />

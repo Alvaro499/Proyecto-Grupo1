@@ -32,7 +32,7 @@ public class EnvioCorreos extends javax.swing.JFrame {
         }
     }
 
-    public void createEmail() throws EmailExcepcion {
+    private void createEmail() throws EmailExcepcion {
         if (emailTo == null) {
             throw new EmailExcepcion("Correo sin destinatario");
         }
@@ -83,6 +83,7 @@ public class EnvioCorreos extends javax.swing.JFrame {
 
     public void sendEmail() {
         try {
+            createEmail();
             Transport mTransport = mSession.getTransport("smtp");
             mTransport.connect(emailFrom, passwordFrom);
             mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
@@ -93,6 +94,8 @@ public class EnvioCorreos extends javax.swing.JFrame {
             Logger.getLogger(EnvioCorreos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
             Logger.getLogger(EnvioCorreos.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (EmailExcepcion e) {
+            throw new RuntimeException(e);
         }
 
         emailTo = null;

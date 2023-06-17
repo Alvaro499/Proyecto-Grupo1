@@ -1,5 +1,7 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import javafx.scene.image.Image;
+
 public class Product {
     private Integer ID;
     private Integer supplierID; //FK con Supplier.ID
@@ -9,6 +11,7 @@ public class Product {
     private Integer minimunStock;
     private Double price;
     private String url_img;
+    private Image image;
 
     public Product(Integer ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
         this.ID = ID;
@@ -59,5 +62,13 @@ public class Product {
 
     public Integer getMinimunStock() {
         return minimunStock;
+    }
+
+    public void setPreloadedImage(Image image) {
+        this.image = image;
+    }
+
+    public Object getPreloadedImage() {
+        return image;
     }
 }
