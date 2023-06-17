@@ -47,6 +47,8 @@ public class MantenimientoClientesController {
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
 
+        //ObservableList<List<String>> selectedItems = tableView.getSelectionModel().getSelectedItems();
+
         this.tableID.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));
         this.tableName.setCellValueFactory(data ->
@@ -88,6 +90,11 @@ public class MantenimientoClientesController {
     }
 
     @FXML
+    void btnEliminarCliente(ActionEvent event) {
+
+    }
+
+    @FXML
     void btnAgregarNuevoCliente(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newClient.fxml"));
         Scene scene = null;
@@ -100,5 +107,9 @@ public class MantenimientoClientesController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @FXML
+    public void btnBuscarCliente(ActionEvent actionEvent) {
     }
 }
