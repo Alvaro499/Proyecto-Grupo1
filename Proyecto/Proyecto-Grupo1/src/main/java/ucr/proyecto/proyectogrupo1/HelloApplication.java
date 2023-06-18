@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         HelloController helloController = new HelloController();
-        FXMLLoader login = new FXMLLoader(HelloApplication.class.getResource("menuAdministrador.fxml"));//login.fxml menuAdministrador.fxml
+        FXMLLoader login = new FXMLLoader(HelloApplication.class.getResource("menuAdministrador.fxml"));//login.fxml menuAdministrador.fxml cliente.fxml
 
         Scene scene = new Scene(login.load());
         stage.setTitle("Laberinto de Libros");

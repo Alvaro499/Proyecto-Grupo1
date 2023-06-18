@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -46,6 +47,8 @@ public class MantenimientoProductosController {
     private TableColumn<List<String>, String> dec;
     private AVL product;
     private AVL supplierName;
+    @FXML
+    private TextField fieldID;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -88,7 +91,7 @@ public class MantenimientoProductosController {
             arrayList.add(p.getUrl_img());
             arrayList.add(p.getName());
             arrayList.add(p.getDescription());
-            arrayList.add("₡"+String.valueOf(p.getPrice()));
+            arrayList.add("₡" + String.valueOf(p.getPrice()));
             arrayList.add(String.valueOf(p.getCurrentStock()));
             arrayList.add(String.valueOf(p.getMinimunStock()));
 
@@ -115,6 +118,17 @@ public class MantenimientoProductosController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @FXML
+    void btnBuscarCliente(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void btnEliminar(ActionEvent event) {
+
     }
 
     private static class ImageTableCell<S> extends TableCell<S, Image> {

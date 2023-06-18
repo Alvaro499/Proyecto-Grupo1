@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -58,7 +60,15 @@
                         </HBox>
                      </children>
                   </VBox>
-                  <ScrollPane fx:id="scrollPane" layoutX="-2.0" layoutY="90.0" prefHeight="498.0" prefWidth="934.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="91.20000000000005" />
+                  <TableView fx:id="tableView" layoutX="7.0" layoutY="95.0" prefHeight="486.0" prefWidth="921.0" tableMenuButtonVisible="true">
+                    <columns>
+                      <TableColumn fx:id="columnLibro" editable="false" prefWidth="386.39994525909424" text="Libro" />
+                      <TableColumn fx:id="columnDetalles" editable="false" prefWidth="533.60009765625" text="Detalles" />
+                    </columns>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                  </TableView>
                </children></AnchorPane>
          </top>
         </BorderPane>

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
@@ -43,6 +44,8 @@ public class MantenimientoClientesController {
     private CircularLinkedList login; //table security
     private SinglyLinkedList client; //table client
     private ObservableList<List<String>> selectedItems;
+    @FXML
+    private TextField fieldID;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -102,15 +105,15 @@ public class MantenimientoClientesController {
             int c = client.size();
             for (int i = 1; i <= l; i++) {
                 Security security = (Security) login.getNode(i).data;
-                if (Integer.parseInt(s.get(0).trim()) == security.getCustomerID()){
+                if (Integer.parseInt(s.get(0).trim()) == security.getCustomerID()) {
                     login.remove(security);
                     Utility.setLoginCircularLinkedList(login);
                     break;
                 }
             }
-            for (int i = 1; i <= c ; i++) {
+            for (int i = 1; i <= c; i++) {
                 Customer customer = (Customer) client.getNode(i).data;
-                if (Integer.parseInt(s.get(0).trim()) == customer.getID()){
+                if (Integer.parseInt(s.get(0).trim()) == customer.getID()) {
                     client.remove(customer);
                     Utility.setClientSinglyLinkedList(client);
                     break;
@@ -118,8 +121,11 @@ public class MantenimientoClientesController {
             }
             client = Utility.getClientSinglyLinkedList();
             login = Utility.getLoginCircularLinkedList();
-
-            System.out.println(client.toString());
+        }
+        login = Utility.getLoginCircularLinkedList();
+        client = Utility.getClientSinglyLinkedList();
+        if (!client.isEmpty()) {
+            tableView.setItems(getData());
         }
     }
 
