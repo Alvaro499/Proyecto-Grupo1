@@ -21,4 +21,13 @@ public class Security {
     public String getPassword() {
         return password;
     }
+
+    @Override
+    public String toString() {
+        return "Security{" +
+                "customerID=" + customerID +
+                ", user='" + user +
+                ", password='" + password +
+                "}\n";
+    }
 }

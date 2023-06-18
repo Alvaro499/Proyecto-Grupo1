@@ -34,4 +34,14 @@ public class Supplier {
         return address;
     }
 
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "ID=" + ID +
+                ", name='" + name +
+                ", phoneNumber=" +
+                ", email='" + email +
+                ", address='" + address +
+                "}\n";
+    }
 }

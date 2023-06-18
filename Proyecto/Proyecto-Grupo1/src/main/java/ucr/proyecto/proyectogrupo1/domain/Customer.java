@@ -34,4 +34,15 @@ public class Customer {
     public String getAddress() {
         return address;
     }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "ID=" + ID +
+                ", name='" + name +
+                ", phoneNumber='" + phoneNumber +
+                ", email='" + email +
+                ", address='" + address +
+                "}\n";
+    }
 }

@@ -7,8 +7,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
@@ -41,13 +43,19 @@ public class MantenimientoClientesController {
     private TableColumn<List<String>, String> tableUser;
     private CircularLinkedList login; //table security
     private SinglyLinkedList client; //table client
+    private ObservableList<List<String>> selectedItems;
+    @FXML
+    private TextField fieldID;
 
     @FXML
     public void initialize() throws ListException, TreeException {
+        // Configurar el modo de selección múltiple
+        tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
 
-        //ObservableList<List<String>> selectedItems = tableView.getSelectionModel().getSelectedItems();
+        selectedItems = tableView.getSelectionModel().getSelectedItems();
 
         this.tableID.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));
@@ -90,8 +98,35 @@ public class MantenimientoClientesController {
     }
 
     @FXML
-    void btnEliminarCliente(ActionEvent event) {
-
+    void btnEliminarCliente(ActionEvent event) throws ListException {
+        for (List<String> s : selectedItems) {
+            System.out.println(s.get(0));
+            int l = login.size();
+            int c = client.size();
+            for (int i = 1; i <= l; i++) {
+                Security security = (Security) login.getNode(i).data;
+                if (Integer.parseInt(s.get(0).trim()) == security.getCustomerID()) {
+                    login.remove(security);
+                    Utility.setLoginCircularLinkedList(login);
+                    break;
+                }
+            }
+            for (int i = 1; i <= c; i++) {
+                Customer customer = (Customer) client.getNode(i).data;
+                if (Integer.parseInt(s.get(0).trim()) == customer.getID()) {
+                    client.remove(customer);
+                    Utility.setClientSinglyLinkedList(client);
+                    break;
+                }
+            }
+            client = Utility.getClientSinglyLinkedList();
+            login = Utility.getLoginCircularLinkedList();
+        }
+        login = Utility.getLoginCircularLinkedList();
+        client = Utility.getClientSinglyLinkedList();
+        if (!client.isEmpty()) {
+            tableView.setItems(getData());
+        }
     }
 
     @FXML
