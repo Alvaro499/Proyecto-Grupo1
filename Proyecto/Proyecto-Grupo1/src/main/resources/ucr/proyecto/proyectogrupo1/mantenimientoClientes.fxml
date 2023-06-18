@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -14,34 +18,66 @@
    <center>
       <AnchorPane prefHeight="652.0" prefWidth="933.0" style="-fx-background-color: beige;">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registro de Clientes">
                      <font>
-                        <Font name="Century Schoolbook" size="18.0" />
+                        <Font name="Century Schoolbook" size="34.0" />
                      </font>
                   </Text>
-                  <Button mnemonicParsing="false" onAction="#btnAgregarNuevoCliente" prefHeight="42.0" prefWidth="258.0" text="Agregar nuevo cliente">
-                     <font>
-                        <Font name="Century Schoolbook" size="18.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </Button>
-                  <TableView fx:id="tableView" prefHeight="378.0" prefWidth="758.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnBuscarCliente" prefHeight="34.0" prefWidth="36.0" style="-fx-background-color: black; -fx-background-radius: 25;" textFill="WHITE">
+                           <font>
+                              <Font name="Century Schoolbook Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label prefHeight="26.0" prefWidth="14.0" />
+                        <TextField fx:id="fieldID" prefHeight="26.0" prefWidth="388.0" promptText="ID">
+                           <cursor>
+                              <Cursor fx:constant="TEXT" />
+                           </cursor>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableView" prefHeight="446.0" prefWidth="833.0">
                     <columns>
-                      <TableColumn fx:id="tableID" prefWidth="95.99999463558197" text="ID" />
-                      <TableColumn fx:id="tableName" prefWidth="139.20003509521484" text="Nombre" />
-                        <TableColumn fx:id="tableUser" prefWidth="128.79998779296875" text="Usuario" />
-                        <TableColumn fx:id="tablePhone" prefWidth="105.60003662109375" text="Número Telefono" />
-                        <TableColumn fx:id="tableEmail" prefWidth="221.59994506835938" text="Email" />
-                        <TableColumn fx:id="tableAddress" minWidth="8.0" prefWidth="138.4000244140625" text="Dirección" />
+                      <TableColumn fx:id="tableID" prefWidth="106.4000152349472" text="ID" />
+                      <TableColumn fx:id="tableName" prefWidth="138.39997100830078" text="Nombre" />
+                        <TableColumn fx:id="tableUser" prefWidth="120.00006103515625" text="Usuario" />
+                        <TableColumn fx:id="tablePhone" prefWidth="124.80007934570312" text="Número Telefono" />
+                        <TableColumn fx:id="tableEmail" prefWidth="207.19998168945312" text="Email" />
+                        <TableColumn fx:id="tableAddress" minWidth="8.0" prefWidth="135.199951171875" text="Dirección" />
                     </columns>
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>
                   </TableView>
+                  <HBox alignment="CENTER" nodeOrientation="LEFT_TO_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnAgregarNuevoCliente" prefHeight="56.0" prefWidth="126.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Agregar" textFill="WHITE">
+                           <font>
+                              <Font name="Century Schoolbook Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label prefHeight="50.0" prefWidth="50.0" />
+                        <Label prefHeight="50.0" prefWidth="50.0" />
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnEliminarCliente" prefHeight="56.0" prefWidth="126.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Eliminar" textFill="WHITE">
+                           <font>
+                              <Font name="Century Schoolbook Bold" size="12.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />

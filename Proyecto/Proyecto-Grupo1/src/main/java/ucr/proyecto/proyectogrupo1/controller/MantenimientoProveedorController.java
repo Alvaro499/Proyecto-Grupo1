@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
@@ -38,6 +39,8 @@ public class MantenimientoProveedorController {
     private TableColumn<List<String>, String> tableBook;
     private AVL product;
     private AVL supplier;
+    @FXML
+    private TextField fieldID;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -100,4 +103,13 @@ public class MantenimientoProveedorController {
         stage.show();
     }
 
+    @FXML
+    void btnBuscarCliente(ActionEvent event) {
+
+    }
+
+    @FXML
+    void btnEliminar(ActionEvent event) {
+
+    }
 }
