@@ -2,11 +2,11 @@ package ucr.proyecto.proyectogrupo1.util;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import ucr.proyecto.proyectogrupo1.TDA.*;
-import ucr.proyecto.proyectogrupo1.domain.Customer;
-import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.Security;
-import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.domain.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -405,6 +405,265 @@ public class JSON_Utility {
             arrayList.add((Supplier) node.data);
             inOrderSupplierSecond(node.right,arrayList);
         }
+    }
+
+
+    //Manejo de OrderDetail (AVL)
+
+    public AVL getOrderDetailAVL() throws IOException {
+        String pathJSON = "orderDetailData.txt";;
+        ArrayList<OrderDetail> arrayList = new ArrayList<>();
+        AVL avl = new AVL();
+        file = new File(pathJSON);
+
+        if(file.exists()){
+            String output = "";
+            //leemos los datos del archivo JSON indicado
+            output = new String(Files.readAllBytes(Paths.get(pathJSON)));
+
+            if (output.equals("") || output == null){
+                //arrayList = new ArrayList<Customer>();
+                return avl;
+
+            }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
+                ObjectMapper om = new ObjectMapper();
+                //llenamos el ArrayList con la info del JSON file
+                //(se deserializa)
+                arrayList = om.readValue(
+                        output, new TypeReference<ArrayList<OrderDetail>>(){});
+
+                for (OrderDetail list: arrayList) {
+                    avl.add(list);
+                }
+                return avl;
+            }
+        }else{
+            file.createNewFile();
+            return avl;
+        }
+    }
+
+
+    public void saveOrderDetailAVL(AVL avl) throws IOException, TreeException {
+
+        String pathJSON = "orderDetailData.txt";
+        ArrayList<OrderDetail> arrayList = new ArrayList<>();
+        File file = new File(pathJSON);
+
+        if (file.exists()){//se eliminar el archivo json
+            file.delete();
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }else{
+            System.out.println("El archivo " +  pathJSON + "no existe");
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }
+
+        //Se vacia la AVL con el metodo get()
+        for (int i = 1; i <= avl.size() ; i++) {
+            arrayList.add( (OrderDetail) avl.get(i));
+        }
+        ObjectMapper om = new ObjectMapper();
+        try {
+            om.writeValue(Paths.get(pathJSON).toFile(),arrayList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+    //MANEJO DE ORDER (AVL)
+
+    public AVL getOrderAVL() throws IOException {
+        String pathJSON = "orderData.txt";;
+        ArrayList<Order> arrayList = new ArrayList<>();
+        AVL avl = new AVL();
+        file = new File(pathJSON);
+
+        if(file.exists()){
+            String output = "";
+            //leemos los datos del archivo JSON indicado
+            output = new String(Files.readAllBytes(Paths.get(pathJSON)));
+
+            if (output.equals("") || output == null){
+                //arrayList = new ArrayList<Customer>();
+                return avl;
+
+            }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
+                ObjectMapper om = new ObjectMapper();
+                //llenamos el ArrayList con la info del JSON file
+                //(se deserializa)
+                arrayList = om.readValue(
+                        output, new TypeReference<ArrayList<Order>>(){});
+
+                for (Order list: arrayList) {
+                    avl.add(list);
+                }
+                return avl;
+            }
+        }else{
+            file.createNewFile();
+            return avl;
+        }
+    }
+
+
+    public void saveOrderAVL(AVL avl) throws IOException, TreeException {
+
+        String pathJSON = "orderData.txt";
+        ArrayList<Order> arrayList = new ArrayList<>();
+        File file = new File(pathJSON);
+
+        if (file.exists()){//se eliminar el archivo json
+            file.delete();
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }else{
+            System.out.println("El archivo " +  pathJSON + "no existe");
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }
+
+        //Se vacia la AVL con el metodo get()
+        for (int i = 1; i <= avl.size() ; i++) {
+            arrayList.add( (Order) avl.get(i));
+        }
+        ObjectMapper om = new ObjectMapper();
+        try {
+            om.writeValue(Paths.get(pathJSON).toFile(),arrayList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    //Manejo de clase Sale (AVL)
+
+    public AVL getSaleAVL() throws IOException {
+        String pathJSON = "saleData.txt";;
+        ArrayList<Sale> arrayList = new ArrayList<>();
+        AVL avl = new AVL();
+        file = new File(pathJSON);
+
+        if(file.exists()){
+            String output = "";
+            //leemos los datos del archivo JSON indicado
+            output = new String(Files.readAllBytes(Paths.get(pathJSON)));
+
+            if (output.equals("") || output == null){
+                //arrayList = new ArrayList<Customer>();
+                return avl;
+
+            }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
+                ObjectMapper om = new ObjectMapper();
+                //llenamos el ArrayList con la info del JSON file
+                //(se deserializa)
+                arrayList = om.readValue(
+                        output, new TypeReference<ArrayList<Sale>>(){});
+
+                for (Sale list: arrayList) {
+                    avl.add(list);
+                }
+                return avl;
+            }
+        }else{
+            file.createNewFile();
+            return avl;
+        }
+    }
+
+
+    public void saveSaleAVL(AVL avl) throws IOException, TreeException {
+
+        String pathJSON = "saleData.txt";
+        ArrayList<Sale> arrayList = new ArrayList<>();
+        File file = new File(pathJSON);
+
+        if (file.exists()){//se eliminar el archivo json
+            file.delete();
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }else{
+            System.out.println("El archivo " +  pathJSON + "no existe");
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }
+
+        //Se vacia la AVL con el metodo get()
+        for (int i = 1; i <= avl.size() ; i++) {
+            arrayList.add( (Sale) avl.get(i));
+        }
+        //Les especificaciomos a este constructor JSON que debe guardar toda instancia
+        //tipo fecha/hora con el formato indicado en la clase Sale
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule());
+        om.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+        try {
+            om.writeValue(Paths.get(pathJSON).toFile(),arrayList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    //Manejo de clase SaleDetail (AVL)
+
+    public AVL getSaleDetailAVL() throws IOException {
+        String pathJSON = "saleDetailData.txt";;
+        ArrayList<SaleDetail> arrayList = new ArrayList<>();
+        AVL avl = new AVL();
+        file = new File(pathJSON);
+
+        if(file.exists()){
+            String output = "";
+            //leemos los datos del archivo JSON indicado
+            output = new String(Files.readAllBytes(Paths.get(pathJSON)));
+
+            if (output.equals("") || output == null){
+                //arrayList = new ArrayList<Customer>();
+                return avl;
+
+            }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
+                ObjectMapper om = new ObjectMapper();
+                //llenamos el ArrayList con la info del JSON file
+                //(se deserializa)
+                arrayList = om.readValue(
+                        output, new TypeReference<ArrayList<SaleDetail>>(){});
+
+                for (SaleDetail list: arrayList) {
+                    avl.add(list);
+                }
+                return avl;
+            }
+        }else{
+            file.createNewFile();
+            return avl;
+        }
+    }
+
+
+    public void saveSaleDetailAVL(AVL avl) throws IOException, TreeException {
+
+        String pathJSON = "saleDetailData.txt";
+        ArrayList<SaleDetail> arrayList = new ArrayList<>();
+        File file = new File(pathJSON);
+
+        if (file.exists()){//se eliminar el archivo json
+            file.delete();
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }else{
+            System.out.println("El archivo " +  pathJSON + "no existe");
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }
+
+        //Se vacia la AVL con el metodo get()
+        for (int i = 1; i <= avl.size() ; i++) {
+            arrayList.add( (SaleDetail) avl.get(i));
+        }
+        ObjectMapper om = new ObjectMapper();
+        try {
+            om.writeValue(Paths.get(pathJSON).toFile(),arrayList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
 
