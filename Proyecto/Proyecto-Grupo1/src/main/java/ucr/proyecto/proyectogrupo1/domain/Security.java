@@ -4,6 +4,10 @@ public class Security {
     private Integer customerID; //FK con customer.ID
     private String user;
     private String password;
+
+    public Security() {
+    }
+
     public Security(Integer customerID, String user, String password) {
         this.customerID = customerID;
         this.user = user;
@@ -20,5 +24,14 @@ public class Security {
 
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String toString() {
+        return "Security{" +
+                "customerID=" + customerID +
+                ", user='" + user + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }

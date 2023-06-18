@@ -1,9 +1,12 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 public class Product {
-    private Integer ID;
+    private Integer id;
     private Integer supplierID; //FK con Supplier.ID
     private String description;
     private String name;
@@ -11,10 +14,31 @@ public class Product {
     private Integer minimunStock;
     private Double price;
     private String url_img;
+
+
+    //Ignorar estos atributos al momento de la serializacion con Jackson JSON
+    @JsonIgnore
+
     private Image image;
 
+    @JsonIgnore
+    private CheckBox checkBox;
+
+    public Product() {
+    }
+
+    public Product(Integer ID, Integer supplierID, String name, Double price, Integer currentStock, Integer minimunStock) {
+        this.id = ID;
+        this.supplierID = supplierID;
+        this.name = name;
+        this.currentStock = currentStock;
+        this.minimunStock = minimunStock;
+        this.price = price;
+        checkBox = new CheckBox();
+    }
+
     public Product(Integer ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
-        this.ID = ID;
+        this.id = ID;
         this.supplierID = supplierID;
         this.description = description;
         this.name = name;
@@ -22,6 +46,11 @@ public class Product {
         this.minimunStock = minimunStock;
         this.price = price;
         this.url_img = url_img;
+        checkBox = new CheckBox();
+    }
+
+    public CheckBox getCheckBox() {
+        return checkBox;
     }
 
     public String getUrl_img() {
@@ -40,8 +69,8 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     public Integer getSupplierID() {
@@ -60,6 +89,10 @@ public class Product {
         return currentStock;
     }
 
+    public void setCurrentStock(Integer currentStock) {
+        this.currentStock = currentStock;
+    }
+
     public Integer getMinimunStock() {
         return minimunStock;
     }
@@ -70,5 +103,19 @@ public class Product {
 
     public Object getPreloadedImage() {
         return image;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", supplierID=" + supplierID +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", currentStock=" + currentStock +
+                ", minimunStock=" + minimunStock +
+                ", price=" + price +
+                ", url_img='" + url_img + '\'' +
+                '}';
     }
 }

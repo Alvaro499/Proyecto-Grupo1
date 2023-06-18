@@ -1,15 +1,18 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
 public class Order {
-    private Integer ID;
+    private Integer id;
     private String orderDate;
     private String orderStatus;
     private String supplierName;
     private Double totalCost;
     private String remarks;
 
+    public Order() {
+    }
+
     public Order(Integer ID, String orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
-        this.ID = ID;
+        this.id = ID;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.supplierName = supplierName;
@@ -17,8 +20,8 @@ public class Order {
         this.remarks = remarks;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     public String getOrderDate() {
@@ -39,5 +42,17 @@ public class Order {
 
     public String getRemarks() {
         return remarks;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate='" + orderDate + '\'' +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", supplierName='" + supplierName + '\'' +
+                ", totalCost=" + totalCost +
+                ", remarks='" + remarks + '\'' +
+                '}';
     }
 }
