@@ -25,9 +25,9 @@ public class Security {
     @Override
     public String toString() {
         return "Security{" +
-                "customerID=" + customerID +
-                ", user='" + user +
-                ", password='" + password +
+                "\ncustomerID=" + customerID +
+                "\nuser='" + user +
+                "\npassword='" + password +
                 "}\n";
     }
 }

@@ -7,13 +7,11 @@ public class Sale {
     private Date saleDate;
     private Integer customerID;
     private String annotation;
-    private Double uniPrice;
-    public Sale(Integer ID, Date saleDate, Integer customerID, String annotation, Double uniPrice) {
+    public Sale(Integer ID, Date saleDate, Integer customerID, String annotation) {
         this.ID = ID;
         this.saleDate = saleDate;
         this.customerID = customerID;
         this.annotation = annotation;
-        this.uniPrice = uniPrice;
     }
 
     public Integer getID() {
@@ -32,7 +30,13 @@ public class Sale {
         return annotation;
     }
 
-    public Double getUniPrice() {
-        return uniPrice;
+    @Override
+    public String toString() {
+        return "Sale{" +
+                "\nID=" + ID +
+                "\nsaleDate=" + saleDate +
+                "\ncustomerID=" + customerID +
+                "\nannotation='" + annotation +
+                "}\n";
     }
 }

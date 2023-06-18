@@ -38,10 +38,10 @@ public class Supplier {
     public String toString() {
         return "Supplier{" +
                 "ID=" + ID +
-                ", name='" + name +
-                ", phoneNumber=" +
-                ", email='" + email +
-                ", address='" + address +
+                "\nname='" + name +
+                "\nphoneNumber=" +
+                "\nemail='" + email +
+                "\naddress='" + address +
                 "}\n";
     }
 }

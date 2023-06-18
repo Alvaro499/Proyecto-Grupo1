@@ -40,4 +40,16 @@ public class Order {
     public String getRemarks() {
         return remarks;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "\nID=" + ID +
+                "\norderDate='" + orderDate +
+                "\norderStatus='" + orderStatus +
+                "\nsupplierName='" + supplierName +
+                "\ntotalCost=" + totalCost +
+                "\nremarks='" + remarks +
+                "}\n";
+    }
 }

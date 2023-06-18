@@ -3,7 +3,7 @@ package ucr.proyecto.proyectogrupo1.domain;
 import javafx.scene.image.Image;
 
 public class Product {
-    private Integer ID;
+    private String ID;
     private Integer supplierID; //FK con Supplier.ID
     private String description;
     private String name;
@@ -13,7 +13,7 @@ public class Product {
     private String url_img;
     private Image image;
 
-    public Product(Integer ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
+    public Product(String ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
         this.ID = ID;
         this.supplierID = supplierID;
         this.description = description;
@@ -40,7 +40,7 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getID() {
+    public String getID() {
         return ID;
     }
 

@@ -33,4 +33,15 @@ public class SaleDetail {
     public Double getUniPrice() {
         return uniPrice;
     }
+
+    @Override
+    public String toString() {
+        return "SaleDetail{" +
+                "\nID=" + ID +
+                "\nsaleID=" + saleID +
+                "\nproductID=" + productID +
+                "\nquantity=" + quantity +
+                "\nuniPrice=" + uniPrice +
+                "}\n";
+    }
 }
