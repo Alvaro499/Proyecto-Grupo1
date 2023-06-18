@@ -10,6 +10,7 @@ public class Sale {
     private Double uniPrice;
 
     public Sale() {
+
     }
 
     public Sale(Integer ID, Date saleDate, Integer customerID, String annotation, Double uniPrice) {

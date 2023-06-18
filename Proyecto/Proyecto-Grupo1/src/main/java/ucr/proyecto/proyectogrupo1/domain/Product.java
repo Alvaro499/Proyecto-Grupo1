@@ -5,6 +5,7 @@ import javafx.scene.image.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
+
 public class Product {
     private Integer id;
     private Integer supplierID; //FK con Supplier.ID

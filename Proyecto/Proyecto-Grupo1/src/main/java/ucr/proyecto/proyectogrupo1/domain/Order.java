@@ -11,6 +11,7 @@ public class Order {
     public Order() {
     }
 
+
     public Order(Integer ID, String orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
         this.id = ID;
         this.orderDate = orderDate;

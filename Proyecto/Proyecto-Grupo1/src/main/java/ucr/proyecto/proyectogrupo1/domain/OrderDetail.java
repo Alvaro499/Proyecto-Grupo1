@@ -18,6 +18,7 @@ public class OrderDetail {
         this.uniPrice = uniPrice;
     }
 
+
     public Integer getId() {
         return id;
     }

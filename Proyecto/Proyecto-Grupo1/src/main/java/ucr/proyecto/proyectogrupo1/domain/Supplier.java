@@ -10,6 +10,7 @@ public class Supplier {
     public Supplier() {
     }
 
+
     public Supplier(Integer ID, String name, Integer phoneNumber, String email, String address) {
         this.id = ID;
         this.name = name;

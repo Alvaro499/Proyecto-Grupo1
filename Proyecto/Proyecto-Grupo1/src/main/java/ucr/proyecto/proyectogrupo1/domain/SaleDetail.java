@@ -38,6 +38,7 @@ public class SaleDetail {
         return uniPrice;
     }
 
+
     @Override
     public String toString() {
         return "SaleDetail{" +
