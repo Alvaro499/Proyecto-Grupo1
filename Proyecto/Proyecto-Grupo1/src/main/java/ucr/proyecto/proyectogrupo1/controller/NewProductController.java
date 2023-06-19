@@ -41,7 +41,6 @@ public class NewProductController {
     public void initialize() throws ListException, TreeException {
         product = Utility.getProductAVL();
         supplier = Utility.getSupplierAVL();
-        fieldID.setText(String.valueOf(product.size()+1));
         nameSupplier = new String[supplier.size()];
         for (int i = 0; i < nameSupplier.length ; i++) {
             Supplier s = (Supplier) supplier.get(i);
@@ -67,7 +66,7 @@ public class NewProductController {
         for (int i = 0; i < supplier.size(); i++) {
             Supplier s = (Supplier) supplier.get(i);
             if (s.getName().equalsIgnoreCase(choiceBoxProduct.getValue())) {//si encuantra una editorial con el nombre igual que fieldSupplier, se guarda
-                product.add(new Product(Integer.parseInt(fieldID.getText()), s.getID(), fielDesc.getText(), fieldName.getText(), Double.parseDouble(fieldPrice.getText()), Integer.parseInt(fieldStock.getText()), Integer.parseInt(fieldStickmin.getText()), fieldURL.getText()));
+                product.add(new Product(fieldID.getText(), s.getID(), fielDesc.getText(), fieldName.getText(), Double.parseDouble(fieldPrice.getText()), Integer.parseInt(fieldStock.getText()), Integer.parseInt(fieldStickmin.getText()), fieldURL.getText()));
                 System.out.println(s);
                 borrarOnAction(new ActionEvent());
                 Utility.setProductAVL(product);

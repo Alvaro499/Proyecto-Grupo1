@@ -96,6 +96,8 @@ public class Utility {
 
     // static initializer
     static {
+        sale = new AVL();
+        saleDetail = new AVL();
         // this is how the seed was set in Java 1.4
         seed = System.currentTimeMillis();
         random = new Random(seed);
@@ -132,7 +134,7 @@ public class Utility {
                         "Tema(s): Ficción,Literatura,Clásicos",
                 "Mujercitas",
                 6900.00,
-                30,
+                0,
                 15,
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418008658_1.jpg"));
 

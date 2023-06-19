@@ -71,4 +71,8 @@ public class Product {
     public Object getPreloadedImage() {
         return image;
     }
+
+    public void setCurrentStock(Integer currentStock) {
+        this.currentStock = currentStock;
+    }
 }

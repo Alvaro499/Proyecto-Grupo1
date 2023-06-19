@@ -1,11 +1,16 @@
 package ucr.proyecto.proyectogrupo1.email;
 
-import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
+import ucr.proyecto.proyectogrupo1.TDA.AVL;
+import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Sale;
+import ucr.proyecto.proyectogrupo1.util.Utility;
+
+import java.time.LocalDate;
 
 public class EnvioCorreo {
     //Codigo de ejemplo
-    public static void main(String[] args) throws EnvioCorreos.EmailExcepcion, TreeException {
+    public static void main(String[] args) throws EnvioCorreos.EmailExcepcion, TreeException, ListException {
         /*EnvioCorreos mEnvioCorreos = new EnvioCorreos();
         mEnvioCorreos.setEmailTo("zjeancarlo42@gmail.com");
         mEnvioCorreos.setSubject("Prueba");
@@ -31,8 +36,15 @@ public class EnvioCorreo {
 
 
          */
-        System.out.println(Cryptographic.codificar("Admin"));
-        System.out.println(Cryptographic.codificar("Consulta"));
-        System.out.println(Cryptographic.codificar("Cliente"));
+        LocalDate hoy = LocalDate.now();
+
+        AVL a = Utility.getSale();
+        a.add(new Sale(0, hoy, 117780288, "hola"));
+
+        Utility.setSale(a);
+
+        a = Utility.getSale();
+        Sale b = (Sale) a.get(0);
+        System.out.println(b);
     }
 }

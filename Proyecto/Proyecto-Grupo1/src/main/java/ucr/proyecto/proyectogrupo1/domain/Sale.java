@@ -1,24 +1,29 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Sale {
     private Integer ID;
-    private Date saleDate;
+    private LocalDate saleDate;
     private Integer customerID;
     private String annotation;
-    public Sale(Integer ID, Date saleDate, Integer customerID, String annotation) {
+
+    public Sale(Integer ID, LocalDate saleDate, Integer customerID, String annotation) {
         this.ID = ID;
         this.saleDate = saleDate;
         this.customerID = customerID;
         this.annotation = annotation;
     }
 
+    public void setSaleDate(LocalDate saleDate) {
+        this.saleDate = saleDate;
+    }
+
     public Integer getID() {
         return ID;
     }
 
-    public Date getSaleDate() {
+    public LocalDate getSaleDate() {
         return saleDate;
     }
 
