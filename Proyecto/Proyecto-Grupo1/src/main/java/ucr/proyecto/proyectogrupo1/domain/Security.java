@@ -4,6 +4,10 @@ public class Security {
     private Integer customerID; //FK con customer.ID
     private String user;
     private String password;
+
+    public Security() {
+    }
+
     public Security(Integer customerID, String user, String password) {
         this.customerID = customerID;
         this.user = user;

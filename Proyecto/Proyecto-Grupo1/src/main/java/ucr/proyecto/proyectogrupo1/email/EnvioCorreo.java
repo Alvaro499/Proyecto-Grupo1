@@ -1,16 +1,14 @@
 package ucr.proyecto.proyectogrupo1.email;
 
-import ucr.proyecto.proyectogrupo1.TDA.AVL;
-import ucr.proyecto.proyectogrupo1.TDA.ListException;
-import ucr.proyecto.proyectogrupo1.TDA.TreeException;
-import ucr.proyecto.proyectogrupo1.domain.Sale;
+import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.util.JSON_Utility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
-import java.time.LocalDate;
+import java.io.IOException;
 
 public class EnvioCorreo {
     //Codigo de ejemplo
-    public static void main(String[] args) throws EnvioCorreos.EmailExcepcion, TreeException, ListException {
+    public static void main(String[] args) throws EnvioCorreos.EmailExcepcion, TreeException, ListException, QueueException, IOException {
         /*EnvioCorreos mEnvioCorreos = new EnvioCorreos();
         mEnvioCorreos.setEmailTo("zjeancarlo42@gmail.com");
         mEnvioCorreos.setSubject("Prueba");
@@ -36,15 +34,13 @@ public class EnvioCorreo {
 
 
          */
-        LocalDate hoy = LocalDate.now();
+        AVL p = Utility.getProductAVL();
+        AVL s = Utility.getSupplierAVL();
+        SinglyLinkedList c = Utility.getClientSinglyLinkedList();
+        CircularLinkedList segurity = Utility.getLoginCircularLinkedList();
 
-        AVL a = Utility.getSale();
-        a.add(new Sale(0, hoy, 117780288, "hola"));
+        JSON_Utility json = new JSON_Utility();
 
-        Utility.setSale(a);
-
-        a = Utility.getSale();
-        Sale b = (Sale) a.get(0);
-        System.out.println(b);
+        json.saveSecurityCircularLinkedList(segurity);
     }
 }

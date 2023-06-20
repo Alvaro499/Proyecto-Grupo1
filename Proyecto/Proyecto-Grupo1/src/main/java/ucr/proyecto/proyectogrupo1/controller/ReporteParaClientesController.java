@@ -154,6 +154,7 @@ public class ReporteParaClientesController {
             correos.setContent("Por favor no contestar este correo.");
             correos.setAttachmentFile(new File(PDF.getDocumento()));
             correos.sendEmail();
+            //PDF.eliminar();
         }
     }
 }

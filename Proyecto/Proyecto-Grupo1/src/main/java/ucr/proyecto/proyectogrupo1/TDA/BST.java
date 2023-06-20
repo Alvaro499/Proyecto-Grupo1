@@ -3,7 +3,7 @@ package ucr.proyecto.proyectogrupo1.TDA;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 public class BST implements Tree {
-    private BTreeNode root;
+    public BTreeNode root;
 
     public BST() {
         this.root = null;
