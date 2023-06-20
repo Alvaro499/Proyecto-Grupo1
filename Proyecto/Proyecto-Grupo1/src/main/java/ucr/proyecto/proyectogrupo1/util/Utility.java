@@ -34,6 +34,7 @@ public class Utility {
     private static AVL productAVL; //table product
     private static AVL supplierAVL; //table supplier
 
+    private static String nombreSistema;
 
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
@@ -43,6 +44,7 @@ public class Utility {
         // this is how the seed was set in Java 1.4
         seed = System.currentTimeMillis();
         random = new Random(seed);
+        nombreSistema = "Laberinto de Libros";
 
         //Tabla security
         ArrayList<Security> security = new ArrayList<>();
@@ -171,6 +173,14 @@ public class Utility {
     public static String dateFormat(Date value){
         return new SimpleDateFormat("dd/MM/yyyy")
                 .format(value);
+    }
+
+    public static String getNombreSistema() {
+        return nombreSistema;
+    }
+
+    public static void setNombreSistema(String nombreSistema) {
+        Utility.nombreSistema = nombreSistema;
     }
 
     /**

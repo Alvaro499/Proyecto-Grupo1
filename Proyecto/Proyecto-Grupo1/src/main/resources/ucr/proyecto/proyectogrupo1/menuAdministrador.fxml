@@ -106,7 +106,7 @@
             </VBox>
             <VBox prefHeight="100.0" prefWidth="520.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Laberinto de Libros">
+                  <Text fx:id="nombreSistema" strokeType="OUTSIDE" strokeWidth="0.0" text="Laberinto de Libros">
                      <font>
                         <Font name="Century Schoolbook" size="35.0" />
                      </font>
