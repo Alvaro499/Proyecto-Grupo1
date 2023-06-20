@@ -5,11 +5,13 @@ public class SaleDetail {
     private String productID;//FK con Product.ID
     private Integer quantity;
     private Double uniPrice;
+    private Boolean order_canceled;
     public SaleDetail(Integer saleID, String productID, Integer quantity, Double uniPrice) {
         this.saleID = saleID;//fk de ID de Sale
         this.productID = productID.trim(); //fk de ID de Product
         this.quantity = quantity;
         this.uniPrice = uniPrice;
+        order_canceled = false;
     }
 
     public void setQuantity(Integer quantity) {
@@ -30,6 +32,14 @@ public class SaleDetail {
 
     public Double getUniPrice() {
         return uniPrice;
+    }
+
+    public Boolean getOrder_canceled() {
+        return order_canceled;
+    }
+
+    public void setOrder_canceled(Boolean order_canceled) {
+        this.order_canceled = order_canceled;
     }
 
     @Override

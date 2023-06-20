@@ -105,28 +105,29 @@ public class ClienteCarritoController {
         for (int i = 0; i < saleDetail.size(); i++) {//buscamos en todas las tablas SaleDetail
             SaleDetail newSaleDetail = (SaleDetail) saleDetail.get(i);
 
-            for (int j = 0; j < sale.size(); j++) {//buscamos la tabla Sale relacionada a la tabla SaleDetail
-                Sale newSale = (Sale) sale.get(j);
-                if (newSaleDetail.getSaleID().equals(newSale.getID()) && newSale.getCustomerID().equals(idClient)) {//hay que escoger solo los que les pertenece al cliente
+            if (!newSaleDetail.getOrder_canceled())
+                for (int j = 0; j < sale.size(); j++) {//buscamos la tabla Sale relacionada a la tabla SaleDetail
+                    Sale newSale = (Sale) sale.get(j);
+                    if (newSaleDetail.getSaleID().equals(newSale.getID()) && newSale.getCustomerID().equals(idClient)) {//hay que escoger solo los que les pertenece al cliente
 
-                    for (int k = 0; k < product.size(); k++) {//buscamos el libro
-                        Product newProduct = (Product) product.get(k);
-                        if (newSaleDetail.getProductID().equalsIgnoreCase(newProduct.getID())) {
-                            List<String> arratList = new ArrayList<>();
-                            arratList.add(String.valueOf(newSale.getID()));
-                            arratList.add(newProduct.getUrl_img());
-                            arratList.add(newProduct.getDescription());
-                            arratList.add(String.valueOf(newSaleDetail.getQuantity()));
-                            arratList.add(String.valueOf(newProduct.getCurrentStock()));
-                            arratList.add(String.valueOf(newProduct.getPrice()));
-                            data.add(arratList);
-                            total += (newProduct.getPrice() * newSaleDetail.getQuantity());
-                            txtCompraTotal.setText("₡ " + total);
-                            break;
+                        for (int k = 0; k < product.size(); k++) {//buscamos el libro
+                            Product newProduct = (Product) product.get(k);
+                            if (newSaleDetail.getProductID().equalsIgnoreCase(newProduct.getID())) {
+                                List<String> arratList = new ArrayList<>();
+                                arratList.add(String.valueOf(newSale.getID()));
+                                arratList.add(newProduct.getUrl_img());
+                                arratList.add(newProduct.getDescription());
+                                arratList.add(String.valueOf(newSaleDetail.getQuantity()));
+                                arratList.add(String.valueOf(newProduct.getCurrentStock()));
+                                arratList.add(String.valueOf(newProduct.getPrice()));
+                                data.add(arratList);
+                                total += (newProduct.getPrice() * newSaleDetail.getQuantity());
+                                txtCompraTotal.setText("₡ " + total);
+                                break;
+                            }
                         }
                     }
                 }
-            }
         }
         return data;
     }
@@ -138,14 +139,15 @@ public class ClienteCarritoController {
         for (List<String> table : tables) {
             //Buscamos en SaleDetail
             SaleDetail newSaleDetail = getSaleDetail(table.get(0).trim());
-            if (newSaleDetail != null) { //si lo encuentra, Buscamos su tabla Sale correspondiente
+            if (newSaleDetail != null) {// && !newSaleDetail.getOrder_canceled()) { //si lo encuentra, Buscamos su tabla Sale correspondiente
                 Sale newSale = getSale(table.get(0).trim());
                 Product newProduct = getProduct(newSaleDetail.getProductID());
                 if (newSale != null) {
                     if (disponibilidad(newSaleDetail.getProductID(), newSaleDetail.getQuantity())) { //Siempre que haya disponibilidad
                         //Eliminamos
-                        saleDetail.remove(newSaleDetail);
-                        sale.remove(newSale);
+                        newSaleDetail.setOrder_canceled(true);
+                        //saleDetail.remove(newSaleDetail);
+                        //sale.remove(newSale);
                         //Actualizamos
                         Utility.setSaleDetail(saleDetail);
                         Utility.setSale(sale);
@@ -155,16 +157,16 @@ public class ClienteCarritoController {
                         Customer newCliente = getCustomer(newSale.getCustomerID());
                         correo.setEmailTo(newCliente.getEmail());
                         correo.setSubject("Factura de Laberinto de Libros");
-                        correoContenido +="<p>Gracias por comprar en nuestra tienda!</p><br>Libro: " + newProduct.getName() + "<br>" + newProduct.getDescription() + "<br>Cantidad: " + Integer.parseInt(table.get(3)) + "<br>Precio individual: " + newProduct.getPrice() + "<br>Este correo fue enviado de manera automatica, por favor no responder.";
-                        correoContenido += "<br>Precio total: " + txtCompraTotal.getText();
-                        correo.setContent(correoContenido);
-                        correo.sendEmail();
+                        correoContenido += "<br>Libro: " + newProduct.getName() + "<br>" + newProduct.getDescription() + "<br>Cantidad: " + Integer.parseInt(table.get(3)) + "<br>Precio individual: " + newProduct.getPrice();
                     }
                 }
             } else {
                 //no se encontro el SaleDetail
             }
         }
+        correoContenido += "<p>Gracias por comprar en nuestra tienda!</p><br>Precio total: " + txtCompraTotal.getText() + "<br>Este correo fue enviado de manera automatica, por favor no responder.";
+        correo.setContent(correoContenido);
+        correo.sendEmail();
     }
 
     private Sale getSale(String id) throws TreeException {

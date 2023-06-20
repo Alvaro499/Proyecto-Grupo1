@@ -21,6 +21,7 @@ import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Sale;
 import ucr.proyecto.proyectogrupo1.domain.SaleDetail;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
@@ -52,6 +53,7 @@ public class MenuClienteController {
     private AVL sale;
     private AVL saleDetail;
     private LocalDate hoy;
+    Alert alert;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -77,6 +79,9 @@ public class MenuClienteController {
 
         this.columnLibro.setCellFactory(col -> new ImageTableCell<>());
 
+        alert = FXUtility.alert("Menu Cliente", "Desplay Cliente");
+        alert.setAlertType(Alert.AlertType.ERROR);
+
         if (!product.isEmpty()) {
             tableView.setItems(getData());
         }
@@ -84,13 +89,19 @@ public class MenuClienteController {
 
     private ObservableList<List<String>> getData() throws TreeException {
         ObservableList<List<String>> data = FXCollections.observableArrayList();
-        for (int i = 0; i < product.size(); i++) {
-            List<String> arrayList = new ArrayList<>();
-            Product p = (Product) product.get(i);
-            arrayList.add(p.getID());
-            arrayList.add(p.getUrl_img());
-            arrayList.add(p.getDescription() + "\n₡" + p.getPrice());
-            data.add(arrayList);
+        try {
+            Integer n = product.size();
+            for (int i = 0; i < n; i++) {
+                List<String> arrayList = new ArrayList<>();
+                Product p = (Product) product.get(i);
+                arrayList.add(p.getID());
+                arrayList.add(p.getUrl_img());
+                arrayList.add(p.getDescription() + "\n₡" + p.getPrice());
+                data.add(arrayList);
+            }
+        }catch (Exception ex){
+            alert.setContentText("There was an error in the process");
+            alert.showAndWait();
         }
         return data;
     }
@@ -136,6 +147,9 @@ public class MenuClienteController {
         sale = Utility.getSale();
         saleDetail = Utility.getSaleDetail();
 
+        alert.setHeaderText("Item added to cart: ");
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+
         for (List<String> s : selectedItems) {//de todos los productos seleccionados
             String IDProduct = s.get(0);
             try {
@@ -144,7 +158,7 @@ public class MenuClienteController {
                         SaleDetail newSaleDetail = (SaleDetail) saleDetail.get(i);
                         String product = newSaleDetail.getProductID();
 
-                        if (product.equalsIgnoreCase(IDProduct)) {//si hay un SaleDetail que tenga el mismo producto seleccionado, hay que revizar si es del mismo cliente
+                        if (product.equalsIgnoreCase(IDProduct) && !newSaleDetail.getOrder_canceled()) {//si hay un SaleDetail que tenga el mismo producto seleccionado, hay que revizar si es del mismo cliente
                             Integer saleID = newSaleDetail.getSaleID();//para encontrar su tabla Sale
                             for (int j = 0; j < sale.size(); j++) {
                                 Sale newSale = (Sale) sale.get(j);
@@ -160,13 +174,15 @@ public class MenuClienteController {
                                     newSale.setSaleDate(hoy);
                                     sale.add(newSale);
 
+                                    alert.setContentText(getProduct(product).getName() + "\nCantidad: " + newSaleDetail.getQuantity());
+                                    alert.showAndWait();
                                     //actualizamos
                                     Utility.setSaleDetail(saleDetail);
                                 }
                             }
                         }
                     }
-                if (!encontrado) {
+                if (!encontrado) { //Creamos el Sale
                     double precioLibro = 0;
 
                     Sale newSale = new Sale( //llenar Sale
@@ -184,9 +200,17 @@ public class MenuClienteController {
                         }
                     }
 
-                    SaleDetail newSaleDetail = new SaleDetail(newSale.getID(), IDProduct, 1, precioLibro);
+                    SaleDetail newSaleDetail = new SaleDetail(//llenar SaleDetail
+                            newSale.getID(),
+                            IDProduct,
+                            1,
+                            precioLibro);
+
                     saleDetail.add(newSaleDetail);
                     Utility.setSaleDetail(saleDetail);
+
+                    alert.setContentText(getProduct(IDProduct).getName());
+                    alert.showAndWait();
                 }
             } catch (TreeException e) {
                 throw new RuntimeException(e);
@@ -218,6 +242,41 @@ public class MenuClienteController {
             }
         }
         return existe;
+    }
+    private Sale getSale(String id) throws TreeException {
+        Sale newSale = null;
+        Integer n = sale.size();
+        for (int i = 0; i < n; i++) {
+            newSale = (Sale) sale.get(i);
+            if (String.valueOf(newSale.getID()).trim().equalsIgnoreCase(id.trim())) {
+                return newSale;
+            }
+        }
+        return newSale;
+    }
+
+    private SaleDetail getSaleDetail(String id) throws TreeException {
+        SaleDetail newSaleDetail = null;
+        Integer n = saleDetail.size();
+        for (int i = 0; i < n; i++) {
+            newSaleDetail = (SaleDetail) saleDetail.get(i);
+            if (String.valueOf(newSaleDetail.getSaleID()).trim().equalsIgnoreCase(id.trim())) {
+                return newSaleDetail;
+            }
+        }
+        return newSaleDetail;
+    }
+
+    private Product getProduct(String id) throws TreeException {
+        Product newProduct = null;
+        Integer n = product.size();
+        for (int i = 0; i < n; i++) {
+            newProduct = (Product) product.get(i);
+            if (String.valueOf(newProduct.getID()).trim().equalsIgnoreCase(id.trim())) {
+                return newProduct;
+            }
+        }
+        return newProduct;
     }
 
     private static class ImageTableCell<S> extends TableCell<S, Image> {

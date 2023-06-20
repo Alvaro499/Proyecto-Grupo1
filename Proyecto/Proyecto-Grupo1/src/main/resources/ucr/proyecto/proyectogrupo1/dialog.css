@@ -1,0 +1,57 @@
+.dialog-pane {
+    -fx-border-color: #ffeaa6; /* Color del borde del panel de diálogo */
+    -fx-border-width: 2.0px; /* Ancho del borde del panel de diálogo */
+    -fx-background-color: #ffeaa6; /* Color de fondo del panel de diálogo */
+    }
+
+.text-input-dialog {
+    -fx-border-color: #ffeaa6; /* Color del borde del diálogo de entrada de texto */
+    -fx-border-width: 2.0px; /* Ancho del borde del diálogo de entrada de texto */
+    -fx-background-color: #ffeaa6; /* Color de fondo del diálogo de entrada de texto */
+   }
+
+.text-input-dialog > .content.label {
+    -fx-padding: 0.5em;
+    -fx-background-color: #fbd558; /* Color de fondo de la etiqueta de contenido */
+    -fx-text-fill: #000000; /* Color del texto de la etiqueta de contenido */
+    -fx-font-size: 15.0px; /* Tamaño de fuente de la etiqueta de contenido */
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent; /* Color de fondo transparente para los encabezados de columna */
+}
+
+.dialog-pane > .button-bar > .container {
+    -fx-background-color: #ffeaa6; /* Color de fondo del contenedor de los botones */
+}
+
+.dialog-pane > .content.label {
+    -fx-padding: 0.5em;
+    -fx-background-color: #ffeaa6; /* Color de fondo de la etiqueta de contenido */
+    -fx-text-fill: #000000; /* Color del texto de la etiqueta de contenido */
+    -fx-font-size: 15.0px; /* Tamaño de fuente de la etiqueta de contenido */
+}
+
+.dialog-pane:header .header-panel {
+    -fx-background-color:  #fbd558; /* Color de fondo del panel de encabezado */
+}
+
+.dialog-pane:header .header-panel .label {
+    -fx-background-color: #fbd558; /* Color de fondo de la etiqueta de encabezado */
+    -fx-background-radius: 10px; /* Radio de borde para la etiqueta de encabezado */
+    -fx-text-fill: #000000; /* Color del texto de la etiqueta de encabezado */
+    -fx-font-size: 15.0px; /* Tamaño de fuente de la etiqueta de encabezado */
+}
+
+.dialog-pane .button {
+    -fx-background-color: #000000; /* Color de fondo de los botones */
+    -fx-text-fill: #ffffff; /* Color del texto de los botones */
+    -fx-wrap-text: true; /* Permitir el ajuste de texto en los botones */
+    -fx-cursor: hand; /* Cambiar el cursor al pasar sobre los botones */
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: #ffffff; /* Color de fondo al pasar el cursor sobre los botones */
+    -fx-text-fill: #000000; /* Color del texto al pasar el cursor sobre los botones */
+    -fx-font-weight: bold; /* Estilo de fuente en negrita al pasar el cursor sobre los botones */
+}

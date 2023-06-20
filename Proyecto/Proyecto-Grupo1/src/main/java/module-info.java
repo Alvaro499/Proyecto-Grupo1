@@ -8,6 +8,7 @@ module ucr.proyecto.proyectogrupo1 {
     requires org.apache.pdfbox;
     //requires jackson.core;
     requires jackson.databind;
+    requires itextpdf;
     // requires javax.mail.api;
 
     opens ucr.proyecto.proyectogrupo1 to javafx.fxml;
