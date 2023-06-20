@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -42,9 +43,12 @@ public class MantenimientoProductosController {
     private TableColumn<List<String>, String> Stockmin;
     @FXML
     private TableColumn<List<String>, String> supplier;
-
+    @FXML
+    private TableColumn<List<String>, String> dec;
     private AVL product;
     private AVL supplierName;
+    @FXML
+    private TextField fieldID;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -57,17 +61,20 @@ public class MantenimientoProductosController {
         this.name.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(1)));
 
-        this.price.setCellValueFactory(data ->
+        this.dec.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(2)));
 
-        this.stock.setCellValueFactory(data ->
+        this.price.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(3)));
 
-        this.Stockmin.setCellValueFactory(data ->
+        this.stock.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(4)));
 
-        this.supplier.setCellValueFactory(data ->
+        this.Stockmin.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(5)));
+
+        this.supplier.setCellValueFactory(data ->
+                new ReadOnlyStringWrapper(data.getValue().get(6)));
 
         this.img.setCellFactory(col -> new ImageTableCell<>());
 
@@ -83,11 +90,12 @@ public class MantenimientoProductosController {
             Product p = (Product) product.get(i);
             arrayList.add(p.getUrl_img());
             arrayList.add(p.getName());
-            arrayList.add(String.valueOf(p.getPrice()));
+            arrayList.add(p.getDescription());
+            arrayList.add("₡" + String.valueOf(p.getPrice()));
             arrayList.add(String.valueOf(p.getCurrentStock()));
             arrayList.add(String.valueOf(p.getMinimunStock()));
 
-            for (int j = 0; j < supplierName.size(); j++) {
+            for (int j = 0; j < supplierName.size(); j++) {//Agarra ID de la tabla supplier y lo compara con IDsupplier de la tabla Product, para saber el nombre del proveedor del libro
                 Supplier s = (Supplier) supplierName.get(j);
                 if (s.getID().equals(p.getSupplierID()))
                     arrayList.add(s.getName());
@@ -112,6 +120,17 @@ public class MantenimientoProductosController {
         stage.show();
     }
 
+    @FXML
+    void btnBuscarCliente(ActionEvent event) {
+
+    }
+
+
+    @FXML
+    void btnEliminar(ActionEvent event) {
+
+    }
+
     private static class ImageTableCell<S> extends TableCell<S, Image> {
         private final ImageView imageView;
 
@@ -122,7 +141,7 @@ public class MantenimientoProductosController {
             setGraphic(imageView);
         }
 
-        @Override
+        @FXML
         protected void updateItem(Image image, boolean empty) {
             super.updateItem(image, empty);
 

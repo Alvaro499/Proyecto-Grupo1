@@ -1,21 +1,25 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
 public class Supplier {
-    private Integer ID;
+    private Integer id;
     private String name;
     private Integer phoneNumber;
     private String email;
     private String address;
 
+    public Supplier() {
+    }
+
+
     public Supplier(Integer ID, String name, Integer phoneNumber, String email, String address) {
-        this.ID = ID;
+        this.id = ID;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
     }
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
     public String getName() {
@@ -34,4 +38,14 @@ public class Supplier {
         return address;
     }
 
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", phoneNumber=" + phoneNumber +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }

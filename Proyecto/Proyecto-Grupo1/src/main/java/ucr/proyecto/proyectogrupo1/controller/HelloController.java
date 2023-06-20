@@ -16,7 +16,6 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
-import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
 import ucr.proyecto.proyectogrupo1.domain.Security;
 import ucr.proyecto.proyectogrupo1.util.Utility;
@@ -58,14 +57,15 @@ public class HelloController {
             for (int i = 1; i <= loginCircularLinkedList.size(); i++) {
                 //buscamos que coincida el user y password en cada nodo del CircularLinkedList
                 Security s = (Security) loginCircularLinkedList.getNode(i).data;
-                String user = Cryptographic.descodificar(s.getUser()).trim();
-                String password = Cryptographic.descodificar(s.getPassword()).trim();
+                String user = s.getUser();
+                String password = s.getPassword();
                 String fieldUser = txtNombreUsuario.getText().trim();
                 String fieldPassword = txtContraseña.getText().trim();
+                Integer ID = s.getCustomerID();
                 if (password.equals(fieldPassword) && user.equals(fieldUser)) {
-                    if (s.getCustomerID() < 1000) {//admin
+                    if (ID < 1000) {//admin
                         stage("menuAdministrador.fxml");
-                    } else if (s.getCustomerID() < 2000) {//consulta
+                    } else if (ID < 2000) {//consulta
                         stage("menuConsulta.fxml");
                     } else {//cliente
                         stage("cliente.fxml");
