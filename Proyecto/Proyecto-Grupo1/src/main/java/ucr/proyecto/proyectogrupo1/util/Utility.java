@@ -42,11 +42,14 @@ public class Utility {
     public static void setSupplierAVL(AVL supplierAVL) {
         Utility.supplierAVL = supplierAVL;
     }
+    
+ 
 
     private static CircularLinkedList loginCircularLinkedList; //table security
     private static AVL productAVL; //table product
     private static AVL supplierAVL; //table supplier
     private static SinglyLinkedList clientSinglyLinkedList;
+    private static String nombreSistema;
 
 
     private static Random random;    // pseudo-random number generator
@@ -187,6 +190,14 @@ public class Utility {
     public static String dateFormat(Date value) {
         return new SimpleDateFormat("dd/MM/yyyy")
                 .format(value);
+    }
+
+       public static String getNombreSistema() {
+        return nombreSistema;
+    }
+
+    public static void setNombreSistema(String nombreSistema) {
+        Utility.nombreSistema = nombreSistema;
     }
 
     /**
