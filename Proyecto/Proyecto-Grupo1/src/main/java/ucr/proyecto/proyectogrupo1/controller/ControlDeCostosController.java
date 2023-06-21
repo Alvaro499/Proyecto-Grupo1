@@ -88,6 +88,7 @@ public class ControlDeCostosController {
         if (!product.isEmpty()) {
             try {
                 tableView.setItems(getData());
+                Utility.setCostos(headerLinkedQueue);
             } catch (TreeException e) {
                 throw new RuntimeException(e);
             }

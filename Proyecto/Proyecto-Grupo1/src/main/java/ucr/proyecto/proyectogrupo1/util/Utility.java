@@ -18,6 +18,8 @@ public class Utility {
     private static AVL orderDetail;// table orderDetail
     private static AVL sale;
     private static AVL saleDetail;
+
+    private static HeaderLinkedQueue costos;
     private static Integer IDClient;
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
@@ -45,6 +47,7 @@ public class Utility {
         productAVL = new AVL();
         order = new AVL();
         orderDetail = new AVL();
+        costos = new HeaderLinkedQueue();
         //llenamos los arboles
         try {
             productAVL = json.getProductAVL();
@@ -55,6 +58,7 @@ public class Utility {
             saleDetail = json.getSaleDetailAVL();
             order = json.getOrderAVL();
             orderDetail = json.getOrderDetailAVL();
+            costos = json.getProductHeaderLinkedQueue();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (QueueException e) {
@@ -148,6 +152,24 @@ public class Utility {
                 Utility.random(10, 50),
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418304316_1.jpg"));
 */
+    }
+
+    public static HeaderLinkedQueue getCostos() {
+        return costos;
+    }
+
+    public static void setCostos(HeaderLinkedQueue costos) {
+        Utility.costos = costos;
+
+        try {
+            json.saveProductHeaderLinkedQueue(Utility.getCostos());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static SinglyLinkedList getClientSinglyLinkedList() {
