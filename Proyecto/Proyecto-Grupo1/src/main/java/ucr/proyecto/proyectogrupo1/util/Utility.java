@@ -190,7 +190,7 @@ public class Utility {
         return supplierAVL;
     }
 
-    public static void setSupplierAVL(AVL supplierAVL) {
+    public static void setSupplierAVL(AVL supplierAVL) throws TreeException {
         Utility.supplierAVL = supplierAVL;
         try {
             json.saveSupplierAVL(Utility.supplierAVL);

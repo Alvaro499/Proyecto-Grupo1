@@ -9,6 +9,7 @@ import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Sale;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.util.Random;
@@ -34,8 +35,11 @@ public class NewProveedorController {
     @FXML
     public void initialize() throws ListException, TreeException {
         supplier = Utility.getSupplierAVL();
+        System.out.println(supplier.InOrder());
         txtID.setEditable(false);
         txtID.setText(String.valueOf(getID()).trim());
+        alert = FXUtility.alert("Menu Proveedor", "Desplay Proveedor");
+        alert.setAlertType(Alert.AlertType.ERROR);
     }
 
     @FXML
@@ -47,11 +51,19 @@ public class NewProveedorController {
     }
 
     @FXML
-    void confirmarOnAction(ActionEvent event) {
+    void confirmarOnAction(ActionEvent event) throws TreeException {
+        supplier = Utility.getSupplierAVL();
         if (completo()) {
             Supplier s = new Supplier(Integer.parseInt(txtID.getText()), txtProveedor.getText(), Integer.parseInt(txtTelefono.getText()), txtEmail.getText(), txtDireccionActual.getText());
+            System.out.println(supplier.InOrder());
             supplier.add(s);
+            System.out.println(supplier.InOrder());
             Utility.setSupplierAVL(supplier);
+            alert.setHeaderText("supplier added");
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText(txtProveedor.getText());
+            alert.showAndWait();
+            borrarOnAction(new ActionEvent());
         }
     }
 
