@@ -464,7 +464,7 @@ public class JSON_Utility {
         }
 
         //Se vacia la AVL con el metodo get()
-        for (int i = 1; i <= avl.size() ; i++) {
+        for (int i = 0; i < avl.size() ; i++) {
             arrayList.add( (OrderDetail) avl.get(i));
         }
         ObjectMapper om = new ObjectMapper();
@@ -528,7 +528,7 @@ public class JSON_Utility {
         }
 
         //Se vacia la AVL con el metodo get()
-        for (int i = 1; i <= avl.size() ; i++) {
+        for (int i = 0; i < avl.size() ; i++) {
             arrayList.add( (Order) avl.get(i));
         }
         ObjectMapper om = new ObjectMapper();
@@ -595,7 +595,7 @@ public class JSON_Utility {
         }
 
         //Se vacia la AVL con el metodo get()
-        for (int i = 1; i <= avl.size() ; i++) {
+        for (int i = 0; i < avl.size() ; i++) {
             arrayList.add( (Sale) avl.get(i));
         }
         //Les especificaciomos a este constructor JSON que debe guardar toda instancia
@@ -664,7 +664,7 @@ public class JSON_Utility {
         }
 
         //Se vacia la AVL con el metodo get()
-        for (int i = 1; i <= avl.size() ; i++) {
+        for (int i = 0; i < avl.size() ; i++) {
             arrayList.add( (SaleDetail) avl.get(i));
         }
         ObjectMapper om = new ObjectMapper();
