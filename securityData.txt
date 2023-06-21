@@ -1,0 +1,1 @@
+[{"customerID":0,"user":"Admin","password":"Admin"},{"customerID":1000,"user":"Consulta","password":"Consulta"},{"customerID":123456789,"user":"Cliente","password":"Cliente"}]
