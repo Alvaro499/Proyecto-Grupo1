@@ -43,7 +43,7 @@
                               <Font name="Arial" size="12.0" />
                            </font>
                         </TextArea>
-                        <Button fx:id="reporteOnAction" mnemonicParsing="false" text="Reporte">
+                        <Button mnemonicParsing="false" onAction="#reporteOnAction" text="Reporte">
                            <HBox.margin>
                               <Insets left="100.0" />
                            </HBox.margin>

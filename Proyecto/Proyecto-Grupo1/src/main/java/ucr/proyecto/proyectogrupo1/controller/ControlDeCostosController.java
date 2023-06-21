@@ -6,18 +6,21 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
-import ucr.proyecto.proyectogrupo1.TDA.AVL;
-import ucr.proyecto.proyectogrupo1.TDA.HeaderLinkedQueue;
-import ucr.proyecto.proyectogrupo1.TDA.QueueException;
-import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.PDF.PDF;
+import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,11 +44,14 @@ public class ControlDeCostosController {
     private AVL supplierName;
 
     private AVL product;
-
+    private SinglyLinkedList cliente; //table client
+    private Integer clienteID;
+    private ArrayList<String> reporte;
     private HeaderLinkedQueue headerLinkedQueue = new HeaderLinkedQueue();
     private HeaderLinkedQueue headerLinkedQueue2 = new HeaderLinkedQueue();
-
+    Alert alert;
     private double costoTotalTProductos;
+    private double costoTotalCProductos;
 
     @FXML
     private TextArea textAreaCosto;
@@ -55,6 +61,11 @@ public class ControlDeCostosController {
     public void initialize() {
         product = Utility.getProductAVL();
         supplierName = Utility.getSupplierAVL();
+        cliente = Utility.getClientSinglyLinkedList();
+        clienteID = Utility.getIDClient();
+        reporte = new ArrayList<String>();
+
+
 
         this.id.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));
@@ -81,6 +92,9 @@ public class ControlDeCostosController {
                 throw new RuntimeException(e);
             }
         }
+
+        alert = FXUtility.alert("Menu Reporte", "Desplay Reporte");
+        alert.setAlertType(Alert.AlertType.ERROR);
     }
 
     private ObservableList<List<String>> getData() throws TreeException {
@@ -91,17 +105,32 @@ public class ControlDeCostosController {
             List<String> arrayList = new ArrayList<>();
             Product p = (Product) product.get(i);
             arrayList.add(String.valueOf(p.getID()));
+            reporte.add(String.valueOf(p.getID()));
+
             arrayList.add(p.getName());
+            reporte.add(p.getName());
+
             arrayList.add("₡" + (p.getPrice()));
+            reporte.add("₡" + (p.getPrice()));
+
             arrayList.add(String.valueOf(p.getCurrentStock()));
+            reporte.add(String.valueOf(p.getCurrentStock()));
+
             for (int j = 0; j < supplierName.size(); j++) {//Agarra ID de la tabla supplier y lo compara con IDsupplier de la tabla Product, para saber el nombre del proveedor del libro
                 Supplier s = (Supplier) supplierName.get(j);
                 if (s.getID().equals(p.getSupplierID()))
                     arrayList.add(s.getName());
+                    reporte.add(s.getName());
             }
             try {
+
+                costoTotalCProductos = 0.0;
                 headerLinkedQueue.enQueue(p.getPrice() * p.getCurrentStock());
-                arrayList.add("₡" + headerLinkedQueue.deQueue());
+                Object element =headerLinkedQueue.deQueue();
+                double value = (double) element;
+                arrayList.add("₡" + value);
+                reporte.add("₡" + value);
+
             } catch (QueueException e) {
                 throw new RuntimeException(e);
             }
@@ -140,6 +169,34 @@ public class ControlDeCostosController {
             throw new RuntimeException(e);
         }
     }
+
+    private Customer getCustomer(Integer id) throws ListException {
+        Customer c = null;
+        Integer n = cliente.size();
+        for (int i = 1; i <= n; i++) {
+            c = (Customer) cliente.getNode(i).data;
+            if (c.getID() == id) {
+                return c;
+            }
+        }
+        return c;
+    }
+
+    @FXML
+    void reporteOnAction(ActionEvent event) throws ListException {
+        String correoCliente = getCustomer(clienteID).getEmail().trim();
+        String mensaje = FXUtility.alertYesNo("Generador de reporte", "El reporte se enviará a: ", correoCliente);
+        if (mensaje.equalsIgnoreCase("YES")) {
+            EnvioCorreos correos = new EnvioCorreos();
+            correos.setEmailTo(correoCliente);
+            correos.setSubject("Reporte de Costos");
+            PDF.crearPDF("Reporte_Costos","Reporte Costos",5,reporte);
+            correos.setContent("Por favor no contestar este correo.");
+            correos.setAttachmentFile(new File(PDF.getDocumento()));
+            correos.sendEmail();
+        }
+    }
+
 
 
 }
