@@ -145,6 +145,13 @@ public class Utility {
 
     public static void setClientSinglyLinkedList(SinglyLinkedList clientSinglyLinkedList) {
         Utility.clientSinglyLinkedList = clientSinglyLinkedList;
+        try{
+            json.saveCustomerSinglyLinkedList(Utility.getClientSinglyLinkedList());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static CircularLinkedList getLoginCircularLinkedList() {
@@ -153,6 +160,13 @@ public class Utility {
 
     public static void setLoginCircularLinkedList(CircularLinkedList loginCircularLinkedList) {
         Utility.loginCircularLinkedList = loginCircularLinkedList;
+        try {
+            json.saveSecurityCircularLinkedList(Utility.getLoginCircularLinkedList());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getProductAVL() {
@@ -178,6 +192,15 @@ public class Utility {
 
     public static void setSupplierAVL(AVL supplierAVL) {
         Utility.supplierAVL = supplierAVL;
+        try {
+            json.saveSupplierAVL(Utility.supplierAVL);
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getOrder() {
@@ -186,6 +209,13 @@ public class Utility {
 
     public static void setOrder(AVL order) {
         Utility.order = order;
+        try {
+            json.saveOrderAVL(Utility.order);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Integer getIDClient() {
@@ -202,6 +232,13 @@ public class Utility {
 
     public static void setOrderDetail(AVL orderDetail) {
         Utility.orderDetail = orderDetail;
+        try {
+            json.saveOrderDetailAVL(Utility.orderDetail);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getSale() {
@@ -210,6 +247,13 @@ public class Utility {
 
     public static void setSale(AVL sale) {
         Utility.sale = sale;
+        try {
+            json.saveSaleAVL(Utility.sale);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getSaleDetail() {
@@ -218,6 +262,13 @@ public class Utility {
 
     public static void setSaleDetail(AVL saleDetail) {
         Utility.saleDetail = saleDetail;
+        try {
+            json.saveSaleDetailAVL(Utility.saleDetail);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static int random() {
