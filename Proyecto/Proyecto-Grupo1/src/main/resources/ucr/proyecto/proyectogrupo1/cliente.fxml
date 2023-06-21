@@ -47,8 +47,8 @@
                                         <HBox alignment="CENTER" fillHeight="false" prefHeight="35.0" prefWidth="500.0" spacing="10.0">
                                             <children>
                                                 <Label prefHeight="18.0" prefWidth="83.0" />
-                                                <Button mnemonicParsing="false" onAction="#agregarOnAction" prefHeight="32.0" prefWidth="98.0" text="Agregar" />
-                                                <Button mnemonicParsing="false" onAction="#reporteOnAction" prefHeight="32.0" prefWidth="98.0" text="Reporte" />
+                                                <Button mnemonicParsing="false" onAction="#agregarOnAction" prefHeight="38.0" prefWidth="138.0" text="Agregar" />
+                                                <Button mnemonicParsing="false" onAction="#reporteOnAction" prefHeight="38.0" prefWidth="148.0" text="Reporte" />
                                             </children>
                                             <HBox.margin>
                                                 <Insets left="205.0" />
@@ -65,8 +65,8 @@
                         <TableView fx:id="tableView" layoutX="7.0" layoutY="95.0" prefHeight="486.0" prefWidth="924.0">
                             <columns>
                                 <TableColumn fx:id="columnCodigo" editable="false" minWidth="0.0" prefWidth="3.199981689453125" text="Codigo" visible="false" />
-                                <TableColumn fx:id="columnLibro" editable="false" prefWidth="500.80000019073486" text="Libro" />
-                                <TableColumn fx:id="columnDetalles" editable="false" prefWidth="494.39996337890625" text="Detalles" />
+                                <TableColumn fx:id="columnLibro" editable="false" prefWidth="500.80000019073486" text="Detalles" />
+                                <TableColumn fx:id="columnDetalles" editable="false" prefWidth="494.39996337890625" text="Libros" />
                             </columns>
                             <cursor>
                                 <Cursor fx:constant="DEFAULT" />

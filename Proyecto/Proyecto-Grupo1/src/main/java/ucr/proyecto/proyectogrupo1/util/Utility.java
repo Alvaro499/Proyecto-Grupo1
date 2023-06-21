@@ -3,18 +3,14 @@ package ucr.proyecto.proyectogrupo1.util;
 import ucr.proyecto.proyectogrupo1.TDA.*;
 import ucr.proyecto.proyectogrupo1.domain.*;
 
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
-
-import java.io.IOException;
-import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-
-
 public class Utility {
+    private static CircularLinkedList loginCircularLinkedList; //table security
     private static AVL productAVL; //table product
     private static AVL supplierAVL; //table supplier
     private static SinglyLinkedList clientSinglyLinkedList; //table customer
@@ -26,8 +22,16 @@ public class Utility {
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
     private static JSON_Utility json;
-    private static CircularLinkedList loginCircularLinkedList; //table security
+
     private static String nombreSistema;
+
+    public static String getNombreSistema() {
+        return nombreSistema;
+    }
+
+    public static void setNombreSistema(String nombreSistema) {
+        Utility.nombreSistema = nombreSistema;
+    }
 
     // static initializer
     static {
@@ -62,36 +66,26 @@ public class Utility {
         seed = System.currentTimeMillis();
         random = new Random(seed);
         //tabla cliente
-       /* clientSinglyLinkedList = new SinglyLinkedList();
-        clientSinglyLinkedList.add(new Customer(123456789, "Jean","70790629","zjeancarlo42@gmail.com","Cartago"));
-        clientSinglyLinkedList.add(new Customer(111111111, "user","70790629","user@gmail.com","lugar"));
-        clientSinglyLinkedList.add(new Customer(222222222, "user2","70790629","user@gmail.com","lugar"));
-        clientSinglyLinkedList.add(new Customer(333333333, "user3","70790629","user@gmail.com","lugar"));
+        //clientSinglyLinkedList.add(new Customer(123456789, "Jean", "70790629", "zjeancarlo42@gmail.com", "Cartago"));
 
         //Tabla security
-        loginCircularLinkedList = new CircularLinkedList();
         //admin 0 a 999 | consulta 1000 a 1999 | cliente 2000 a 2999
-        loginCircularLinkedList.add(new Security(0, "Admin", "Admin"));
+        /*loginCircularLinkedList.add(new Security(0, "Admin", "Admin"));
         loginCircularLinkedList.add(new Security(1000, "Consulta", "Consulta"));
-        loginCircularLinkedList.add(new Security(123456789, "Cliente", "Cliente"));
-        loginCircularLinkedList.add(new Security(111111111, "Cliente", "Cliente"));
-        loginCircularLinkedList.add(new Security(222222222, "Cliente", "Cliente"));
-        loginCircularLinkedList.add(new Security(333333333, "Cliente", "Cliente"));
+        loginCircularLinkedList.add(new Security(123456789, "Cliente", "Cliente"));*/
 
         //Tabla Supplier
-        supplierAVL = new AVL();
-        supplierAVL.add(new Supplier(1, "Editorial Alma", 78904345, "info@editorialalma.com", "Calle Principal, Ciudad"));
+        /*supplierAVL.add(new Supplier(1, "Editorial Alma", 78904345, "info@editorialalma.com", "Calle Principal, Ciudad"));
         supplierAVL.add(new Supplier(2, "Esfera de los libros", 83940594, "contacto@esferadeloslibros.com", "Avenida Central, Ciudad"));
         supplierAVL.add(new Supplier(3, "Alianza", 69834759, "info@alianzaeditorial.com", "Calle Secundaria, Ciudad"));
         supplierAVL.add(new Supplier(4, "Diana", 74903928, "contacto@dianaeditorial.com", "Calle Principal, Ciudad"));
         supplierAVL.add(new Supplier(5, "Flamboyant", 83497459, "info@flamboyanteditorial.com", "Avenida Central, Ciudad"));
         supplierAVL.add(new Supplier(6, "Gredos", 64849403, "contacto@gredoseditorial.com", "Calle Secundaria, Ciudad"));
         supplierAVL.add(new Supplier(7, "B de bolsillo", 89409049, "info@bdebolsilloeditorial.com", "Avenida Central, Ciudad"));
-
+*/
         //Tabla Product
-        productAVL = new AVL();
-        productAVL.add(new Product(
-                1,
+        /*productAVL.add(new Product(
+                "9788418008658",
                 1,
                 "Autor: LOUISA MAY ALCOTT\n" +
                         "Fecha de publicación: 2022\n" +
@@ -100,12 +94,12 @@ public class Utility {
                         "Tema(s): Ficción,Literatura,Clásicos",
                 "Mujercitas",
                 6900.00,
-                30,
+                0,
                 15,
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418008658_1.jpg"));
 
         productAVL.add(new Product(
-                2,
+                "9788490607725",
                 2,
                 "Autor: JAVIER SANTAOLALLA\nFecha de publicación: 2018\nFormato: Pasta suave\nIdioma: Español\nTema(s): No Ficción,Referencia,Ciencia",
                 "El Bosón de Higgs No Te Va a Hacer la Cama",
@@ -115,7 +109,7 @@ public class Utility {
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788490607725_4fp637xaigispfzz.jpg"));
 
         productAVL.add(new Product(
-                3,
+                "9788491047087",
                 3,
                 "Autor: EDGAR ALLAN POE\nFecha de publicación: 2017\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Poesía",
                 "Cuervo y otros poemas",
@@ -125,7 +119,7 @@ public class Utility {
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788491047087_1.jpg"));
 
         productAVL.add(new Product(
-                4,
+                "9786070728792",
                 4,
                 "Autor: GABRIEL GARCIA MARQUEZ\nFecha de publicación: 2015\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Latinoamericana",
                 "Cien años de soledad",
@@ -135,7 +129,7 @@ public class Utility {
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9786070728792_1_1.jpg"));
 
         productAVL.add(new Product(
-                5,
+                "9786070729560",
                 4,
                 "Autor: GABRIEL GARCIA MARQUEZ\nFecha de publicación: 2015\nFormato: Pasta suave\nIdioma: Español\nTema(s): Ficción,Literatura,Latinoamericana",
                 "Crónica de una muerte anunciada",
@@ -145,7 +139,7 @@ public class Utility {
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9786070729560_1.jpg"));
 
         productAVL.add(new Product(
-                6,
+                "9788418304316",
                 5,
                 "Autor: JACOB GRIMM\nFecha de publicación: 2021\nFormato: Pasta dura\nIdioma: Español\nTema(s): Infantil,3 a 5 años,Lectores tempranos\nCrónica de una muerte anunciada",
                 "Caperucita roja",
@@ -162,6 +156,13 @@ public class Utility {
 
     public static void setClientSinglyLinkedList(SinglyLinkedList clientSinglyLinkedList) {
         Utility.clientSinglyLinkedList = clientSinglyLinkedList;
+        try {
+            json.saveCustomerSinglyLinkedList(Utility.getClientSinglyLinkedList());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static CircularLinkedList getLoginCircularLinkedList() {
@@ -170,6 +171,13 @@ public class Utility {
 
     public static void setLoginCircularLinkedList(CircularLinkedList loginCircularLinkedList) {
         Utility.loginCircularLinkedList = loginCircularLinkedList;
+        try {
+            json.saveSecurityCircularLinkedList(Utility.getLoginCircularLinkedList());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getProductAVL() {
@@ -195,6 +203,15 @@ public class Utility {
 
     public static void setSupplierAVL(AVL supplierAVL) {
         Utility.supplierAVL = supplierAVL;
+        try {
+            json.saveSupplierAVL(Utility.supplierAVL);
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getOrder() {
@@ -203,6 +220,13 @@ public class Utility {
 
     public static void setOrder(AVL order) {
         Utility.order = order;
+        try {
+            json.saveOrderAVL(Utility.order);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static Integer getIDClient() {
@@ -219,6 +243,13 @@ public class Utility {
 
     public static void setOrderDetail(AVL orderDetail) {
         Utility.orderDetail = orderDetail;
+        try {
+            json.saveOrderDetailAVL(Utility.orderDetail);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getSale() {
@@ -227,6 +258,13 @@ public class Utility {
 
     public static void setSale(AVL sale) {
         Utility.sale = sale;
+        try {
+            json.saveSaleAVL(Utility.sale);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static AVL getSaleDetail() {
@@ -235,6 +273,13 @@ public class Utility {
 
     public static void setSaleDetail(AVL saleDetail) {
         Utility.saleDetail = saleDetail;
+        try {
+            json.saveSaleDetailAVL(Utility.saleDetail);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public static int random() {
@@ -272,14 +317,6 @@ public class Utility {
     public static String dateFormat(Date value) {
         return new SimpleDateFormat("dd/MM/yyyy")
                 .format(value);
-    }
-
-       public static String getNombreSistema() {
-        return nombreSistema;
-    }
-
-    public static void setNombreSistema(String nombreSistema) {
-        Utility.nombreSistema = nombreSistema;
     }
 
     /**
@@ -349,6 +386,31 @@ public class Utility {
                 Security security2 = (Security) b;
                 return security1.toString().compareToIgnoreCase(security2.toString()) < 0 ? -1 :
                         security1.toString().compareToIgnoreCase(security2.toString()) > 0 ? 1 : 0;
+            case "Order":
+                Order order1 = (Order) a;
+                Order order2 = (Order) b;
+                return order1.toString().compareToIgnoreCase(order2.toString()) < 0 ? -1 :
+                        order1.toString().compareToIgnoreCase(order2.toString()) > 0 ? 1 : 0;
+            case "OrderDetail":
+                OrderDetail orderDetail1 = (OrderDetail) a;
+                OrderDetail orderDetail2 = (OrderDetail) b;
+                return orderDetail1.toString().compareToIgnoreCase(orderDetail2.toString()) < 0 ? -1 :
+                        orderDetail1.toString().compareToIgnoreCase(orderDetail2.toString()) > 0 ? 1 : 0;
+            case "Product":
+                Product product1 = (Product) a;
+                Product product2 = (Product) b;
+                return product1.toString().compareToIgnoreCase(product2.toString()) < 0 ? -1 :
+                        product1.toString().compareToIgnoreCase(product2.toString()) > 0 ? 1 : 0;
+            case "Sale":
+                Sale sale1 = (Sale) a;
+                Sale sale2 = (Sale) b;
+                return sale1.toString().compareToIgnoreCase(sale2.toString()) < 0 ? -1 :
+                        sale1.toString().compareToIgnoreCase(sale2.toString()) > 0 ? 1 : 0;
+            case "SaleDetail":
+                SaleDetail saleDetail1 = (SaleDetail) a;
+                SaleDetail saleDetail2 = (SaleDetail) b;
+                return saleDetail1.toString().compareToIgnoreCase(saleDetail2.toString()) < 0 ? -1 :
+                        saleDetail1.toString().compareToIgnoreCase(saleDetail2.toString()) > 0 ? 1 : 0;
         }
         return 2; //Unknown
     }
@@ -375,6 +437,12 @@ public class Utility {
         if (a instanceof Supplier && b instanceof Supplier) return "Supplier";
         if (a instanceof Customer && b instanceof Customer) return "Customer";
         if (a instanceof Security && b instanceof Security) return "Security";
+        if (a instanceof Order && b instanceof Order) return "Order";
+        if (a instanceof OrderDetail && b instanceof OrderDetail) return "OrderDetail";
+        if (a instanceof Product && b instanceof Product) return "Product";
+        if (a instanceof Sale && b instanceof Sale) return "Sale";
+        if (a instanceof SaleDetail && b instanceof SaleDetail) return "SaleDetail";
+
         return "Unknown"; //desconodo
     }
 

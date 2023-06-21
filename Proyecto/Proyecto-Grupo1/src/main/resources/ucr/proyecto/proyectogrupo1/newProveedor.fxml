@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -10,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane  stylesheets="@../../../stylesheet/buttonStylesheet.css" prefWidth="809.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucr.proyecto.proyectogrupo1.controller.NewProveedorController">
+<BorderPane prefWidth="809.0" stylesheets="@../../../stylesheet/buttonStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucr.proyecto.proyectogrupo1.controller.NewProveedorController">
    <bottom>
       <AnchorPane prefHeight="545.0" prefWidth="741.0" style="-fx-background-color: beige;" BorderPane.alignment="CENTER">
          <children>
@@ -61,26 +62,41 @@
                                  <font>
                                     <Font name="Century Schoolbook" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
                               </TextField>
                               <TextField fx:id="txtProveedor" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                                  <font>
                                     <Font name="Century Schoolbook" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
                               </TextField>
                               <TextField fx:id="txtTelefono" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                                  <font>
                                     <Font name="Century Schoolbook" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
                               </TextField>
                               <TextField fx:id="txtEmail" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                                  <font>
                                     <Font name="Century Schoolbook" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
                               </TextField>
                               <TextField fx:id="txtDireccionActual" prefHeight="26.0" prefWidth="282.0" style="-fx-background-color: white;">
                                  <font>
                                     <Font name="Century Schoolbook" size="13.0" />
                                  </font>
+                                 <cursor>
+                                    <Cursor fx:constant="TEXT" />
+                                 </cursor>
                               </TextField>
                            </children>
                            <padding>
@@ -98,11 +114,17 @@
                            <font>
                               <Font name="Century Schoolbook Bold" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#confirmarOnAction" prefHeight="56.0" prefWidth="126.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Confirmar" textFill="WHITE">
                            <font>
                               <Font name="Century Schoolbook Bold" size="12.0" />
                            </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
                         </Button>
                      </children>
                   </HBox>
