@@ -35,7 +35,6 @@ public class NewProveedorController {
     @FXML
     public void initialize() throws ListException, TreeException {
         supplier = Utility.getSupplierAVL();
-        System.out.println(supplier.InOrder());
         txtID.setEditable(false);
         txtID.setText(String.valueOf(getID()).trim());
         alert = FXUtility.alert("Menu Proveedor", "Desplay Proveedor");
