@@ -52,10 +52,9 @@ public class NewProductController {
     @FXML
     void borrarOnAction(ActionEvent event) throws TreeException {
         fielDesc.setText("");
-        fieldID.setText(String.valueOf(product.size()+1));
+        fieldID.setText("");
         fieldName.setText("");
         fieldStickmin.setText("");
-        //fieldSupplier.setText("");
         fieldStock.setText("");
         fieldURL.setText("");
         fieldPrice.setText("");

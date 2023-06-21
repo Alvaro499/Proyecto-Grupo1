@@ -53,7 +53,7 @@ public class MenuClienteController {
     private AVL sale;
     private AVL saleDetail;
     private LocalDate hoy;
-    Alert alert;
+    private Alert alert;
 
     @FXML
     public void initialize() throws ListException, TreeException {
