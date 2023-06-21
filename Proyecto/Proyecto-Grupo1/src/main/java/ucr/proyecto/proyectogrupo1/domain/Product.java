@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 public class Product {
-    private Integer id;
+    private String id;
     private Integer supplierID; //FK con Supplier.ID
     private String description;
     private String name;
@@ -19,7 +19,6 @@ public class Product {
 
     //Ignorar estos atributos al momento de la serializacion con Jackson JSON
     @JsonIgnore
-
     private Image image;
 
     @JsonIgnore
@@ -28,7 +27,7 @@ public class Product {
     public Product() {
     }
 
-    public Product(Integer ID, Integer supplierID, String name, Double price, Integer currentStock, Integer minimunStock) {
+    public Product(String ID, Integer supplierID, String name, Double price, Integer currentStock, Integer minimunStock) {
         this.id = ID;
         this.supplierID = supplierID;
         this.name = name;
@@ -38,7 +37,7 @@ public class Product {
         checkBox = new CheckBox();
     }
 
-    public Product(Integer ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
+    public Product(String ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
         this.id = ID;
         this.supplierID = supplierID;
         this.description = description;
@@ -47,7 +46,6 @@ public class Product {
         this.minimunStock = minimunStock;
         this.price = price;
         this.url_img = url_img;
-        checkBox = new CheckBox();
     }
 
     public CheckBox getCheckBox() {
@@ -70,7 +68,7 @@ public class Product {
         this.price = price;
     }
 
-    public Integer getId() {
+    public String getID() {
         return id;
     }
 
@@ -98,6 +96,7 @@ public class Product {
         return minimunStock;
     }
 
+    @JsonIgnore
     public void setPreloadedImage(Image image) {
         this.image = image;
     }
@@ -118,5 +117,9 @@ public class Product {
                 ", price=" + price +
                 ", url_img='" + url_img + '\'' +
                 '}';
+    }
+
+    public String toStringChoiceBox(){
+        return name;
     }
 }

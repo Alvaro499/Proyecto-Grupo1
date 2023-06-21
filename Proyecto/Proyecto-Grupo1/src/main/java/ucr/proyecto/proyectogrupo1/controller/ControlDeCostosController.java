@@ -90,13 +90,13 @@ public class ControlDeCostosController {
         for (int i = 0; i < product.size(); i++) {
             List<String> arrayList = new ArrayList<>();
             Product p = (Product) product.get(i);
-            arrayList.add(String.valueOf(p.getId()));
+            arrayList.add(String.valueOf(p.getID()));
             arrayList.add(p.getName());
             arrayList.add("₡" + (p.getPrice()));
             arrayList.add(String.valueOf(p.getCurrentStock()));
             for (int j = 0; j < supplierName.size(); j++) {//Agarra ID de la tabla supplier y lo compara con IDsupplier de la tabla Product, para saber el nombre del proveedor del libro
                 Supplier s = (Supplier) supplierName.get(j);
-                if (s.getId().equals(p.getSupplierID()))
+                if (s.getID().equals(p.getSupplierID()))
                     arrayList.add(s.getName());
             }
             try {

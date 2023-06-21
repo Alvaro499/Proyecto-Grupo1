@@ -1,8 +1,8 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
 public class OrderDetail {
-    private Integer id;
-    private Integer orderID;//FK con Order.ID
+    //private Integer id;
+    private Integer orderID;//PK con Order.ID
     private Integer productID;//FK con Product.ID
     private String quantity;
     private Double uniPrice;
@@ -10,17 +10,11 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(Integer ID, Integer orderID, Integer productID, String quantity, Double uniPrice) {
-        this.id = ID;
+    public OrderDetail(Integer orderID, Integer productID, String quantity, Double uniPrice) {
         this.orderID = orderID;
         this.productID = productID;
         this.quantity = quantity;
         this.uniPrice = uniPrice;
-    }
-
-
-    public Integer getId() {
-        return id;
     }
 
     public Integer getOrderID() {
@@ -42,8 +36,7 @@ public class OrderDetail {
     @Override
     public String toString() {
         return "OrderDetail{" +
-                "id=" + id +
-                ", orderID=" + orderID +
+                "orderID=" + orderID +
                 ", productID=" + productID +
                 ", quantity='" + quantity + '\'' +
                 ", uniPrice=" + uniPrice +

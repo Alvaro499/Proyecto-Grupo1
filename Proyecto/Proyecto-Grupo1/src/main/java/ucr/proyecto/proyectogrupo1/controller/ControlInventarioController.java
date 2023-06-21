@@ -69,7 +69,7 @@ public class ControlInventarioController {
             //incompleta, solo para mostrar en la tabla
             Product p = (Product) product.get(i);
 
-            int ID = p.getId();
+            String ID = p.getID();
             int supplierID = p.getSupplierID();
             String productName = p.getName();
             Double productPrice = p.getPrice();
@@ -141,7 +141,7 @@ public class ControlInventarioController {
 
                 for (int j = 1; j < product.size() ; j++) {
                     Product actualProductoAVL = (Product) product.get(j);
-                    if (getProduct.get(i).getId().equals(actualProductoAVL.getId())){
+                    if (getProduct.get(i).getID().equals(actualProductoAVL.getID())){
 
                         //le pasamos el stock modificado al AVL
                         ((Product) product.get(j)).setCurrentStock(getProduct.get(i).getCurrentStock());

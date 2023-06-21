@@ -7,19 +7,18 @@ public class Customer {
     private String email;
     private String address;
 
-
     public Customer() {
     }
 
-    public Customer(Integer ID, String name, String phoneNumber, String email, String address) {
-        this.id = ID;
+    public Customer(Integer id, String name, String phoneNumber, String email, String address) {
+        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
     }
 
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 
@@ -42,11 +41,11 @@ public class Customer {
     @Override
     public String toString() {
         return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+                "\nID=" + id +
+                "\nname='" + name +
+                "\nphoneNumber='" + phoneNumber +
+                "\nemail='" + email +
+                "\naddress='" + address +
+                "}\n";
     }
 }

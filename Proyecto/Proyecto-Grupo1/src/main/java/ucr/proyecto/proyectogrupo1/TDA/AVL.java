@@ -76,7 +76,7 @@ public class AVL implements Tree {
         else if(Utility.compare(node.data, element)==0)
             return true; //ya lo encontro
         else if(Utility.compare(element, node.data)< 0)
-                return binarySearch(node.left, element);
+            return binarySearch(node.left, element);
         else return binarySearch(node.right, element);
     }
 
@@ -165,12 +165,12 @@ public class AVL implements Tree {
                 //Caso 1. Es un nodo sin hijos. Es una hoja
                 if(node.left==null && node.right==null)
                     return null;
-                //Caso 2. El nodo solo tiene un hijo
+                    //Caso 2. El nodo solo tiene un hijo
                 else if(node.left!=null && node.right==null)
                     return node.left; //retorna el subarbol izq y sustituye el nodo actual
                 else if(node.left==null && node.right!=null)
                     return node.right; //retorna el subarbol derecho y sustituye el nodo actual
-                //Caso 3. El nodo tiene 2 hijos
+                    //Caso 3. El nodo tiene 2 hijos
                 else if(node.left!=null && node.right!=null){
                     Object value = min(node.right);
                     node.data = value;
@@ -195,10 +195,10 @@ public class AVL implements Tree {
         else if(Utility.compare(node.data, element)==0)
             return counter;
         else //en este caso debe buscar por la izq y por la der
-        if(Utility.compare(element, node.data)< 0)
-            return height(node.left, element, ++counter);
-        else return height(node.right, element, ++counter);
-            //return Math.max(height(node.left, element, ++counter), height(node.right, element, counter));
+            if(Utility.compare(element, node.data)< 0)
+                return height(node.left, element, ++counter);
+            else return height(node.right, element, ++counter);
+        //return Math.max(height(node.left, element, ++counter), height(node.right, element, counter));
     }
 
     @Override

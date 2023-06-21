@@ -216,6 +216,7 @@ public class JSON_Utility {
                 }
                 return headerLinkedQueue;
             }
+
         }else{
             file.createNewFile();
             return headerLinkedQueue;
@@ -526,6 +527,8 @@ public class JSON_Utility {
             arrayList.add( (Order) avl.get(i));
         }
         ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule());
+        om.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
         try {
             om.writeValue(Paths.get(pathJSON).toFile(),arrayList);
         } catch (IOException e) {

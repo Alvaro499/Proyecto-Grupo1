@@ -1,67 +1,68 @@
 package ucr.proyecto.proyectogrupo1.util;
 
 import ucr.proyecto.proyectogrupo1.TDA.*;
-import ucr.proyecto.proyectogrupo1.domain.Customer;
-import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.Security;
-import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.domain.*;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 
+
+import java.io.IOException;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+
+
 public class Utility {
-    public static SinglyLinkedList getClientSinglyLinkedList() {
-        return clientSinglyLinkedList;
-    }
-
-    public static void setClientSinglyLinkedList(SinglyLinkedList clientSinglyLinkedList) {
-        Utility.clientSinglyLinkedList = clientSinglyLinkedList;
-    }
-    public static CircularLinkedList getLoginCircularLinkedList() {
-        return loginCircularLinkedList;
-    }
-
-    public static void setLoginCircularLinkedList(CircularLinkedList loginCircularLinkedList) {
-        Utility.loginCircularLinkedList = loginCircularLinkedList;
-    }
-
-    public static AVL getProductAVL() {
-        return productAVL;
-    }
-
-    public static void setProductAVL(AVL productAVL) {
-        Utility.productAVL = productAVL;
-    }
-
-    public static AVL getSupplierAVL() {
-        return supplierAVL;
-    }
-
-    public static void setSupplierAVL(AVL supplierAVL) {
-        Utility.supplierAVL = supplierAVL;
-    }
-    
- 
-
-    private static CircularLinkedList loginCircularLinkedList; //table security
     private static AVL productAVL; //table product
     private static AVL supplierAVL; //table supplier
-    private static SinglyLinkedList clientSinglyLinkedList;
-    private static String nombreSistema;
-
-
+    private static SinglyLinkedList clientSinglyLinkedList; //table customer
+    private static AVL order; //table order
+    private static AVL orderDetail;// table orderDetail
+    private static AVL sale;
+    private static AVL saleDetail;
+    private static Integer IDClient;
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
+    private static JSON_Utility json;
+    private static CircularLinkedList loginCircularLinkedList; //table security
+    private static String nombreSistema;
 
     // static initializer
     static {
+        json = new JSON_Utility();
+        //instanciamos los arboles
+        sale = new AVL();
+        saleDetail = new AVL();
+        clientSinglyLinkedList = new SinglyLinkedList();
+        loginCircularLinkedList = new CircularLinkedList();
+        supplierAVL = new AVL();
+        productAVL = new AVL();
+        order = new AVL();
+        orderDetail = new AVL();
+        //llenamos los arboles
+        try {
+            productAVL = json.getProductAVL();
+            supplierAVL = json.getSupplierAVL();
+            loginCircularLinkedList = json.getSecurityCircularLinkedList();
+            clientSinglyLinkedList = json.getCustomerInSinglyLinkedList();
+            sale = json.getSaleAVL();
+            saleDetail = json.getSaleDetailAVL();
+            order = json.getOrderAVL();
+            orderDetail = json.getOrderDetailAVL();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        }
+
+
         // this is how the seed was set in Java 1.4
         seed = System.currentTimeMillis();
         random = new Random(seed);
         //tabla cliente
-        clientSinglyLinkedList = new SinglyLinkedList();
+       /* clientSinglyLinkedList = new SinglyLinkedList();
         clientSinglyLinkedList.add(new Customer(123456789, "Jean","70790629","zjeancarlo42@gmail.com","Cartago"));
         clientSinglyLinkedList.add(new Customer(111111111, "user","70790629","user@gmail.com","lugar"));
         clientSinglyLinkedList.add(new Customer(222222222, "user2","70790629","user@gmail.com","lugar"));
@@ -152,7 +153,88 @@ public class Utility {
                 Utility.random(100),
                 Utility.random(10, 50),
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418304316_1.jpg"));
+*/
+    }
 
+    public static SinglyLinkedList getClientSinglyLinkedList() {
+        return clientSinglyLinkedList;
+    }
+
+    public static void setClientSinglyLinkedList(SinglyLinkedList clientSinglyLinkedList) {
+        Utility.clientSinglyLinkedList = clientSinglyLinkedList;
+    }
+
+    public static CircularLinkedList getLoginCircularLinkedList() {
+        return loginCircularLinkedList;
+    }
+
+    public static void setLoginCircularLinkedList(CircularLinkedList loginCircularLinkedList) {
+        Utility.loginCircularLinkedList = loginCircularLinkedList;
+    }
+
+    public static AVL getProductAVL() {
+        return productAVL;
+    }
+
+    public static void setProductAVL(AVL productAVL) {
+        Utility.productAVL = productAVL;
+        try {
+            json.saveProductAVL(Utility.productAVL);
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static AVL getSupplierAVL() {
+        return supplierAVL;
+    }
+
+    public static void setSupplierAVL(AVL supplierAVL) {
+        Utility.supplierAVL = supplierAVL;
+    }
+
+    public static AVL getOrder() {
+        return order;
+    }
+
+    public static void setOrder(AVL order) {
+        Utility.order = order;
+    }
+
+    public static Integer getIDClient() {
+        return IDClient;
+    }
+
+    public static void setIDClient(Integer IDClient) {
+        Utility.IDClient = IDClient;
+    }
+
+    public static AVL getOrderDetail() {
+        return orderDetail;
+    }
+
+    public static void setOrderDetail(AVL orderDetail) {
+        Utility.orderDetail = orderDetail;
+    }
+
+    public static AVL getSale() {
+        return sale;
+    }
+
+    public static void setSale(AVL sale) {
+        Utility.sale = sale;
+    }
+
+    public static AVL getSaleDetail() {
+        return saleDetail;
+    }
+
+    public static void setSaleDetail(AVL saleDetail) {
+        Utility.saleDetail = saleDetail;
     }
 
     public static int random() {

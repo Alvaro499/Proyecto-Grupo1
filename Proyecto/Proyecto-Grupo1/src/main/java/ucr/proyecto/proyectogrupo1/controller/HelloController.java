@@ -68,6 +68,7 @@ public class HelloController {
                     } else if (ID < 2000) {//consulta
                         stage("menuConsulta.fxml");
                     } else {//cliente
+                        Utility.setIDClient(ID);
                         stage("cliente.fxml");
                     }
                 }
@@ -94,6 +95,7 @@ public class HelloController {
             registerStage.initStyle(StageStyle.UTILITY);
             registerStage.setScene(new Scene(root));
             registerStage.sizeToScene();
+            registerStage.setResizable(false);
             registerStage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -75,7 +75,7 @@ public class MantenimientoProveedorController {
             arrayList.add(s.getAddress());
 
             String book = "";
-            int ID = s.getId();
+            int ID = s.getID();
             for (int j = 0; j < product.size(); j++) {
                 Product p = (Product) product.get(j);
                 if (ID == p.getSupplierID()) {

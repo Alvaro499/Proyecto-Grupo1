@@ -10,7 +10,6 @@ public class Supplier {
     public Supplier() {
     }
 
-
     public Supplier(Integer ID, String name, Integer phoneNumber, String email, String address) {
         this.id = ID;
         this.name = name;
@@ -18,7 +17,7 @@ public class Supplier {
         this.email = email;
         this.address = address;
     }
-    public Integer getId() {
+    public Integer getID() {
         return id;
     }
 
@@ -41,11 +40,11 @@ public class Supplier {
     @Override
     public String toString() {
         return "Supplier{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                ", address='" + address + '\'' +
-                '}';
+                "ID=" + id +
+                "\nname='" + name +
+                "\nphoneNumber=" +
+                "\nemail='" + email +
+                "\naddress='" + address +
+                "}\n";
     }
 }

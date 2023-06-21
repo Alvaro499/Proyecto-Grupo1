@@ -28,30 +28,6 @@ public class BTree implements Tree {
             return 1+size(node.left)+size(node.right);
     }
 
-    public Object get(int index) throws TreeException {
-        if (isEmpty()) {
-            throw new TreeException("AVL Binary Search Tree is empty");
-        }
-
-        if (index < 0 || index >= size()) {
-            throw new IllegalArgumentException("Index is out of bounds");
-        }
-
-        return get(root, index);
-    }
-
-    private Object get(BTreeNode node, int index) {
-        int leftSubtreeSize = size(node.left);
-
-        if (index == leftSubtreeSize) {
-            return node.data;
-        } else if (index < leftSubtreeSize) {
-            return get(node.left, index);
-        } else {
-            return get(node.right, index - leftSubtreeSize - 1);
-        }
-    }
-
     @Override
     public void clear() {
         this.root = null;

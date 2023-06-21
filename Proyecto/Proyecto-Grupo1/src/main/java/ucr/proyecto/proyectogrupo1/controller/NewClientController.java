@@ -15,6 +15,8 @@ import ucr.proyecto.proyectogrupo1.domain.Security;
 import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.Instant;
+
 public class NewClientController {
 
     @FXML
@@ -43,14 +45,14 @@ public class NewClientController {
 
     @FXML
     private Button confirmar;
-
+    private Instant instant;
     private CircularLinkedList login;
     private SinglyLinkedList client;
-
     @FXML
     public void initialize() throws ListException, TreeException {
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
+        instant = Instant.now();
     }
 
     @FXML
@@ -78,19 +80,22 @@ public class NewClientController {
             String usuario = txtUsuario.getText();
             String contrasena = txtContra.getText();
 
-            if (!existeID(id)) {
+            if (!existeID(id) && !existeUser(usuario)) {
                 client.add(new Customer(id, nombre, telefono, email, direccion));
                 login.add(new Security(id, usuario, contrasena));
+
+                Utility.setLoginCircularLinkedList(login);
+                Utility.setClientSinglyLinkedList(client);
 
                 EnvioCorreos correo = new EnvioCorreos();
                 correo.setEmailTo(email.trim());
                 correo.setSubject("Cuenta Registrada");
-                correo.setContent("Gracias " + nombre + " por registrarse en nuestra biblioteca<br>Usuario: " + usuario + "<br>Contraseña: " + contrasena + "<br>Estes es un mensaje generado de manera automática, por favor no responder");
+                correo.setContent("Gracias " + nombre + " por registrarse en nuestra biblioteca<br>Usuario: " + usuario + "<br>Contraseña: " + contrasena + "<br>Estes es un mensaje generado de manera automática el " + instant + ", por favor no responder");
                 correo.sendEmail();
 
                 borrarOnAction(new ActionEvent());
             } else {
-                txtID.setPromptText("El ID ya está registrado");
+                txtID.setPromptText("El ID o el Usuario ya está registrado");
             }
 
             confirmar.setCursor(Cursor.HAND);
@@ -162,9 +167,18 @@ public class NewClientController {
     }
 
     private boolean existeID(int id) throws ListException {
-        for (int i = 1; i < login.size(); i++) {
+        for (int i = 1; i <= login.size(); i++) {
             Security s = (Security) login.getNode(i).data;
             if (id == s.getCustomerID()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    private boolean existeUser(String usuario) throws ListException {
+        for (int i = 1; i <= login.size(); i++) {
+            Security s = (Security) login.getNode(i).data;
+            if (usuario.equalsIgnoreCase(s.getUser())) {
                 return true;
             }
         }

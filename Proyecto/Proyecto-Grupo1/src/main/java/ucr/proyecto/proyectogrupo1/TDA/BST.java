@@ -28,30 +28,6 @@ public class BST implements Tree {
             return 1+size(node.left)+size(node.right);
     }
 
-    public Object get(int index) throws TreeException {
-        if (isEmpty()) {
-            throw new TreeException("AVL Binary Search Tree is empty");
-        }
-
-        if (index < 0 || index >= size()) {
-            throw new IllegalArgumentException("Index is out of bounds");
-        }
-
-        return get(root, index);
-    }
-
-    private Object get(BTreeNode node, int index) {
-        int leftSubtreeSize = size(node.left);
-
-        if (index == leftSubtreeSize) {
-            return node.data;
-        } else if (index < leftSubtreeSize) {
-            return get(node.left, index);
-        } else {
-            return get(node.right, index - leftSubtreeSize - 1);
-        }
-    }
-
     @Override
     public void clear() {
         this.root = null;
@@ -76,7 +52,7 @@ public class BST implements Tree {
         else if(Utility.compare(node.data, element)==0)
             return true; //ya lo encontro
         else if(Utility.compare(element, node.data)< 0)
-                return binarySearch(node.left, element);
+            return binarySearch(node.left, element);
         else return binarySearch(node.right, element);
     }
 
@@ -89,10 +65,10 @@ public class BST implements Tree {
         if(node==null){ //el arbol esta vacio
             node = new BTreeNode(element);
         }else
-            if(Utility.compare(element, node.data)< 0)
-                node.left = add(node.left, element);
-            else if(Utility.compare(element, node.data)> 0)//va como hijo der
-                    node.right = add(node.right, element);
+        if(Utility.compare(element, node.data)< 0)
+            node.left = add(node.left, element);
+        else if(Utility.compare(element, node.data)> 0)//va como hijo der
+            node.right = add(node.right, element);
         return node;
     }
 
@@ -114,12 +90,12 @@ public class BST implements Tree {
                 //Caso 1. Es un nodo sin hijos. Es una hoja
                 if(node.left==null && node.right==null)
                     return null;
-                //Caso 2. El nodo solo tiene un hijo
+                    //Caso 2. El nodo solo tiene un hijo
                 else if(node.left!=null && node.right==null)
                     return node.left; //retorna el subarbol izq y sustituye el nodo actual
                 else if(node.left==null && node.right!=null)
                     return node.right; //retorna el subarbol derecho y sustituye el nodo actual
-                //Caso 3. El nodo tiene 2 hijos
+                    //Caso 3. El nodo tiene 2 hijos
                 else if(node.left!=null && node.right!=null){
                     Object value = min(node.right);
                     node.data = value;
@@ -144,10 +120,10 @@ public class BST implements Tree {
         else if(Utility.compare(node.data, element)==0)
             return counter;
         else //en este caso debe buscar por la izq y por la der
-        if(Utility.compare(element, node.data)< 0)
-            return height(node.left, element, ++counter);
-        else return height(node.right, element, ++counter);
-            //return Math.max(height(node.left, element, ++counter), height(node.right, element, counter));
+            if(Utility.compare(element, node.data)< 0)
+                return height(node.left, element, ++counter);
+            else return height(node.right, element, ++counter);
+        //return Math.max(height(node.left, element, ++counter), height(node.right, element, counter));
     }
 
     @Override

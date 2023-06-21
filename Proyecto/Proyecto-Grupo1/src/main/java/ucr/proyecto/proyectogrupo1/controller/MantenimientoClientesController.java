@@ -122,8 +122,6 @@ public class MantenimientoClientesController {
             client = Utility.getClientSinglyLinkedList();
             login = Utility.getLoginCircularLinkedList();
         }
-        login = Utility.getLoginCircularLinkedList();
-        client = Utility.getClientSinglyLinkedList();
         if (!client.isEmpty()) {
             tableView.setItems(getData());
         }
