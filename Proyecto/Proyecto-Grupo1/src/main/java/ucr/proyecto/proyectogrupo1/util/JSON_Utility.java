@@ -44,19 +44,19 @@ public class JSON_Utility {
 
     //MANIPULACION DE DATOS DE LA CLASE SECURITY
     public CircularLinkedList getSecurityCircularLinkedList() throws IOException {
-        String pathSecurityJSON = "securityData.txt";
+        String pathJSON = "securityData.txt";
         CircularLinkedList circularLinkedList = new CircularLinkedList();
         ArrayList<Security> arrayList = new ArrayList<>();
         //String que contendra el formatoJSON
         String output = "";
-        file = new File(pathSecurityJSON);
+        file = new File(pathJSON);
         if(file.exists()){
 
             //archivo existe
             System.out.println("Archivo existe");
             try {
                 //leemos los datos del archivo JSON indicado
-                output = new String(Files.readAllBytes(Paths.get(pathSecurityJSON)));
+                output = new String(Files.readAllBytes(Paths.get(pathJSON)));
 
                 if (output.equals("") || output == null){
                     //si no hay nada en el jsonFile, lista vacia, para comenzar a llenar manualmente
@@ -218,6 +218,7 @@ public class JSON_Utility {
             }
 
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return headerLinkedQueue;
         }
@@ -292,6 +293,7 @@ public class JSON_Utility {
                 return avl;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return avl;
         }
@@ -365,6 +367,7 @@ public class JSON_Utility {
                 return avl;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return  avl;
         }
@@ -439,6 +442,7 @@ public class JSON_Utility {
                 return avl;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return avl;
         }
@@ -502,6 +506,7 @@ public class JSON_Utility {
                 return avl;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return avl;
         }
@@ -568,6 +573,7 @@ public class JSON_Utility {
                 return avl;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return avl;
         }
@@ -636,6 +642,7 @@ public class JSON_Utility {
                 return avl;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return avl;
         }
@@ -701,6 +708,7 @@ public class JSON_Utility {
                 return bTree;
             }
         }else{
+            file = new File(pathJSON);
             file.createNewFile();
             return bTree;
         }
