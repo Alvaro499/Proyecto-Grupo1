@@ -272,6 +272,7 @@ public class ClienteCarritoController {
 
     @FXML
     void exitOnAction(ActionEvent event) {
+        //System.exit(0);
     }
 
     private static class ImageTableCell<S> extends TableCell<S, Image> {

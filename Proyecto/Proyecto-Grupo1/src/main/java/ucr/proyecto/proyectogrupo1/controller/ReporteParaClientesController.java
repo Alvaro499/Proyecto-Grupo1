@@ -143,7 +143,7 @@ public class ReporteParaClientesController {
     }
 
     @FXML
-    void ReporteOnAction(ActionEvent event) throws ListException {
+    void reporteOnAction(ActionEvent event) throws ListException {
         String correoCliente = getCustomer(clientID).getEmail().trim();
         String mensaje = FXUtility.alertYesNo("Generador de reporte", "El reporte sera enviar a: ", correoCliente);
         if (mensaje.equalsIgnoreCase("YES")) {
