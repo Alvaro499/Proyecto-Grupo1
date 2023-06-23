@@ -2,9 +2,7 @@
     -fx-background-color: #2E2F38;
     -fx-background-radius: 20 20 20 20;
     -fx-font-family: "Century Schoolbook";
-    -fx-font-size:20px;
-    -border:0px;
     -width: 80px;
-    -height: 19px;
+     -height: 19px;
     -fx-text-fill: white;
 }
