@@ -11,6 +11,7 @@ import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.QueueException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.OrderDetail;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
@@ -42,6 +43,8 @@ public class PrevisionDemandaController {
     private AVL supplierName; //proveedor
 
     private AVL product;
+
+    private AVL orderDatail;
     private SinglyLinkedList cliente; //table client
     private Integer clienteID;
     private ArrayList<String> reporte;
@@ -50,6 +53,7 @@ public class PrevisionDemandaController {
     public void initialize() {
         product = Utility.getProductAVL();
         supplierName = Utility.getSupplierAVL();
+        orderDatail = Utility.getOrderDetail();
         cliente = Utility.getClientSinglyLinkedList();
         clienteID = Utility.getIDClient();
         reporte = new ArrayList<String>();
@@ -117,17 +121,15 @@ public class PrevisionDemandaController {
                     arrayList.add(s.getName());
                     reporte.add(s.getName());
 
-                    arrayList.add(String.valueOf(previsondemanda(p,5,10)));
-                    reporte.add(String.valueOf(previsondemanda(p,5,10)));
-
-                   /* arrayList.add(String.valueOf(previsondemanda(p,5,s.getPLAZO_ENTREGA())));
-                    reporte.add(String.valueOf(previsondemanda(p,5,s.getPLAZO_ENTREGA())));*/
+                    arrayList.add(String.valueOf(previsondemanda(p,5,s.getPlazoEntrega())));
+                    reporte.add(String.valueOf(previsondemanda(p,5,s.getPlazoEntrega())));
                 }
             }
-
-
-
-
+            /*for (int j = 0; j < orderDatail.size(); j++) {
+                OrderDetail orderD = (OrderDetail) orderDatail.get(j);
+                arrayList.add(String.valueOf(previsondemanda(p,5, orderD.getPlazoEntrega())));
+                reporte.add(String.valueOf(previsondemanda(p,5, orderD.getPlazoEntrega())));
+            }*/
             data.add(arrayList);
         }
         return data;

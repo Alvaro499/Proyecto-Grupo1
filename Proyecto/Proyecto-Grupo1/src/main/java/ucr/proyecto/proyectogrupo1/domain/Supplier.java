@@ -1,5 +1,7 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import ucr.proyecto.proyectogrupo1.util.Utility;
+
 public class Supplier {
     private Integer id;
     private String name;
@@ -7,8 +9,7 @@ public class Supplier {
     private String email;
     private String address;
 
-    private Integer PLAZO_ENTREGA;
-
+    private int plazoEntrega;
     public Supplier() {
     }
 
@@ -18,15 +19,11 @@ public class Supplier {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        this.plazoEntrega = Utility.random(25);
     }
 
-    public Supplier(Integer id, String name, Integer phoneNumber, String email, String address, Integer PLAZO_ENTREGA) {
-        this.id = id;
-        this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.address = address;
-        this.PLAZO_ENTREGA = PLAZO_ENTREGA;
+    public int getPlazoEntrega() {
+        return plazoEntrega;
     }
 
     public Integer getID() {
@@ -47,10 +44,6 @@ public class Supplier {
 
     public String getAddress() {
         return address;
-    }
-
-    public Integer getPLAZO_ENTREGA() {
-        return PLAZO_ENTREGA;
     }
 
     @Override

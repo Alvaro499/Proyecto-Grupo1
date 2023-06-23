@@ -179,6 +179,10 @@ public class MantenimientoProductosController {
         return p;
     }
 
+    @FXML
+    void modificarOnAction(ActionEvent event) {
+    }
+
     private static class ImageTableCell<S> extends TableCell<S, Image> {
         private final ImageView imageView;
 

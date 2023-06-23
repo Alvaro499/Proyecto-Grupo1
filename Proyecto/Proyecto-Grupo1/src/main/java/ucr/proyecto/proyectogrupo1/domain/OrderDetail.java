@@ -1,11 +1,15 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import ucr.proyecto.proyectogrupo1.util.Utility;
+
 public class OrderDetail {
     //private Integer id;
     private Integer orderID;//PK con Order.ID
     private Integer productID;//FK con Product.ID
     private String quantity;
     private Double uniPrice;
+
+    private int plazoEntrega;
 
     public OrderDetail() {
     }
@@ -15,6 +19,18 @@ public class OrderDetail {
         this.productID = productID;
         this.quantity = quantity;
         this.uniPrice = uniPrice;
+        this.plazoEntrega = Utility.random(20);
+    }
+    public OrderDetail(Integer orderID, Integer productID, String quantity, Double uniPrice, int plazoEntrega) {
+        this.orderID = orderID;
+        this.productID = productID;
+        this.quantity = quantity;
+        this.uniPrice = uniPrice;
+        this.plazoEntrega = plazoEntrega;
+    }
+
+    public int getPlazoEntrega() {
+        return plazoEntrega;
     }
 
     public Integer getOrderID() {

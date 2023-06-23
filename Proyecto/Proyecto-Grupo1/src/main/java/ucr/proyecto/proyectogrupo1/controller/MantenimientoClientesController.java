@@ -141,4 +141,8 @@ public class MantenimientoClientesController {
     @FXML
     public void btnBuscarCliente(ActionEvent actionEvent) {
     }
+
+    @FXML
+    public void modificarOnAction(ActionEvent event) {
+    }
 }

@@ -179,4 +179,8 @@ public class MantenimientoProveedorController {
         }
         return s;
     }
+
+    @FXML
+    public void modificarOnAction(ActionEvent event) {
+    }
 }
