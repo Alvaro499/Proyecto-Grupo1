@@ -3,6 +3,7 @@ package ucr.proyecto.proyectogrupo1.controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -13,6 +14,7 @@ import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Security;
 import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.time.Instant;
@@ -48,8 +50,11 @@ public class NewClientController {
     private Instant instant;
     private CircularLinkedList login;
     private SinglyLinkedList client;
+    private Alert alert;
     @FXML
     public void initialize() throws ListException, TreeException {
+        alert = FXUtility.alert("Menu Proveedor", "Desplay Proveedor");
+        alert.setAlertType(Alert.AlertType.ERROR);
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
         instant = Instant.now();
