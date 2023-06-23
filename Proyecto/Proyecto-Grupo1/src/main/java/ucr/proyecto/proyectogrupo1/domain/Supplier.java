@@ -7,6 +7,8 @@ public class Supplier {
     private String email;
     private String address;
 
+    private Integer PLAZO_ENTREGA;
+
     public Supplier() {
     }
 
@@ -17,6 +19,16 @@ public class Supplier {
         this.email = email;
         this.address = address;
     }
+
+    public Supplier(Integer id, String name, Integer phoneNumber, String email, String address, Integer PLAZO_ENTREGA) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.address = address;
+        this.PLAZO_ENTREGA = PLAZO_ENTREGA;
+    }
+
     public Integer getID() {
         return id;
     }
@@ -35,6 +47,10 @@ public class Supplier {
 
     public String getAddress() {
         return address;
+    }
+
+    public Integer getPLAZO_ENTREGA() {
+        return PLAZO_ENTREGA;
     }
 
     @Override

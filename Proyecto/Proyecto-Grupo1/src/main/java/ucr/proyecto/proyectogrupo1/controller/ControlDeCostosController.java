@@ -119,9 +119,10 @@ public class ControlDeCostosController {
 
             for (int j = 0; j < supplierName.size(); j++) {//Agarra ID de la tabla supplier y lo compara con IDsupplier de la tabla Product, para saber el nombre del proveedor del libro
                 Supplier s = (Supplier) supplierName.get(j);
-                if (s.getID().equals(p.getSupplierID()))
+                if (s.getID().equals(p.getSupplierID())) {
                     arrayList.add(s.getName());
                     reporte.add(s.getName());
+                }
             }
             try {
 
