@@ -24,12 +24,12 @@
                         <Font name="Century Schoolbook" size="18.0" />
                      </font>
                   </Text>
-                  <Button fx:id="txtGenerarPrevisionDemanda" mnemonicParsing="false" onAction="#AgregarNuevoProductoOnAction" prefHeight="42.0" prefWidth="305.0" text="Generar previsión de demanda">
+                  <Button mnemonicParsing="false" onAction="#generarPrevisionDemandaOnAction" prefHeight="38.0" prefWidth="362.0" text="Generar previsión de demanda">
                      <font>
                         <Font name="Century Schoolbook" size="18.0" />
                      </font>
                      <VBox.margin>
-                        <Insets left="550.0" />
+                        <Insets left="500.0" />
                      </VBox.margin>
                   </Button>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stock de productos recomendados a actualizar">
@@ -39,16 +39,16 @@
                   </Text>
                   <TableView fx:id="tableView" prefHeight="355.0" prefWidth="767.0">
                     <columns>
-                      <TableColumn prefWidth="100.0" text="ID" />
-                      <TableColumn prefWidth="110.0" text="NOMBRE" />
-                        <TableColumn prefWidth="100.0" text="Precio" />
-                        <TableColumn prefWidth="100.0" text="Stock Actual" />
-                        <TableColumn minWidth="8.0" prefWidth="100.0" text="Stock Min" />
-                        <TableColumn prefWidth="100.0" text="Proveedor" />
-                        <TableColumn prefWidth="100.0" text="Recomendado" />
+                      <TableColumn fx:id="idProducto" prefWidth="91.9999908208847" text="ID" />
+                      <TableColumn fx:id="nombre" prefWidth="160.0" text="NOMBRE" />
+                        <TableColumn fx:id="precio" prefWidth="100.0" text="Precio" />
+                        <TableColumn fx:id="stockActual" prefWidth="83.0" text="Stock " />
+                        <TableColumn fx:id="stockMin" minWidth="8.0" prefWidth="83.0" text="Stock Min" />
+                        <TableColumn fx:id="proveedor" prefWidth="174.0" text="Proveedor" />
+                        <TableColumn fx:id="stockRecomendado" prefWidth="139.199951171875" text="Stock Recomendado" />
                     </columns>
                   </TableView>
-                  <Button mnemonicParsing="false" onAction="#procesarOnAction" prefHeight="42.0" prefWidth="201.0" text="Procesar">
+                  <Button mnemonicParsing="false" onAction="#actualizarInventarioOnAction" prefHeight="42.0" prefWidth="201.0" text="Procesar">
                      <font>
                         <Font name="Century Schoolbook" size="18.0" />
                      </font>
