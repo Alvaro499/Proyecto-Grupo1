@@ -37,6 +37,9 @@ public class Order {
     public String getOrderStatus() {
         return orderStatus;
     }
+    public void setStatus(String orderStatus){
+        this.orderStatus = orderStatus;
+    }
 
     public String getSupplierName() {
         return supplierName;

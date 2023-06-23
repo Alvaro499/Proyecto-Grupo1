@@ -25,7 +25,7 @@ import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -52,12 +52,12 @@ public class MenuClienteController {
     private Text textID;
     private AVL sale;
     private AVL saleDetail;
-    private LocalDate hoy;
+    private LocalDateTime hoy;
     private Alert alert;
 
     @FXML
     public void initialize() throws ListException, TreeException {
-        hoy = LocalDate.now();
+        hoy = LocalDateTime.now();
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         selectedItems = tableView.getSelectionModel().getSelectedItems();
@@ -83,23 +83,23 @@ public class MenuClienteController {
         alert.setAlertType(Alert.AlertType.ERROR);
 
         if (!product.isEmpty()) {
-            tableView.setItems(getData());
+            tableView.setItems(getData(product));
         }
     }
 
-    private ObservableList<List<String>> getData() throws TreeException {
+    private ObservableList<List<String>> getData(AVL tree) throws TreeException {
         ObservableList<List<String>> data = FXCollections.observableArrayList();
         try {
-            Integer n = product.size();
+            Integer n = tree.size();
             for (int i = 0; i < n; i++) {
                 List<String> arrayList = new ArrayList<>();
-                Product p = (Product) product.get(i);
+                Product p = (Product) tree.get(i);
                 arrayList.add(p.getID());
                 arrayList.add(p.getUrl_img());
                 arrayList.add(p.getDescription() + "\n₡" + p.getPrice());
                 data.add(arrayList);
             }
-        }catch (Exception ex){
+        } catch (Exception ex) {
             alert.setContentText("There was an error in the process");
             alert.showAndWait();
         }
@@ -108,7 +108,29 @@ public class MenuClienteController {
 
     @FXML
     void buscarOnAction(ActionEvent event) {
-
+        try {
+            Integer n = product.size();
+            String nombre = txtBuscar.getText();
+            if (!nombre.equalsIgnoreCase("")) {
+                for (int i = 0; i < n; i++) {
+                    Product p = (Product) product.get(i);
+                    if (p.getName().equalsIgnoreCase(nombre)){
+                        AVL newProduct = new AVL();
+                        newProduct.add(p);
+                        //Buscamos y publicamos
+                        if (!newProduct.isEmpty()) {
+                            tableView.setItems(getData(newProduct));
+                        }
+                    }
+                }
+            } else {
+                if (!product.isEmpty()) {
+                    tableView.setItems(getData(product));
+                }
+            }
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @FXML
@@ -171,7 +193,7 @@ public class MenuClienteController {
                                     saleDetail.add(newSaleDetail);
 
                                     sale.remove(newSale);
-                                    newSale.setSaleDate(hoy);
+                                    newSale.setSaleDate(hoy.withNano(0));
                                     sale.add(newSale);
 
                                     alert.setContentText(getProduct(product).getName() + "\nCantidad: " + newSaleDetail.getQuantity());
@@ -187,7 +209,7 @@ public class MenuClienteController {
 
                     Sale newSale = new Sale( //llenar Sale
                             getIDSale(),
-                            hoy,
+                            hoy.withNano(0),
                             Integer.parseInt(textID.getText().substring(3).trim()),
                             IDProduct);
                     sale.add(newSale);
@@ -243,6 +265,7 @@ public class MenuClienteController {
         }
         return existe;
     }
+
     private Sale getSale(String id) throws TreeException {
         Sale newSale = null;
         Integer n = sale.size();

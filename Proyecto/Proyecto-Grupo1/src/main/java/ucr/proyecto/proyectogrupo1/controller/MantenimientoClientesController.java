@@ -95,7 +95,7 @@ public class MantenimientoClientesController {
     }
 
     @FXML
-    void btnEliminarCliente(ActionEvent event) throws ListException {
+    void btnEliminarCliente(ActionEvent event) throws ListException {//revizar
         for (List<String> s : selectedItems) {
             int l = login.size();
             int c = client.size();

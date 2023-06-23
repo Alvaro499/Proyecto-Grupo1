@@ -495,6 +495,8 @@ public class JSON_Utility {
 
             }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
                 ObjectMapper om = new ObjectMapper();
+                om.registerModule(new JavaTimeModule());
+                om.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
                 //llenamos el ArrayList con la info del JSON file
                 //(se deserializa)
                 arrayList = om.readValue(
@@ -562,6 +564,8 @@ public class JSON_Utility {
 
             }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
                 ObjectMapper om = new ObjectMapper();
+                om.registerModule(new JavaTimeModule());
+                om.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
                 //llenamos el ArrayList con la info del JSON file
                 //(se deserializa)
                 arrayList = om.readValue(

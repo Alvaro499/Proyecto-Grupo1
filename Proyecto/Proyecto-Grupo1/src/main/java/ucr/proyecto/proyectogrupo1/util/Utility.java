@@ -22,6 +22,9 @@ public class Utility {
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
     private static JSON_Utility json;
+    private static String nombreSistema;
+    private static HeaderLinkedQueue costos;
+
 
     // static initializer
     static {
@@ -139,13 +142,50 @@ public class Utility {
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418304316_1.jpg"));
 */
     }
+
+    public static HeaderLinkedQueue getCostos() {
+        return costos;
+    }
+
+    public static void setCostos(HeaderLinkedQueue costos) {
+        Utility.costos = costos;
+
+        try {
+            json.saveProductHeaderLinkedQueue(Utility.getCostos());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String getNombreSistema() {
+        return nombreSistema;
+    }
+
+    public static void setNombreSistema(String nombreSistema) {
+        Utility.nombreSistema = nombreSistema;
+    }
+
+    public static BTree getInventaryBtree() throws QueueException, IOException {
+        //return btreeInventary;
+        return json.getInventoryBtree();
+    }
+
+    public static void setInventaryBtree(BTree bTree) throws QueueException, ListException, IOException {
+        json.saveInventoryBtree(bTree);
+        //btreeInventary = bTree;
+    }
+
     public static SinglyLinkedList getClientSinglyLinkedList() {
         return clientSinglyLinkedList;
     }
 
     public static void setClientSinglyLinkedList(SinglyLinkedList clientSinglyLinkedList) {
         Utility.clientSinglyLinkedList = clientSinglyLinkedList;
-        try{
+        try {
             json.saveCustomerSinglyLinkedList(Utility.getClientSinglyLinkedList());
         } catch (ListException e) {
             throw new RuntimeException(e);

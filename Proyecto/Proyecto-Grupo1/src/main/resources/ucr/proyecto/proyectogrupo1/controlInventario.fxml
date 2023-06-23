@@ -25,28 +25,38 @@
                   </Text>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#buscarOnAction" text="Buscar">
+                        <Button mnemonicParsing="false" onAction="#searchOnAction" prefHeight="35.0" prefWidth="189.0" text="Buscar producto">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
                            </font>
                         </Button>
-                        <TextField fx:id="txtBuscar" prefHeight="26.0" prefWidth="451.0">
+                        <TextField fx:id="txtBuscar" prefHeight="29.0" prefWidth="322.0">
                            <HBox.margin>
                               <Insets top="6.0" />
                            </HBox.margin>
                         </TextField>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableView" prefHeight="360.0" prefWidth="806.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#updateStockOnAction" prefHeight="35.0" prefWidth="181.0" text="Actualizar Stock">
+                           <font>
+                              <Font name="Century Schoolbook" size="18.0" />
+                           </font>
+                        </Button>
+                        <HBox prefHeight="35.0" prefWidth="26.0" />
+                        <TextField fx:id="textFieldNewStock" prefHeight="35.0" prefWidth="321.0" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableView" prefHeight="400.0" prefWidth="833.0">
                     <columns>
-                        <TableColumn prefWidth="75.0" text="Column X" />
-                      <TableColumn text="ID" />
-                      <TableColumn prefWidth="142.0" text="NOMBRE" />
-                        <TableColumn prefWidth="90.0" text="PRECIO" />
-                        <TableColumn prefWidth="110.0" text="STOCK ACTUAL" />
-                        <TableColumn minWidth="8.0" prefWidth="110.0" text="STOCK MIN" />
-                        <TableColumn prefWidth="110.0" text="PROVEEDOR" />
-                        <TableColumn prefWidth="83.99997558593748" text="Cantidad" />
+                        <TableColumn fx:id="tableColumnSelected" prefWidth="74.0" text="Seleccionar" />
+                      <TableColumn fx:id="tableColumnID" prefWidth="81.0" text="ID" />
+                      <TableColumn fx:id="tableColumnName" prefWidth="142.0" text="NOMBRE" />
+                        <TableColumn fx:id="tableColumnPrice" prefWidth="114.0" text="PRECIO" />
+                        <TableColumn fx:id="tableColumnActualStock" prefWidth="108.0" text="STOCK ACTUAL" />
+                        <TableColumn fx:id="tableColumnMinimunStock" minWidth="8.0" prefWidth="132.0" text="STOCK MIN" />
+                        <TableColumn fx:id="tableColumnSupplier" prefWidth="173.0" text="PROVEEDOR" />
                     </columns>
                      <VBox.margin>
                         <Insets />
@@ -54,12 +64,17 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#modificarOnAction" prefHeight="40.0" prefWidth="149.0" text="Modificar">
+                        <Button mnemonicParsing="false" onAction="#reportBtnOnAction" prefHeight="47.0" prefWidth="213.0" text="Generar reporte de stock">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onAction="#automaticUpdateOnAction" prefHeight="40.0" prefWidth="224.0" text="Actulizado Automatico">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#confirmarOnAction" prefHeight="40.0" prefWidth="238.0" text="Confirmar Cambios">
+                        <Button mnemonicParsing="false" onAction="#confirmOnAction" prefHeight="40.0" prefWidth="238.0" text="Confirmar Cambios">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
                            </font>

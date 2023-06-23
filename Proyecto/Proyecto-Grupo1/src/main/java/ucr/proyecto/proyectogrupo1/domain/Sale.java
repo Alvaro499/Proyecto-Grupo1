@@ -1,21 +1,27 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
-import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
 
 public class Sale {
     private Integer ID;
-    private LocalDate saleDate;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime saleDate;
     private Integer customerID;
     private String annotation;
 
-    public Sale(Integer ID, LocalDate saleDate, Integer customerID, String annotation) {
+    public Sale() {
+    }
+
+    public Sale(Integer ID, LocalDateTime saleDate, Integer customerID, String annotation) {
         this.ID = ID;
         this.saleDate = saleDate;
         this.customerID = customerID;
         this.annotation = annotation;
     }
 
-    public void setSaleDate(LocalDate saleDate) {
+    public void setSaleDate(LocalDateTime saleDate) {
         this.saleDate = saleDate;
     }
 
@@ -23,7 +29,7 @@ public class Sale {
         return ID;
     }
 
-    public LocalDate getSaleDate() {
+    public LocalDateTime getSaleDate() {
         return saleDate;
     }
 

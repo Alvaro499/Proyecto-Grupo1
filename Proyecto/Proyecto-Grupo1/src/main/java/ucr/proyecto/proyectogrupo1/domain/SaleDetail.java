@@ -6,6 +6,10 @@ public class SaleDetail {
     private Integer quantity;
     private Double uniPrice;
     private Boolean order_canceled;
+
+    public SaleDetail() {
+    }
+
     public SaleDetail(Integer saleID, String productID, Integer quantity, Double uniPrice) {
         this.saleID = saleID;//fk de ID de Sale
         this.productID = productID.trim(); //fk de ID de Product

@@ -33,7 +33,7 @@
                   </Button>
                </children>
             </VBox>
-            <HBox fillHeight="false" layoutX="154.0" layoutY="276.0" prefHeight="44.0" prefWidth="515.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="124.0">
+            <HBox fillHeight="false" layoutX="154.0" layoutY="276.0" prefHeight="44.0" prefWidth="504.0" AnchorPane.leftAnchor="154.0" AnchorPane.rightAnchor="156.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Editar nombre del sistema:" wrappingWidth="245.3472900390625">
                      <font>
@@ -49,12 +49,12 @@
             </HBox>
             <HBox layoutX="153.0" layoutY="326.0" prefHeight="57.0" prefWidth="502.0" spacing="5.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="158.20000000000005">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Editar logo:">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Configuración ruta de archivos:">
                      <font>
                         <Font name="Century Schoolbook" size="19.0" />
                      </font>
                   </Text>
-                  <TextField fx:id="txtLogoEditar" prefHeight="26.0" prefWidth="393.0" style="-fx-background-color: white;">
+                  <TextField fx:id="txtLogoEditar" prefHeight="26.0" prefWidth="237.0" style="-fx-background-color: white;">
                      <font>
                         <Font name="Century Schoolbook" size="13.0" />
                      </font>
@@ -63,7 +63,7 @@
             </HBox>
             <HBox layoutX="313.0" layoutY="395.0" prefHeight="74.0" prefWidth="182.0" AnchorPane.bottomAnchor="96.0" AnchorPane.leftAnchor="313.0" AnchorPane.rightAnchor="319.0" AnchorPane.topAnchor="395.0">
                <children>
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmarCambiosOnAction" prefHeight="56.0" prefWidth="155.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Confirmar Cambios" textFill="WHITE">
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#confirmarCambiosOnAction" prefHeight="56.0" prefWidth="261.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Confirmar " textFill="WHITE">
                      <font>
                         <Font name="Century Schoolbook Bold" size="12.0" />
                      </font>

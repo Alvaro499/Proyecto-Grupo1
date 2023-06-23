@@ -15,10 +15,7 @@ import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
-import ucr.proyecto.proyectogrupo1.domain.Customer;
-import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.Sale;
-import ucr.proyecto.proyectogrupo1.domain.SaleDetail;
+import ucr.proyecto.proyectogrupo1.domain.*;
 import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
@@ -276,14 +273,12 @@ public class ClienteCarritoController {
 
     private static class ImageTableCell<S> extends TableCell<S, Image> {
         private final ImageView imageView;
-
         public ImageTableCell() {
             this.imageView = new ImageView();
             this.imageView.setFitHeight(300); // Ajusta la altura de la imagen
             this.imageView.setFitWidth(200); // Ajusta el ancho de la imagen
             setGraphic(imageView);
         }
-
         @FXML
         protected void updateItem(Image image, boolean empty) {
             super.updateItem(image, empty);

@@ -1,11 +1,14 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import ucr.proyecto.proyectogrupo1.util.Utility;
+
 public class Supplier {
     private Integer id;
     private String name;
     private Integer phoneNumber;
     private String email;
     private String address;
+    private Integer plazoEntrega;
 
     public Supplier() {
     }
@@ -16,7 +19,17 @@ public class Supplier {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
+        this.plazoEntrega = Utility.random(25);
     }
+
+    public Integer getPlazoEntrega() {
+        return plazoEntrega;
+    }
+
+    public void setPlazoEntrega(Integer plazoEntrega) {
+        this.plazoEntrega = plazoEntrega;
+    }
+
     public Integer getID() {
         return id;
     }
@@ -45,6 +58,7 @@ public class Supplier {
                 "\nphoneNumber=" +
                 "\nemail='" + email +
                 "\naddress='" + address +
+                "\nPlazo entrega=" + plazoEntrega +
                 "}\n";
     }
 }

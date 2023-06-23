@@ -7,11 +7,11 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.FileOutputStream;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class PDF {
-    private static LocalDate hoy;
+    private static LocalDateTime hoy;
     private static Document document = new Document();
     private static String documento;
     public PDF(){
@@ -19,7 +19,7 @@ public class PDF {
     }
 
     static {
-        hoy = LocalDate.now();
+        hoy = LocalDateTime.now().withNano(0);
     }
 
     public static void crearPDF(String nombrePDF, String titulo, Integer nColumnas, ArrayList contenido) {
@@ -55,12 +55,10 @@ public class PDF {
 
             // Agregamos la tabla al documento
             document.add(table);
-
             document.close();
 
         } catch (Exception e) {
             System.err.println("Ocurrio un error al crear el archivo");
-            System.exit(-1);
         }
     }
 
