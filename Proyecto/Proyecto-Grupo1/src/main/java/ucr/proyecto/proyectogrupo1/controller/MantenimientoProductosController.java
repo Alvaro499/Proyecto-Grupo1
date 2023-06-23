@@ -8,10 +8,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -21,6 +18,7 @@ import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
@@ -49,11 +47,16 @@ public class MantenimientoProductosController {
     private AVL supplierName;
     @FXML
     private TextField fieldID;
+    private TextInputDialog dialog;
+    private Alert alert;
+    private ObservableList<List<String>> selectedItems;
 
     @FXML
     public void initialize() throws ListException, TreeException {
         product = Utility.getProductAVL();
         supplierName = Utility.getSupplierAVL();
+
+        selectedItems = tableView.getSelectionModel().getSelectedItems();
 
         this.img.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(new Image(data.getValue().get(0))));
@@ -81,6 +84,8 @@ public class MantenimientoProductosController {
         if (!product.isEmpty()) {
             tableView.setItems(getData());
         }
+        alert = FXUtility.alert("Menu Productos", "Desplay Productos");
+        alert.setAlertType(Alert.AlertType.ERROR);
     }
 
     private ObservableList<List<String>> getData() throws TreeException {
@@ -118,6 +123,13 @@ public class MantenimientoProductosController {
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();
+        if (!product.isEmpty()) {
+            try {
+                tableView.setItems(getData());
+            } catch (TreeException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @FXML
@@ -128,7 +140,43 @@ public class MantenimientoProductosController {
 
     @FXML
     void btnEliminar(ActionEvent event) {
+        product = Utility.getProductAVL();
+        for (List<String> s : selectedItems) {
+            try {
+                String nombre = s.get(1);
+                System.out.println(nombre);
+                Product newProduct = getProduct(nombre);//obtener el producto con el mismo nombre
+                product.remove(newProduct);
+                Utility.setProductAVL(product);
 
+                alert.setHeaderText("The product: ");
+                alert.setContentText(nombre + " was delete");
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
+            } catch (TreeException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if (!product.isEmpty()) {
+            try {
+                tableView.setItems(getData());
+            } catch (TreeException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private Product getProduct(String nombre) throws TreeException {
+        product = Utility.getProductAVL();
+        Product p = null;
+        Integer n = product.size();
+        for (int i = 0; i < n; i++) {
+            p = (Product) product.get(i);
+            if (p.getName().trim().equalsIgnoreCase(nombre.trim())) {
+                return p;
+            }
+        }
+        return p;
     }
 
     private static class ImageTableCell<S> extends TableCell<S, Image> {

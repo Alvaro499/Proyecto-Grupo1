@@ -7,10 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
@@ -100,7 +97,6 @@ public class MantenimientoClientesController {
     @FXML
     void btnEliminarCliente(ActionEvent event) throws ListException {
         for (List<String> s : selectedItems) {
-            System.out.println(s.get(0));
             int l = login.size();
             int c = client.size();
             for (int i = 1; i <= l; i++) {

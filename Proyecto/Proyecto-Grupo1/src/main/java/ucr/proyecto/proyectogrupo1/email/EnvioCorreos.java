@@ -1,8 +1,10 @@
 package ucr.proyecto.proyectogrupo1.email;
 
+import javafx.scene.control.Alert;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
+
 import javax.mail.*;
 import javax.mail.internet.*;
-import javax.swing.*;
 import java.io.File;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -20,7 +22,7 @@ public class EnvioCorreos extends javax.swing.JFrame {
     private Properties mProperties;
     private Session mSession;
     private MimeMessage mCorreo;
-
+    private Alert alert = FXUtility.alert("Menu Mail", "Desplay Mail");
     public EnvioCorreos() {
         // initComponents();
         mProperties = new Properties();
@@ -83,13 +85,18 @@ public class EnvioCorreos extends javax.swing.JFrame {
 
     public void sendEmail() {
         try {
+            alert.setHeaderText("The mail");
+            alert.setContentText("has been sent to " + emailTo);
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.show();
+
+
             createEmail();
             Transport mTransport = mSession.getTransport("smtp");
             mTransport.connect(emailFrom, passwordFrom);
             mTransport.sendMessage(mCorreo, mCorreo.getRecipients(Message.RecipientType.TO));
             mTransport.close();
-
-            JOptionPane.showMessageDialog(null, "Correo enviado");
+            //JOptionPane.showMessageDialog(null, "Correo enviado");
         } catch (NoSuchProviderException ex) {
             Logger.getLogger(EnvioCorreos.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
