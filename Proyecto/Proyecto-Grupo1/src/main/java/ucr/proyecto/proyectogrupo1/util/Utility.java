@@ -18,10 +18,22 @@ public class Utility {
     private static AVL orderDetail;// table orderDetail
     private static AVL sale;
     private static AVL saleDetail;
+
+    private static HeaderLinkedQueue costos;
     private static Integer IDClient;
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
     private static JSON_Utility json;
+
+    private static String nombreSistema;
+
+    public static String getNombreSistema() {
+        return nombreSistema;
+    }
+
+    public static void setNombreSistema(String nombreSistema) {
+        Utility.nombreSistema = nombreSistema;
+    }
 
     // static initializer
     static {
@@ -35,6 +47,7 @@ public class Utility {
         productAVL = new AVL();
         order = new AVL();
         orderDetail = new AVL();
+        costos = new HeaderLinkedQueue();
         //llenamos los arboles
         try {
             productAVL = json.getProductAVL();
@@ -45,6 +58,7 @@ public class Utility {
             saleDetail = json.getSaleDetailAVL();
             order = json.getOrderAVL();
             orderDetail = json.getOrderDetailAVL();
+            costos = json.getProductHeaderLinkedQueue();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (QueueException e) {
@@ -139,13 +153,32 @@ public class Utility {
                 "https://www.libreriainternacional.com/media/catalog/product/cache/4b453cb5481e21beed80ec4214570591/9/7/9788418304316_1.jpg"));
 */
     }
+
+    public static HeaderLinkedQueue getCostos() {
+        return costos;
+    }
+
+    public static void setCostos(HeaderLinkedQueue costos) {
+        Utility.costos = costos;
+
+        try {
+            json.saveProductHeaderLinkedQueue(Utility.getCostos());
+        } catch (ListException e) {
+            throw new RuntimeException(e);
+        } catch (QueueException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static SinglyLinkedList getClientSinglyLinkedList() {
         return clientSinglyLinkedList;
     }
 
     public static void setClientSinglyLinkedList(SinglyLinkedList clientSinglyLinkedList) {
         Utility.clientSinglyLinkedList = clientSinglyLinkedList;
-        try{
+        try {
             json.saveCustomerSinglyLinkedList(Utility.getClientSinglyLinkedList());
         } catch (ListException e) {
             throw new RuntimeException(e);
@@ -190,7 +223,7 @@ public class Utility {
         return supplierAVL;
     }
 
-    public static void setSupplierAVL(AVL supplierAVL) throws TreeException {
+    public static void setSupplierAVL(AVL supplierAVL) {
         Utility.supplierAVL = supplierAVL;
         try {
             json.saveSupplierAVL(Utility.supplierAVL);
