@@ -1,14 +1,17 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
 public class Customer {
-    private Integer ID;//cedula
+    private Integer id;//cedula
     private String name;
     private String phoneNumber;
     private String email;
     private String address;
 
-    public Customer(Integer ID, String name, String phoneNumber, String email, String address) {
-        this.ID = ID;
+    public Customer() {
+    }
+
+    public Customer(Integer id, String name, String phoneNumber, String email, String address) {
+        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -16,7 +19,7 @@ public class Customer {
     }
 
     public Integer getID() {
-        return ID;
+        return id;
     }
 
     public String getName() {
@@ -33,5 +36,16 @@ public class Customer {
 
     public String getAddress() {
         return address;
+    }
+
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "\nID=" + id +
+                "\nname='" + name +
+                "\nphoneNumber='" + phoneNumber +
+                "\nemail='" + email +
+                "\naddress='" + address +
+                "}\n";
     }
 }

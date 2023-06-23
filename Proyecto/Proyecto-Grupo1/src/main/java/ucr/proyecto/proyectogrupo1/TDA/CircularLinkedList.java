@@ -21,7 +21,6 @@ public class CircularLinkedList implements List {
             count++;
             aux = aux.next; //muevo aux al sgte nodo
         }
-        //Cuando aux sea el ultimo, sale del ciclo, pero no aumenta ese ultimo contador
         if (aux == last) {
             count++;
         }
@@ -97,7 +96,6 @@ public class CircularLinkedList implements List {
             } else {
                 Node prev = first; //rastro o marca
                 Node aux = first.next;
-                //se hace asi, ya que comparamos el first con anterioridad
                 boolean added = false;
                 while (aux != last && !added) {
                     if (Utility.compare(aux.data, element) > 0) {
@@ -112,13 +110,12 @@ public class CircularLinkedList implements List {
                 if ((Utility.compare(aux.data, element) == 0) && !added) {
                     prev.next = newNode;
                     newNode.next = aux;
-                } else{ //enlaza al final
+                } else //enlaza al final
                     if (!added) {
                         aux.next = newNode;
                         //muevo last al ult nodo
                         last = newNode;
                     }
-                }
             }
         }
         //hago el enlace circular
@@ -259,6 +256,22 @@ public class CircularLinkedList implements List {
         return "Does not exist in Single Linked List";
     }
 
+    //coigo original
+/*    @Override
+    public Object getNext(Object element) throws ListException {
+        if (isEmpty()) {
+            throw new ListException("Circular Linked List is empty");
+        }
+        Node aux = first;
+        while (aux != null) {
+            if (util.Utility.compare(aux.data, element) == 0) {
+                if (aux.next != null) return aux.next.data;
+                else return "Has no next";
+            }
+            aux = aux.next; //muevo aux al sgte nodo
+        }
+        return "Does not exist in Circular Linked List";
+    }*/
 
     //codigo nuevo (prueba)
     @Override
@@ -323,12 +336,12 @@ public class CircularLinkedList implements List {
         String result = "Circular Linked List Content\n";
         Node aux = first;
         while (aux != last) {
-            result += aux.data + " \n";
+            result += aux.data + " ";
             aux = aux.next; //muevo aux al sgte nodo
         }
         //se sale cuando aux==last
         //agregamos la info del ultimo nodo
-        return result + " " + aux.data;
+        return result + aux.data;
     }
 
 

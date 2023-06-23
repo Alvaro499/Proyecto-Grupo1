@@ -1,23 +1,75 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import javafx.scene.control.CheckBox;
+import javafx.scene.image.Image;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+
+
 public class Product {
-    private Integer ID;
+    private String id;
     private Integer supplierID; //FK con Supplier.ID
     private String description;
     private String name;
     private Integer currentStock;
     private Integer minimunStock;
-    public Product(Integer ID, Integer supplierID, String description, String name, Integer currentStock, Integer minimunStock) {
-        this.ID = ID;
+    private Double price;
+    private String url_img;
+
+
+    //Ignorar estos atributos al momento de la serializacion con Jackson JSON
+    @JsonIgnore
+    private Image image;
+
+    @JsonIgnore
+    private CheckBox checkBox;
+
+    public Product() {
+    }
+
+    public Product(String ID, Integer supplierID, String name, Double price, Integer currentStock, Integer minimunStock) {
+        this.id = ID;
+        this.supplierID = supplierID;
+        this.name = name;
+        this.currentStock = currentStock;
+        this.minimunStock = minimunStock;
+        this.price = price;
+        checkBox = new CheckBox();
+    }
+
+    public Product(String ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
+        this.id = ID;
         this.supplierID = supplierID;
         this.description = description;
         this.name = name;
         this.currentStock = currentStock;
         this.minimunStock = minimunStock;
+        this.price = price;
+        this.url_img = url_img;
     }
 
-    public Integer getID() {
-        return ID;
+    public CheckBox getCheckBox() {
+        return checkBox;
+    }
+
+    public String getUrl_img() {
+        return url_img;
+    }
+
+    public void setUrl_img(String url_img) {
+        this.url_img = url_img;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public String getID() {
+        return id;
     }
 
     public Integer getSupplierID() {
@@ -36,7 +88,38 @@ public class Product {
         return currentStock;
     }
 
+    public void setCurrentStock(Integer currentStock) {
+        this.currentStock = currentStock;
+    }
+
     public Integer getMinimunStock() {
         return minimunStock;
+    }
+
+    @JsonIgnore
+    public void setPreloadedImage(Image image) {
+        this.image = image;
+    }
+
+    public Object getPreloadedImage() {
+        return image;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", supplierID=" + supplierID +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", currentStock=" + currentStock +
+                ", minimunStock=" + minimunStock +
+                ", price=" + price +
+                ", url_img='" + url_img + '\'' +
+                '}';
+    }
+
+    public String toStringChoiceBox(){
+        return name;
     }
 }

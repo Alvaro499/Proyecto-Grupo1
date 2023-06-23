@@ -27,7 +27,6 @@ public class MenuAdministradorController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
     }
 
 

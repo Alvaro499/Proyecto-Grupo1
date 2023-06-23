@@ -1,15 +1,24 @@
 package ucr.proyecto.proyectogrupo1.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
+import java.time.LocalDateTime;
+
 public class Order {
-    private Integer ID;
-    private String orderDate;
+    private Integer id;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime orderDate;
     private String orderStatus;
     private String supplierName;
     private Double totalCost;
     private String remarks;
 
-    public Order(Integer ID, String orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
-        this.ID = ID;
+    public Order() {
+    }
+
+
+    public Order(Integer ID, LocalDateTime orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
+        this.id = ID;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.supplierName = supplierName;
@@ -17,11 +26,11 @@ public class Order {
         this.remarks = remarks;
     }
 
-    public Integer getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public String getOrderDate() {
+    public LocalDateTime getOrderDate() {
         return orderDate;
     }
 
@@ -39,5 +48,24 @@ public class Order {
 
     public String getRemarks() {
         return remarks;
+    }
+    public void setRemarks(String remarks) {
+        this.remarks = remarks;
+    }
+
+    public void setTotalCost(double totalCost){
+        this.totalCost = totalCost;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", orderDate='" + orderDate + '\'' +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", supplierName='" + supplierName + '\'' +
+                ", totalCost=" + totalCost +
+                ", remarks='" + remarks + '\'' +
+                '}';
     }
 }
