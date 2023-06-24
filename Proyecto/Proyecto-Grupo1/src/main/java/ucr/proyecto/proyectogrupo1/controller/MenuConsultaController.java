@@ -18,6 +18,7 @@ import ucr.proyecto.proyectogrupo1.domain.*;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -117,9 +118,15 @@ public class MenuConsultaController {
     private ArrayList<String> reporteCliente;
     private ArrayList<String> reporteInventario;
     private ArrayList<String> reporteCostoProductos;
+    private AVL bitacora;
+    private LocalDateTime hoy;
 
     @FXML
     public void initialize() throws ListException, TreeException {
+        hoy = LocalDateTime.now().withNano(0);
+
+        bitacora = Utility.getBinnacle();
+
         reporteProveedores = new ArrayList<>();
         reporteCliente = new ArrayList<>();
         reporteInventario = new ArrayList<>();
@@ -361,7 +368,8 @@ public class MenuConsultaController {
     @FXML
     void reporteClientesOnAction(ActionEvent event) {
         PDF.crearPDF("Reporte_Demanda_Producto", "Reporte Demanda", 5, reporteCliente);
-
+        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"El usuario consulta genero un reporte de Demanda"));
+        Utility.setBinnacle(bitacora);
         alert.setHeaderText("Report created");
         alert.setContentText(PDF.getDocumento());
         alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -371,7 +379,8 @@ public class MenuConsultaController {
     @FXML
     void reporteCostoProductosOnAction(ActionEvent event) {
         PDF.crearPDF("Reporte_Costo_Producto", "Reporte Costo Producto", 6, reporteCostoProductos);
-
+        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"El usuario consulta genero un reporte de Costo Producto"));
+        Utility.setBinnacle(bitacora);
         alert.setHeaderText("Report created");
         alert.setContentText(PDF.getDocumento());
         alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -381,7 +390,8 @@ public class MenuConsultaController {
     @FXML
     void reporteInventarioOnAction(ActionEvent event) {
         PDF.crearPDF("Reporte_Inventario", "Reporte Inventario", 5, reporteInventario);
-
+        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"El usuario consulta genero un reporte de Inventario"));
+        Utility.setBinnacle(bitacora);
         alert.setHeaderText("Report created");
         alert.setContentText(PDF.getDocumento());
         alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -391,6 +401,8 @@ public class MenuConsultaController {
     @FXML
     void reporteProveedoresOnAction(ActionEvent event) {
         PDF.crearPDF("Reporte_Ordenes", "Reporte Orden", 7, reporteProveedores);
+        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"El usuario consulta genero un reporte de Ordenes"));
+        Utility.setBinnacle(bitacora);
         alert.setHeaderText("Report created");
         alert.setContentText(PDF.getDocumento());
         alert.setAlertType(Alert.AlertType.INFORMATION);
