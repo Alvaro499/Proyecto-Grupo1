@@ -24,6 +24,12 @@ public class PDF {
 
     public static void crearPDF(String nombrePDF, String titulo, Integer nColumnas, ArrayList contenido) {
         try {
+            // Verificar si el documento anterior está abierto y cerrarlo si es necesario
+            if (document != null && document.isOpen()) {
+                document.close();
+            }
+
+            document = new Document();
             documento = "Reporte/" + nombrePDF + "_" + hoy + ".pdf";
             PdfWriter.getInstance(document, new FileOutputStream(documento));
             document.open();
@@ -59,8 +65,11 @@ public class PDF {
             document.close();
 
         } catch (Exception e) {
-            System.err.println("Ocurrio un error al crear el archivo");
-            //System.exit(-1);
+            if (document != null && document.isOpen()) {
+                document.close();
+            }
+            System.err.println("Ocurrió un error al crear el archivo");
+            e.printStackTrace();
         }
     }
 
