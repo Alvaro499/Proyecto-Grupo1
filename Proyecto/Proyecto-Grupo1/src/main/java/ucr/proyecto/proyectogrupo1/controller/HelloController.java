@@ -73,10 +73,13 @@ public class HelloController {
                 String fieldPassword = txtContraseña.getText().trim();
                 Integer ID = s.getCustomerID();
                 if (password.equals(fieldPassword) && user.equals(fieldUser)) {
+
                     Utility.setIDClient(ID);
                     Binnacle bt = new Binnacle(fecha.withNano(0), Utility.getIDClient(),"Ingresa al sistema");
                     AVL binnacleAVL = Utility.getBinnacle();
                  //   Utility.setBinnacle(binnacleAVL.add(bt));
+                    System.out.println(Utility.getIDClient());
+
                     if (ID < 1000) {//admin
                         stage("menuAdministrador.fxml");
                     } else if (ID < 2000) {//consulta
