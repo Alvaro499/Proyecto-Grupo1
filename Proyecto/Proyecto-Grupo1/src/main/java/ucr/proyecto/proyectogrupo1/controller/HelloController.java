@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
+import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
 import ucr.proyecto.proyectogrupo1.domain.Binnacle;
@@ -70,7 +71,7 @@ public class HelloController {
                 //buscamos que coincida el user y password en cada nodo del CircularLinkedList
                 Security s = (Security) loginCircularLinkedList.getNode(i).data;
                 String user = s.getUser();
-                String password = s.getPassword();
+                String password = Cryptographic.descodificar(s.getPassword()).trim();
                 String fieldUser = txtNombreUsuario.getText().trim();
                 String fieldPassword = txtContraseña.getText().trim();
                 Integer ID = s.getCustomerID();
