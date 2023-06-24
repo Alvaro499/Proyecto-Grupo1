@@ -39,12 +39,32 @@
                            </cursor>
                         </Button>
                         <Label prefHeight="26.0" prefWidth="14.0" />
-                        <TextField fx:id="fieldID" prefHeight="26.0" prefWidth="347.0" promptText="Nombre">
+                        <TextField fx:id="fieldID" prefHeight="47.0" prefWidth="347.0" promptText="Nombre">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>
                         </TextField>
                         <Label prefHeight="26.0" prefWidth="62.0" />
+                        <Button mnemonicParsing="false" onAction="#btnRefrescar" text="Refrescar" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableView" prefHeight="522.0" prefWidth="833.0">
+                    <columns>
+                      <TableColumn fx:id="img" prefWidth="204.799986243248" text="Imagen" />
+                      <TableColumn fx:id="name" prefWidth="129.0" text="Nombre" />
+                        <TableColumn fx:id="dec" prefWidth="187.0" text="Detalle" />
+                        <TableColumn fx:id="price" minWidth="0.0" prefWidth="73.60003662109375" text="Precio" />
+                        <TableColumn fx:id="stock" prefWidth="48.0" text="Stock Actual" />
+                        <TableColumn fx:id="Stockmin" minWidth="8.0" prefWidth="68.79998779296875" text="Stock Min" />
+                        <TableColumn fx:id="supplier" minWidth="0.0" prefWidth="125.5999755859375" text="Proveedor " />
+                        <TableColumn fx:id="idTituloColumn" prefWidth="75.0" text="Codigo Libro" />
+                    </columns>
+                  </TableView>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="130.0" />
+                        <Button mnemonicParsing="false" onAction="#btnActualizar" text="Actualizar" />
+                        <Label prefHeight="17.0" prefWidth="116.0" />
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnEliminar" prefHeight="50.0" prefWidth="126.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Eliminar" textFill="WHITE">
                            <font>
                               <Font name="Century Schoolbook Bold" size="12.0" />
@@ -53,6 +73,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <Label prefHeight="17.0" prefWidth="132.0" />
                         <Button alignment="CENTER" mnemonicParsing="false" onAction="#btnAgregarNuevoProducto" prefHeight="53.0" prefWidth="126.0" style="-fx-background-color: black; -fx-background-radius: 25;" text="Agregar" textFill="WHITE">
                            <font>
                               <Font name="Century Schoolbook Bold" size="12.0" />
@@ -63,17 +84,6 @@
                         </Button>
                      </children>
                   </HBox>
-                  <TableView fx:id="tableView" prefHeight="522.0" prefWidth="833.0">
-                    <columns>
-                      <TableColumn fx:id="img" prefWidth="204.799986243248" text="Imagen" />
-                      <TableColumn fx:id="name" prefWidth="139.20001220703125" text="Nombre" />
-                        <TableColumn fx:id="dec" prefWidth="176.0" text="Detalle" />
-                        <TableColumn fx:id="price" minWidth="0.0" prefWidth="73.60003662109375" text="Precio" />
-                        <TableColumn fx:id="stock" prefWidth="48.0" text="Stock Actual" />
-                        <TableColumn fx:id="Stockmin" minWidth="8.0" prefWidth="68.79998779296875" text="Stock Min" />
-                        <TableColumn fx:id="supplier" minWidth="0.0" prefWidth="125.5999755859375" text="Proveedor " />
-                    </columns>
-                  </TableView>
                </children>
             </VBox>
          </children>
