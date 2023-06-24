@@ -75,12 +75,11 @@ public class UpdateProductController {
     public void setProduct(String name,String detail,String price,String stockMin,String supplier,String code) {
         txtTitulo.setText(name);
         txtDetalles.setText(detail);
-        txtPrice.setText(price.replace("₡",""));
+        String[] priceInt = price.split("\\.");
+        txtPrice.setText(priceInt[0].replace("₡",""));
         txtStockMin.setText(stockMin);
         txtProveedor.setText(supplier);
         txtCodigo.setText(code);
-        //txtID.setText(String.valueOf(auxSupplier.getID()));
-        //txtPlazoEntrega.setText(String.valueOf(auxSupplier.getPlazoEntrega()));
     }
 
     @FXML
@@ -120,7 +119,7 @@ public class UpdateProductController {
             return false;
         }
 
-        if (txtStockMin.getText().isEmpty()  || txtStockMin.getText() == null || !containsText(txtStockMin.getText()) || txtPrice.getText().equals("0")){
+        if (txtStockMin.getText().isEmpty()  || txtStockMin.getText() == null || !containsText(txtStockMin.getText()) || txtStockMin.getText().equals("0")){
             return false;
         }
         return true;

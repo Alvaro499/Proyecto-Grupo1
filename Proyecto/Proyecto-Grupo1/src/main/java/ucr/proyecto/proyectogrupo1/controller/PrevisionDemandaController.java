@@ -331,20 +331,11 @@ public class PrevisionDemandaController {
             arrayList.add(proveedor.getName());
             reporte.add(proveedor.getName());
 
-            arrayList.add(String.valueOf(previsionDemanda(p, 5, proveedor.getPlazoEntrega())));
-            reporte.add(String.valueOf(previsionDemanda(p, 5, proveedor.getPlazoEntrega())));
+            arrayList.add(String.valueOf(previsionDemanda(p, p.getVentaAlDia(), proveedor.getPlazoEntrega())));
+            reporte.add(String.valueOf(previsionDemanda(p, p.getVentaAlDia(), proveedor.getPlazoEntrega())));
             //Para el arbol de prevision demanda, guardamos tanto la recomendacion de stcck como el id del producto
-            previsionDemandaBST.add(previsionDemanda(p,5, proveedor.getPlazoEntrega())+"_"+p.getID());
-           /* if (saleDatail.contains(p)) {
-                for (int k = 0; k < product.size(); k++) {
-                    SaleDetail saleD = (SaleDetail) saleDatail.get(k);
-                    arrayList.add(String.valueOf(previsondemanda(p, saleD.getQuantity(), proveedor.getPlazoEntrega())));
-                    reporte.add(String.valueOf(previsondemanda(p, saleD.getQuantity(), proveedor.getPlazoEntrega())));
-                }
-            } else {
-                //arrayList.add(String.valueOf(previsondemanda(p, 0, proveedor.getPlazoEntrega())));
-                //reporte.add(String.valueOf(previsondemanda(p, 0, proveedor.getPlazoEntrega())));
-            }*/
+            previsionDemandaBST.add(previsionDemanda(p,p.getVentaAlDia(), proveedor.getPlazoEntrega())+"_"+p.getID());
+
             data.add(arrayList);
         }
         return data;
