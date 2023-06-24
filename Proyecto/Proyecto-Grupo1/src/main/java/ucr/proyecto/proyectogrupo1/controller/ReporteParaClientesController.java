@@ -93,7 +93,7 @@ public class ReporteParaClientesController {
                 arrayList.add(String.valueOf(sd.getQuantity()));
                 arrayList.add(String.valueOf(getProduct(sd.getProductID()).getPrice()));
 
-                //guardar la info en reportr
+                //guardar la info en reporte
                 reporte.add(String.valueOf(sd.getSaleID()));
                 reporte.add(String.valueOf(s.getSaleDate()));
                 reporte.add(getProduct(sd.getProductID()).getName());

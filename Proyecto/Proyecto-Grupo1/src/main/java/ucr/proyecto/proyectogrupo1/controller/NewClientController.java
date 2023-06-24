@@ -17,7 +17,7 @@ import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class NewClientController {
 
@@ -47,7 +47,7 @@ public class NewClientController {
 
     @FXML
     private Button confirmar;
-    private Instant instant;
+    private LocalDateTime instant;
     private CircularLinkedList login;
     private SinglyLinkedList client;
     private Alert alert;
@@ -57,7 +57,7 @@ public class NewClientController {
         alert.setAlertType(Alert.AlertType.ERROR);
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
-        instant = Instant.now();
+        instant.withNano(0);
     }
 
     @FXML

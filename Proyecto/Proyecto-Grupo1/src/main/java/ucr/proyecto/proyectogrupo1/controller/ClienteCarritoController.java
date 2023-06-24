@@ -17,6 +17,7 @@ import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.*;
 import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.util.ArrayList;
@@ -54,6 +55,7 @@ public class ClienteCarritoController {
     private AVL sale;
     private AVL saleDetail;
     private AVL product;
+    private Alert alert;
     //private Product newProduct;
     @FXML
     private Text txtCompraTotal;
@@ -94,6 +96,8 @@ public class ClienteCarritoController {
             tableView.setItems(getData());
         }
         tables = tableView.getItems();
+        alert = FXUtility.alert("Menu Cliente", "Desplay Carrito");
+        alert.setAlertType(Alert.AlertType.ERROR);
     }
 
     private ObservableList<List<String>> getData() throws TreeException {
@@ -155,12 +159,19 @@ public class ClienteCarritoController {
                         correo.setEmailTo(newCliente.getEmail());
                         correo.setSubject("Factura de Laberinto de Libros");
                         correoContenido += "<br>Libro: " + newProduct.getName() + "<br>" + newProduct.getDescription() + "<br>Cantidad: " + Integer.parseInt(table.get(3)) + "<br>Precio individual: " + newProduct.getPrice();
+                    } else {
+                        txtCompraTotal.setText((Double.parseDouble(txtCompraTotal.getText().substring(1).trim()) - getProduct(newSaleDetail.getProductID()).getPrice()) + " colones");
+                        alert.setHeaderText("The book " + newProduct.getName() + " is not available");
+                        alert.setContentText("please try again another day.");
+                        alert.setAlertType(Alert.AlertType.INFORMATION);
+                        alert.show();
                     }
                 }
             } else {
                 //no se encontro el SaleDetail
             }
         }
+        eliminarOnAction(new ActionEvent());
         correoContenido += "<p>Gracias por comprar en nuestra tienda!</p><br>Precio total: " + txtCompraTotal.getText() + "<br>Este correo fue enviado de manera automatica, por favor no responder.";
         correo.setContent(correoContenido);
         correo.sendEmail();
@@ -276,12 +287,14 @@ public class ClienteCarritoController {
 
     private static class ImageTableCell<S> extends TableCell<S, Image> {
         private final ImageView imageView;
+
         public ImageTableCell() {
             this.imageView = new ImageView();
             this.imageView.setFitHeight(300); // Ajusta la altura de la imagen
             this.imageView.setFitWidth(200); // Ajusta el ancho de la imagen
             setGraphic(imageView);
         }
+
         @FXML
         protected void updateItem(Image image, boolean empty) {
             super.updateItem(image, empty);

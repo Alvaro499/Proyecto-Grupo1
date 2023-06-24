@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 public class Sale {
-    private Integer ID;
+    private Integer id;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime saleDate;
     private Integer customerID;
@@ -15,7 +15,7 @@ public class Sale {
     }
 
     public Sale(Integer ID, LocalDateTime saleDate, Integer customerID, String annotation) {
-        this.ID = ID;
+        this.id = ID;
         this.saleDate = saleDate;
         this.customerID = customerID;
         this.annotation = annotation;
@@ -26,7 +26,7 @@ public class Sale {
     }
 
     public Integer getID() {
-        return ID;
+        return id;
     }
 
     public LocalDateTime getSaleDate() {
@@ -44,7 +44,7 @@ public class Sale {
     @Override
     public String toString() {
         return "Sale{" +
-                "\nID=" + ID +
+                "\nID=" + id +
                 "\nsaleDate=" + saleDate +
                 "\ncustomerID=" + customerID +
                 "\nannotation='" + annotation +
