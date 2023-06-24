@@ -50,6 +50,22 @@ public class Supplier {
         return address;
     }
 
+    public void setPhoneNumber(Integer phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setPlazoEntrega(int plazoEntrega) {
+        this.plazoEntrega = plazoEntrega;
+    }
+
     @Override
     public String toString() {
         return "Supplier{" +

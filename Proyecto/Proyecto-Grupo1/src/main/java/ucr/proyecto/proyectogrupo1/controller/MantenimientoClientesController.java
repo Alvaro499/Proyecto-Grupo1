@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -16,6 +17,7 @@ import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Security;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
@@ -43,9 +45,11 @@ public class MantenimientoClientesController {
     private ObservableList<List<String>> selectedItems;
     @FXML
     private TextField fieldID;
+    private Alert alert;
 
     @FXML
     public void initialize() throws ListException, TreeException {
+        this.alert = FXUtility.alert("", "");
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
@@ -170,4 +174,51 @@ public class MantenimientoClientesController {
         //https://www.w3schools.com/java/ref_string_contains.asphttps://www.w3schools.com/java/ref_string_contains.asp
         //https://www.youtube.com/watch?v=FeTrcNBVWtg
     }
+
+    @FXML
+    void btnActualizarCliente(ActionEvent event) throws ListException, IOException, TreeException {
+
+        selectedItems = tableView.getSelectionModel().getSelectedItems();
+
+        //Si no hay nada seleccionado, no abrir la ventana
+        if (selectedItems != null){
+
+            int id = Integer.parseInt(selectedItems.get(0).get(0));
+            String name = selectedItems.get(0).get(1);
+            String phone = selectedItems.get(0).get(3);
+            String email = selectedItems.get(0).get(4);
+            String adress = selectedItems.get(0).get(5);
+
+            Customer auxCustomer = new Customer(id,name,phone,email,adress);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("updateClient.fxml"));
+            Parent root = fxmlLoader.load();
+            UpdateClientController updateClientController = fxmlLoader.getController();
+
+            updateClientController.setClient(auxCustomer);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            updateClientController.initializeAux();
+
+//            if (!stage.isShowing()){
+//                initialize();
+//            }
+        }else{
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Por favor seleccione alguno de los clientes");
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    void btnRefrescarOnAction(ActionEvent event) throws ListException, TreeException {
+        initialize();
+    }
+
 }

@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -16,6 +17,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
@@ -43,6 +45,8 @@ public class MantenimientoProductosController {
     private TableColumn<List<String>, String> supplier;
     @FXML
     private TableColumn<List<String>, String> dec;
+    @FXML
+    private TableColumn<List<String>,String> idTituloColumn;
     private AVL product;
     private AVL supplierName;
     @FXML
@@ -78,10 +82,14 @@ public class MantenimientoProductosController {
 
         this.supplier.setCellValueFactory(data ->
                 new ReadOnlyStringWrapper(data.getValue().get(6)));
+        this.idTituloColumn.setCellValueFactory(data ->
+                new ReadOnlyStringWrapper(data.getValue().get(7)));
 
+        idTituloColumn.setVisible(false);
         this.img.setCellFactory(col -> new ImageTableCell<>());
         if (!product.isEmpty()) {
             tableView.setItems(getData());
+
         }
         alert = FXUtility.alert("Menu Productos", "Desplay Productos");
         alert.setAlertType(Alert.AlertType.ERROR);
@@ -104,6 +112,7 @@ public class MantenimientoProductosController {
                 if (s.getID().equals(p.getSupplierID()))
                     arrayList.add(s.getName());
             }
+            arrayList.add(p.getID());//-->ID del libro
             data.add(arrayList);
         }
         return data;
@@ -191,6 +200,54 @@ public class MantenimientoProductosController {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    @FXML
+    void btnActualizar(ActionEvent event) throws ListException, TreeException, IOException {
+
+        selectedItems = tableView.getSelectionModel().getSelectedItems();
+
+        //Si no hay nada seleccionado, no abrir la ventana
+        if (selectedItems != null || !selectedItems.isEmpty()){
+
+            System.out.println("Orden de productos: "+selectedItems);
+            String name = selectedItems.get(0).get(1);
+            String detail = selectedItems.get(0).get(2);
+            String price = selectedItems.get(0).get(3);
+            String stockMin = selectedItems.get(0).get(5);
+            String supplier = selectedItems.get(0).get(6);
+            String code = selectedItems.get(0).get(7);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("updateProduct.fxml"));
+            Parent root = fxmlLoader.load();
+
+
+             UpdateProductController updateProductController = fxmlLoader.getController();
+
+            updateProductController.setProduct(name,detail,price,stockMin,supplier,code);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            updateProductController.initializeAux();
+
+//            if (!stage.isShowing()){
+//                initialize();
+//            }
+        }else{
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Por favor seleccione alguno de los prodcutos");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void btnRefrescar(ActionEvent event) throws ListException, TreeException {
+
+        initialize();
     }
 
     private Product getProduct(String nombre) throws TreeException {
