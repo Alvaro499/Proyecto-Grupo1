@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
@@ -16,6 +17,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
@@ -175,6 +177,52 @@ public class MantenimientoProveedorController {
         if (!supplier.isEmpty()) {
             tableView.setItems(getData());
         }
+    }
+
+    @FXML
+    void btnActualizarProveedor(ActionEvent event) throws IOException, ListException, TreeException {
+
+        selectedItems = tableView.getSelectionModel().getSelectedItems();
+
+        //Si no hay nada seleccionado, no abrir la ventana
+        if (selectedItems != null || !selectedItems.isEmpty()){
+
+            System.out.println("Datos de selectedItems: " + selectedItems);
+            //Integer id = Integer.valueOf(selectedItems.get(0).get(0));
+            String name = selectedItems.get(0).get(0);
+            Integer phone = Integer.valueOf(selectedItems.get(0).get(1));
+            String email = selectedItems.get(0).get(2);
+            String adress = selectedItems.get(0).get(3);
+            //Integer delivery = Integer.valueOf(selectedItems.get(0).get(5));
+
+
+            //Supplier auxSupplier = new Supplier(name,phone,email,adress);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("updateSupplier.fxml"));
+            Parent root = fxmlLoader.load();
+
+            UpdateSupplierController updateSupplierController = fxmlLoader.getController();
+            updateSupplierController.setSupplier(name,phone,email,adress);
+            //updateSupplierController.setSupplier(auxSupplier);
+
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setResizable(false);
+            stage.show();
+
+            updateSupplierController.initializeAux();
+
+        }else{
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Por favor seleccione alguno de los clientes");
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void btnRefrescar(ActionEvent event) throws ListException, TreeException {
+        initialize();
     }
 
     private boolean getMercaderia(Integer ID) throws TreeException {

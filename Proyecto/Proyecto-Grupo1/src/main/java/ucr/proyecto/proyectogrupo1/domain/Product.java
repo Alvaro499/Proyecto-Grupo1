@@ -96,6 +96,14 @@ public class Product {
         return minimunStock;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setMinimunStock(Integer minimunStock) {
+        this.minimunStock = minimunStock;
+    }
+
     @JsonIgnore
     public void setPreloadedImage(Image image) {
         this.image = image;
