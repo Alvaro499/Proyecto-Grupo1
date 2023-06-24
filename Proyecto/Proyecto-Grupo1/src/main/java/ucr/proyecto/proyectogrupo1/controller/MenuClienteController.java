@@ -57,7 +57,7 @@ public class MenuClienteController {
 
     @FXML
     public void initialize() throws ListException, TreeException {
-        hoy = LocalDateTime.now();
+        hoy = LocalDateTime.now().withNano(0);
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         selectedItems = tableView.getSelectionModel().getSelectedItems();

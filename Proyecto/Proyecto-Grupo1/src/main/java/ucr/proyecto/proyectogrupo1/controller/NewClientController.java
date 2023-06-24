@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
@@ -83,7 +84,7 @@ public class NewClientController {
             String email = txtEmail.getText();
             String direccion = txtDireccion.getText();
             String usuario = txtUsuario.getText();
-            String contrasena = txtContra.getText();
+            String contrasena = Cryptographic.codificar(txtContra.getText().trim()).trim();
 
             if (!existeID(id) && !existeUser(usuario)) {
                 client.add(new Customer(id, nombre, telefono, email, direccion));
