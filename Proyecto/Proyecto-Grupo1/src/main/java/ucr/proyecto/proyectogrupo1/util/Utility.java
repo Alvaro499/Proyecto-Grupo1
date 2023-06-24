@@ -18,6 +18,8 @@ public class Utility {
     private static AVL orderDetail;// table orderDetail
     private static AVL sale;
     private static AVL saleDetail;
+
+    private static AVL binnacle;
     private static Integer IDClient;
     private static Random random;    // pseudo-random number generator
     private static long seed;        // pseudo-random number generator seed
@@ -304,6 +306,21 @@ public class Utility {
         Utility.saleDetail = saleDetail;
         try {
             json.saveSaleDetailAVL(Utility.saleDetail);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static AVL getBinnacle(){
+        return binnacle;
+    }
+
+    public static void setBinnacle(AVL binnacle){
+        Utility.binnacle = binnacle;
+        try {
+            json.saveBitacotaAVL(Utility.binnacle);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (TreeException e) {

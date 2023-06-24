@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -16,11 +17,15 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
+import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Security;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 
 public class HelloController {
     @FXML
@@ -34,9 +39,13 @@ public class HelloController {
 
     private CircularLinkedList loginCircularLinkedList;
 
+    private Alert alert;
+
     @FXML
     public void initialize() {
         loginCircularLinkedList = Utility.getLoginCircularLinkedList();
+        alert = FXUtility.alert("Login", "Missing Information");
+        alert.setAlertType(Alert.AlertType.ERROR);
     }
 
     private void loadPage(String page) {
@@ -50,6 +59,7 @@ public class HelloController {
 
     @FXML
     void btnEntrar(ActionEvent event) {
+        LocalDateTime fecha = LocalDateTime.now();
         new HelloApplication();
         // Agregar animación al botón
         playButtonAnimation(entrar);
@@ -63,18 +73,21 @@ public class HelloController {
                 String fieldPassword = txtContraseña.getText().trim();
                 Integer ID = s.getCustomerID();
                 if (password.equals(fieldPassword) && user.equals(fieldUser)) {
+                    Utility.setIDClient(ID);
+                    Binnacle bt = new Binnacle(fecha.withNano(0), Utility.getIDClient(),"Ingresa al sistema");
+                    AVL binnacleAVL = Utility.getBinnacle();
+                 //   Utility.setBinnacle(binnacleAVL.add(bt));
                     if (ID < 1000) {//admin
                         stage("menuAdministrador.fxml");
                     } else if (ID < 2000) {//consulta
                         stage("menuConsulta.fxml");
                     } else {//cliente
-                        Utility.setIDClient(ID);
                         stage("cliente.fxml");
                     }
                 }
             }
         } catch (Exception e) {
-            System.out.println("Missing information");
+            alert.setContentText("Missing Information");
         }
     }
 

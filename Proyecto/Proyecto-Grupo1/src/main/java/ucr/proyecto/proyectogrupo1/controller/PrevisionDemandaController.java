@@ -10,11 +10,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
+import ucr.proyecto.proyectogrupo1.TDA.BST;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.SaleDetail;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.util.ArrayList;
@@ -40,6 +41,7 @@ public class PrevisionDemandaController {
     private TableColumn<List<String>, String> stockRecomendado;
 
     private Alert alert;
+    private BST previsionDemandaBST = new BST();
     private AVL supplierName; //proveedor
 
     private AVL product;
@@ -48,6 +50,7 @@ public class PrevisionDemandaController {
     private SinglyLinkedList cliente; //table client
     private Integer clienteID;
     private ArrayList<String> reporte;
+    private ObservableList<List<String>> data;
 
     @FXML
     public void initialize() {
@@ -88,12 +91,12 @@ public class PrevisionDemandaController {
             }
         }
 
-     /*   alert = FXUtility.alert("Menu Reporte", "Desplay Reporte");
-        alert.setAlertType(Alert.AlertType.ERROR);*/
+        alert = FXUtility.alert("Menu Reporte", "Desplay Reporte");
+        alert.setAlertType(Alert.AlertType.ERROR);
     }
 
     private ObservableList<List<String>> getData() throws TreeException {
-        ObservableList<List<String>> data = FXCollections.observableArrayList();
+         data = FXCollections.observableArrayList();
 
 
         for (int i = 0; i < product.size(); i++) {
@@ -118,9 +121,10 @@ public class PrevisionDemandaController {
             arrayList.add(proveedor.getName());
             reporte.add(proveedor.getName());
 
-            //arrayList.add(String.valueOf(previsondemanda(p, 5, proveedor.getPlazoEntrega())));
-            //reporte.add(String.valueOf(previsondemanda(p, 5, proveedor.getPlazoEntrega())));
-            if (saleDatail.contains(p)) {
+            arrayList.add(String.valueOf(previsionDemanda(p, 5, proveedor.getPlazoEntrega())));
+            reporte.add(String.valueOf(previsionDemanda(p, 5, proveedor.getPlazoEntrega())));
+            previsionDemandaBST.add(previsionDemanda(p,5, proveedor.getPlazoEntrega()));
+           /* if (saleDatail.contains(p)) {
                 for (int k = 0; k < product.size(); k++) {
                     SaleDetail saleD = (SaleDetail) saleDatail.get(k);
                     arrayList.add(String.valueOf(previsondemanda(p, saleD.getQuantity(), proveedor.getPlazoEntrega())));
@@ -129,13 +133,13 @@ public class PrevisionDemandaController {
             } else {
                 //arrayList.add(String.valueOf(previsondemanda(p, 0, proveedor.getPlazoEntrega())));
                 //reporte.add(String.valueOf(previsondemanda(p, 0, proveedor.getPlazoEntrega())));
-            }
+            }*/
             data.add(arrayList);
         }
         return data;
     }
 
-    private Supplier getSupplier(Integer ID) {
+    private Supplier getSupplier(int ID) {
         Supplier s = null;
         try {
             Integer n = supplierName.size();
@@ -151,7 +155,7 @@ public class PrevisionDemandaController {
         return s;
     }
 
-    private int previsondemanda(Product product, int demandaDiaria, int plazoEntrga) {
+    private int previsionDemanda(Product product, int demandaDiaria, int plazoEntrga) {
         //Punto de pedido = (demanda diaria * plazo de entrega) + stock de seguridad(stock min)
         //Stock de segruidad = P máximo de entrega - Plazo de entrega) * Demanda diaria
 
@@ -165,6 +169,21 @@ public class PrevisionDemandaController {
 
     @FXML
     void actualizarInventarioOnAction(ActionEvent event) {
+    /*    try {
+            for (int j = 0; j < product.size() ; j++) {
+                for (int i = 0; i < data.size(); ++i){
+
+                    Product actualProductoAVL = (Product) product.get(j);
+                    if (data.get(i).getId().equals(actualProductoAVL.getID())){
+                        //le pasamos el stock modificado al AVL
+                        ((Product) product.get(j)).setCurrentStock(data.get(i).getCurrentStock());
+                    }
+                }
+            }
+
+        } catch (TreeException e) {
+            throw new RuntimeException(e);
+        }*/
 
     }
 

@@ -12,6 +12,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import ucr.proyecto.proyectogrupo1.PDF.PDF;
 import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
@@ -20,8 +21,10 @@ import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class ControlDeCostosController {
 
@@ -41,6 +44,8 @@ public class ControlDeCostosController {
     private TableColumn<List<String>, String> costoTotal;
 
     private AVL supplierName;
+
+    private AVL bitacora;
 
     private AVL product;
     private SinglyLinkedList cliente; //table client
@@ -154,6 +159,7 @@ public class ControlDeCostosController {
 
     @FXML
     void calcularCostoOnAction(ActionEvent event) throws TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
         try {
 
             for (int i = 0; i < product.size(); i++) {
@@ -175,6 +181,7 @@ public class ControlDeCostosController {
                 headerLinkedQueue.enQueue(headerLinkedQueue2.deQueue());
             }
 
+            bitacora.add(new Binnacle(fecha.withNano(0), Utility.getIDClient(),"Calcular costo total"));
 
         } catch (QueueException e) {
             throw new RuntimeException(e);
@@ -195,21 +202,23 @@ public class ControlDeCostosController {
 
     @FXML
     void reporteOnAction(ActionEvent event) throws ListException {
-        String correoCliente = getCustomer(clienteID).getEmail().trim();
+        /*String correoCliente = getCustomer(clienteID).getEmail().trim();
         String mensaje = FXUtility.alertYesNo("Generador de reporte", "El reporte se enviará a: ", correoCliente);
-        if (mensaje.equalsIgnoreCase("YES")) {
+        if (mensaje.equalsIgnoreCase("YES")) {*/
+
             for (int i = 0; i < 4; i++) {
                 reporte.add("");
             }
             reporte.add(String.valueOf(costoTotalTProductos));
 
-            EnvioCorreos correos = new EnvioCorreos();
+        /*    EnvioCorreos correos = new EnvioCorreos();
             correos.setEmailTo(correoCliente);
-            correos.setSubject("Reporte de Costos");
+            correos.setSubject("Reporte de Costos");*/
             PDF.crearPDF("Reporte_Costos","Reporte Costos",5,reporte);
-            correos.setContent("Por favor no contestar este correo.");
-            correos.setAttachmentFile(new File(PDF.getDocumento()));
-            correos.sendEmail();
+
+        //    correos.setContent("Por favor no contestar este correo.");
+            /*correos.setAttachmentFile(new File(PDF.getDocumento()));
+            correos.sendEmail();*/
         }
-    }
+
 }

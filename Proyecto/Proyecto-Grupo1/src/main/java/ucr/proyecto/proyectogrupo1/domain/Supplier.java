@@ -8,7 +8,7 @@ public class Supplier {
     private Integer phoneNumber;
     private String email;
     private String address;
-    private Integer plazoEntrega;
+    private int plazoEntrega;
 
     public Supplier() {
     }
@@ -22,7 +22,7 @@ public class Supplier {
         this.plazoEntrega = Utility.random(25);
     }
 
-    public Integer getPlazoEntrega() {
+    public int getPlazoEntrega() {
         return plazoEntrega;
     }
 
