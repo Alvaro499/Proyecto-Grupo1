@@ -17,6 +17,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
@@ -24,6 +25,7 @@ import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,12 +55,15 @@ public class MantenimientoProductosController {
     private TextField fieldID;
     private TextInputDialog dialog;
     private Alert alert;
+    private AVL bitacora;
     private ObservableList<List<String>> selectedItems;
 
     @FXML
     public void initialize() throws ListException, TreeException {
         product = Utility.getProductAVL();
         supplierName = Utility.getSupplierAVL();
+
+        bitacora = Utility.getBinnacle();
 
         selectedItems = tableView.getSelectionModel().getSelectedItems();
 
@@ -120,6 +125,7 @@ public class MantenimientoProductosController {
 
     @FXML
     void btnAgregarNuevoProducto(ActionEvent event) {
+        LocalDateTime fecha = LocalDateTime.now();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newProduct.fxml"));
         Scene scene = null;
         try {
@@ -134,6 +140,9 @@ public class MantenimientoProductosController {
         if (!product.isEmpty()) {
             try {
                 tableView.setItems(getData());
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                        "Se añade un nuevo producto"));
+                Utility.setBinnacle(bitacora);
             } catch (TreeException e) {
                 throw new RuntimeException(e);
             }
@@ -142,7 +151,7 @@ public class MantenimientoProductosController {
 
     @FXML
     void btnBuscarCliente(ActionEvent event) throws TreeException {
-//Capturamos la info del buscador
+        //Capturamos la info del buscador
         String searchText = fieldID.getText().toLowerCase();
 
         if (searchText.isEmpty()) {
@@ -175,6 +184,7 @@ public class MantenimientoProductosController {
 
     @FXML
     void btnEliminar(ActionEvent event) {
+        LocalDateTime fecha = LocalDateTime.now();
         product = Utility.getProductAVL();
         for (List<String> s : selectedItems) {
             try {
@@ -183,7 +193,9 @@ public class MantenimientoProductosController {
                 Product newProduct = getProduct(nombre);//obtener el producto con el mismo nombre
                 product.remove(newProduct);
                 Utility.setProductAVL(product);
-
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                        "Se elimina un producto"));
+                Utility.setBinnacle(bitacora);
                 alert.setHeaderText("The product: ");
                 alert.setContentText(nombre + " was delete");
                 alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -204,7 +216,6 @@ public class MantenimientoProductosController {
 
     @FXML
     void btnActualizar(ActionEvent event) throws ListException, TreeException, IOException {
-
         selectedItems = tableView.getSelectionModel().getSelectedItems();
 
         //Si no hay nada seleccionado, no abrir la ventana
@@ -275,6 +286,7 @@ public class MantenimientoProductosController {
 
         @FXML
         protected void updateItem(Image image, boolean empty) {
+            LocalDateTime fecha = LocalDateTime.now();
             super.updateItem(image, empty);
 
             if (image == null || empty) {
