@@ -10,6 +10,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import ucr.proyecto.proyectogrupo1.PDF.PDF;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
@@ -112,9 +113,18 @@ public class MenuConsultaController {
     private AVL pedidosCliente;
     private AVL pedidosProveedor;
     private Alert alert;
+    private ArrayList<String> reporteProveedores;
+    private ArrayList<String> reporteCliente;
+    private ArrayList<String> reporteInventario;
+    private ArrayList<String> reporteCostoProductos;
 
     @FXML
     public void initialize() throws ListException, TreeException {
+        reporteProveedores = new ArrayList<>();
+        reporteCliente = new ArrayList<>();
+        reporteInventario = new ArrayList<>();
+        reporteCostoProductos = new ArrayList<>();
+
         inventario = Utility.getProductAVL();
         pedidosCliente = Utility.getSaleDetail();
         pedidosProveedor = Utility.getOrderDetail();
@@ -169,17 +179,17 @@ public class MenuConsultaController {
 
         this.columnOrdenReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));
-        this.columnOrdenReporteOrden.setCellValueFactory(data ->
+        this.columnEditorialReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(1)));
-        this.columnOrdenReporteOrden.setCellValueFactory(data ->
+        this.columnLibroReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(2)));
-        this.columnOrdenReporteOrden.setCellValueFactory(data ->
+        this.columnCantidadReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(3)));
-        this.columnOrdenReporteOrden.setCellValueFactory(data ->
+        this.columnFechaReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(4)));
-        this.columnOrdenReporteOrden.setCellValueFactory(data ->
+        this.columnEstadoReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(5)));
-        this.columnOrdenReporteOrden.setCellValueFactory(data ->
+        this.columnCostoReporteOrden.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(6)));
 
         if (!pedidosProveedor.isEmpty()) {
@@ -189,31 +199,43 @@ public class MenuConsultaController {
 
     private ObservableList<List<String>> getDataOrden() throws TreeException {
         ObservableList<List<String>> data = FXCollections.observableArrayList();
-
+        reporteProveedores.add("Codigo de la Orden");
+        reporteProveedores.add("Editorial");
+        reporteProveedores.add("Codigo del Libro");
+        reporteProveedores.add("Cantidad Comprada");
+        reporteProveedores.add("Fecha de la Orden");
+        reporteProveedores.add("Estado de la Orden");
+        reporteProveedores.add("Costo de la Orden");
         Integer n = pedidosProveedor.size();
-        List<String> array = new ArrayList<>();
         for (int i = 0; i < n; i++) {
+            List<String> array = new ArrayList<>();
             OrderDetail od = (OrderDetail) pedidosProveedor.get(i);
             Order o = getOrder(od.getOrderID());
             array.add(String.valueOf(od.getOrderID()));//Codigo de la Orden
             array.add(o.getSupplierName());//Editorial
-            array.add(getProduct(od.getProductID()).getName());//Nombre del Libro
             array.add(od.getProductID());//Codigo del Libro
             array.add(od.getQuantity());//Cantidad comprada
             array.add(o.getOrderDate());//Fecha de la orden
             array.add(o.getOrderStatus());//Estado de la orden
             array.add(String.valueOf(o.getTotalCost()));//Costo de la orden
+            reporteProveedores.addAll(array);
+            data.add(array);
         }
-        data.add(array);
         return data;
     }
 
     private ObservableList<List<String>> getDataCostoProducto() throws TreeException {
         ObservableList<List<String>> data = FXCollections.observableArrayList();
+        reporteCostoProductos.add("Editorial");
+        reporteCostoProductos.add("Codigo del Libro");
+        reporteCostoProductos.add("Nombre del Libro");
+        reporteCostoProductos.add("Cantidad Disponible");
+        reporteCostoProductos.add("Precio Unidad");
+        reporteCostoProductos.add("Total Colones");
         Integer n = inventario.size();
-        List<String> array = new ArrayList<>();
         Double total = 0.0;
         for (int i = 0; i < n; i++) {
+            List<String> array = new ArrayList<>();
             Product newProduct = (Product) inventario.get(i);
             Double totalLibro = newProduct.getCurrentStock() * newProduct.getPrice();
             array.add(getSupplier(newProduct.getSupplierID()).getName());//Editorial del libro
@@ -223,36 +245,48 @@ public class MenuConsultaController {
             array.add(String.valueOf(newProduct.getPrice()));//Precio Libro
             array.add(String.valueOf(totalLibro));//Precio de todas las copias del mismo libro
             total += totalLibro;
+            reporteCostoProductos.addAll(array);
+            data.add(array);
         }
         for (int i = 0; i < 5; i++) {
-            array.add("----");
+            reporteCostoProductos.add("----");
         }
-        array.add(String.valueOf(total));
-        data.add(array);
+        reporteCostoProductos.add(String.valueOf(total));
         return data;
     }
 
     private ObservableList<List<String>> getDataInventario() throws TreeException {
         ObservableList<List<String>> data = FXCollections.observableArrayList();
+        reporteInventario.add("Codigo");
+        reporteInventario.add("Nombre");
+        reporteInventario.add("Descripcion");
+        reporteInventario.add("Editorial");
+        reporteInventario.add("Stock");
         Integer n = inventario.size();
-        ArrayList<String> array = new ArrayList<>();
         for (int i = 0; i < n; i++) {
+            ArrayList<String> array = new ArrayList<>();
             Product newProduct = (Product) inventario.get(i);
             array.add(newProduct.getID());
             array.add(newProduct.getName());
             array.add(newProduct.getDescription());
             array.add(getSupplier(newProduct.getSupplierID()).getName());
             array.add(String.valueOf(newProduct.getCurrentStock()));
+            reporteInventario.addAll(array);
+            data.add(array);
         }
-        data.add(array);
         return data;
     }
 
     private ObservableList<List<String>> getDataDemanada() throws TreeException {
         ObservableList<List<String>> data = FXCollections.observableArrayList();
+        reporteCliente.add("Fecha factura");
+        reporteCliente.add("Codigo factura");
+        reporteCliente.add("Cliente");
+        reporteCliente.add("Codigo libro");
+        reporteCliente.add("Cantidad del libro");
         Integer n = pedidosCliente.size();
-        List<String> array = new ArrayList<>();
         for (int i = 0; i < n; i++) {
+            List<String> array = new ArrayList<>();
             SaleDetail newSaleDetail = (SaleDetail) pedidosCliente.get(i);
             if (newSaleDetail.getOrder_canceled()) {
                 array.add(getSale(newSaleDetail.getSaleID()).getSaleDate());//Fecha de la factura
@@ -260,9 +294,10 @@ public class MenuConsultaController {
                 array.add(String.valueOf(getSale(newSaleDetail.getSaleID()).getCustomerID()));//Cedula Cliente
                 array.add(newSaleDetail.getProductID());//Codigo del libro
                 array.add(String.valueOf(newSaleDetail.getQuantity()));//Cantidad del libro
+                reporteCliente.addAll(array);
+                data.add(array);
             }
         }
-        data.add(array);
         return data;
     }
 
@@ -320,22 +355,47 @@ public class MenuConsultaController {
 
     @FXML
     void exitOnAction(ActionEvent event) {
-
+        System.exit(0);
     }
 
     @FXML
     void reporteClientesOnAction(ActionEvent event) {
+        PDF.crearPDF("Reporte_Demanda_Producto", "Reporte Demanda", 5, reporteCliente);
 
+        alert.setHeaderText("Report created");
+        alert.setContentText(PDF.getDocumento());
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.show();
     }
 
     @FXML
-    void reporteProductosOnAction(ActionEvent event) {
+    void reporteCostoProductosOnAction(ActionEvent event) {
+        PDF.crearPDF("Reporte_Costo_Producto", "Reporte Costo Producto", 6, reporteCostoProductos);
 
+        alert.setHeaderText("Report created");
+        alert.setContentText(PDF.getDocumento());
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.show();
+    }
+
+    @FXML
+    void reporteInventarioOnAction(ActionEvent event) {
+        PDF.crearPDF("Reporte_Inventario", "Reporte Inventario", 5, reporteInventario);
+
+        alert.setHeaderText("Report created");
+        alert.setContentText(PDF.getDocumento());
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.show();
     }
 
     @FXML
     void reporteProveedoresOnAction(ActionEvent event) {
-
+        PDF.crearPDF("Reporte_Ordenes", "Reporte Orden", 7, reporteProveedores);
+        alert.setHeaderText("Report created");
+        alert.setContentText(PDF.getDocumento());
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.show();
     }
+
 
 }
