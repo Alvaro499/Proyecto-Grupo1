@@ -8,10 +8,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
-import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
-import ucr.proyecto.proyectogrupo1.TDA.ListException;
-import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
-import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Security;
 import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
@@ -52,6 +50,7 @@ public class NewClientController {
     private CircularLinkedList login;
     private SinglyLinkedList client;
     private Alert alert;
+    private AVL bitacora;
     @FXML
     public void initialize() throws ListException, TreeException {
         instant = LocalDateTime.now().withNano(0);
@@ -59,6 +58,7 @@ public class NewClientController {
         alert.setAlertType(Alert.AlertType.ERROR);
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
+        bitacora = Utility.getBinnacle();
     }
 
     @FXML
@@ -74,6 +74,7 @@ public class NewClientController {
 
     @FXML
     void confirmarOnAction(ActionEvent event) throws ListException {
+        LocalDateTime fecha = LocalDateTime.now();
         if (validarCampos()) {
             confirmar.setCursor(Cursor.WAIT);
             confirmar.setDisable(true);
@@ -92,6 +93,9 @@ public class NewClientController {
 
                 Utility.setLoginCircularLinkedList(login);
                 Utility.setClientSinglyLinkedList(client);
+
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se creó un nuevo cliente"));
+                Utility.setBinnacle(bitacora);
 
                 EnvioCorreos correo = new EnvioCorreos();
                 correo.setEmailTo(email.trim());

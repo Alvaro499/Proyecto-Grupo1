@@ -16,6 +16,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
@@ -45,6 +46,7 @@ public class MantenimientoProveedorController {
     private TextField fieldID;
     private Alert alert;
     private ObservableList<List<String>> selectedItems;
+    private AVL bitacora;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -52,6 +54,11 @@ public class MantenimientoProveedorController {
         supplier = Utility.getSupplierAVL();
 
         selectedItems = tableView.getSelectionModel().getSelectedItems();
+
+/*        LocalDateTime fecha = LocalDateTime.now();
+        bitacora = Utility.getBinnacle();
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Calcular costo total"));
+        Utility.setBinnacle(bitacora);*/
 
         this.tableName.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));

@@ -56,27 +56,18 @@ public class ControlDeCostosController {
 
     @FXML
     private TextArea textAreaCosto;
-    //backup
-    private AVL productBackup;
-    private AVL supplierBackup;
-    private SinglyLinkedList clienteBackup;
 
 
 
     @FXML
     public void initialize() {
-        /*productBackup = Utility.getProductAVL();
-        supplierBackup = Utility.getSupplierAVL();
-        clienteBackup*/
-
 
         product = Utility.getProductAVL();
         supplierName = Utility.getSupplierAVL();
         cliente = Utility.getClientSinglyLinkedList();
         clienteID = Utility.getIDClient();
         reporte = new ArrayList<String>();
-
-
+        bitacora = Utility.getBinnacle();
 
         this.id.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));
@@ -178,8 +169,8 @@ public class ControlDeCostosController {
                 headerLinkedQueue.enQueue(headerLinkedQueue2.deQueue());
             }
 
-            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Calcular costo total"));
-
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se calculó el costo total"));
+            Utility.setBinnacle(bitacora);
         } catch (QueueException e) {
             throw new RuntimeException(e);
         }

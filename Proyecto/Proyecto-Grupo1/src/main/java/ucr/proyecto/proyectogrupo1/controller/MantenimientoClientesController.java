@@ -10,10 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
-import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
-import ucr.proyecto.proyectogrupo1.TDA.ListException;
-import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
-import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Security;
 import ucr.proyecto.proyectogrupo1.util.Utility;
@@ -43,11 +41,18 @@ public class MantenimientoClientesController {
     private ObservableList<List<String>> selectedItems;
     @FXML
     private TextField fieldID;
+    private AVL bitacora;
 
     @FXML
     public void initialize() throws ListException, TreeException {
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+       /* LocalDateTime fecha = LocalDateTime.now();
+        bitacora = Utility.getBinnacle();
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Calcular costo total"));
+        Utility.setBinnacle(bitacora);*/
+
 
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();

@@ -9,10 +9,7 @@ import javafx.scene.control.*;
 import javafx.util.StringConverter;
 import ucr.proyecto.proyectogrupo1.PDF.PDF;
 import ucr.proyecto.proyectogrupo1.TDA.*;
-import ucr.proyecto.proyectogrupo1.domain.Order;
-import ucr.proyecto.proyectogrupo1.domain.OrderDetail;
-import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.Supplier;
+import ucr.proyecto.proyectogrupo1.domain.*;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
@@ -65,9 +62,11 @@ public class GestionPedidosController {
     private ArrayList<String> historicReport;
     private ArrayList<String> todayReport;
     private boolean isAutomaticStock = false;
+    private AVL bitacora;
 
     @FXML
     public void initialize() throws TreeException, QueueException, IOException {
+        bitacora = Utility.getBinnacle();
 
         this.alert = FXUtility.alert("", "");
 
@@ -178,6 +177,7 @@ public class GestionPedidosController {
 
     @FXML
     void btnAddAutomatic(ActionEvent event) throws TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
 
         getOrderInfo.clear();
         getOrderDetailInfo.clear();
@@ -212,8 +212,10 @@ public class GestionPedidosController {
             }
             //si ya fue seleccionado, seguimos buscando otro producto aleatorio diferente al de los demas
         }
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Pedidos automáticos generados"));
+        Utility.setBinnacle(bitacora);
         alert.setAlertType(Alert.AlertType.INFORMATION);
-        alert.setContentText("Pedidos automaticos generados");
+        alert.setContentText("Pedidos automáticos generados");
         alert.showAndWait();
         setColumns();
         //System.out.println("Pedidos automaticos generados");
@@ -262,6 +264,7 @@ public class GestionPedidosController {
 
     @FXML
     void btnAddProduct(ActionEvent event) throws TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
 
         //Si todos los campos estan llenos y el de cantidad no contiene texto
         if (isValid()){
@@ -306,7 +309,8 @@ public class GestionPedidosController {
                 System.out.println(or.toString());
             }
             setColumns();
-
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se generó el pedido"));
+            Utility.setBinnacle(bitacora);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Pedido generado");
             alert.showAndWait();
@@ -323,7 +327,7 @@ public class GestionPedidosController {
 
     @FXML
     void btnConfirmOrders(ActionEvent event) throws TreeException, QueueException, IOException, ListException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         //Verificamos que haya al menos un pedido por parte del administrador
         if (!getOrderInfo.isEmpty() && !getOrderDetailInfo.isEmpty()){
 
@@ -356,6 +360,8 @@ public class GestionPedidosController {
             //Creamos un PDF con los pedidos que se acaban de hacer
             PDF.crearPDF("Últimos pedidos realizados","Reporte Actual",4,todayReport);
             //Setteamos los campos
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se confirmaron todos los pedidos actuales"));
+            Utility.setBinnacle(bitacora);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Se han confirmado todos los pedidos actuales");
             alert.showAndWait();
@@ -371,12 +377,15 @@ public class GestionPedidosController {
 
     @FXML
     void btnDeleteAll(ActionEvent event) throws TreeException, QueueException, IOException {
+        LocalDateTime fecha = LocalDateTime.now();
         choiceBoxProduct.setValue(null);
         productQuantity.setText("");
         getOrderDetailInfo.clear();
         getOrderInfo.clear();
         setColumns();
         tableView.refresh();
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se eliminaron todos los pedidos pendientes"));
+        Utility.setBinnacle(bitacora);
         initialize();
     }
 
@@ -384,6 +393,7 @@ public class GestionPedidosController {
 
     @FXML
     void btnHistoricReport(ActionEvent event) throws TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
         //Muestra todos los pedidos que sea han realizado hasta la fecha,
         if (!ORDER_AVL.isEmpty()){
 
@@ -400,6 +410,8 @@ public class GestionPedidosController {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Reporte histórico generado");
             alert.showAndWait();
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Reporte histórico generado"));
+            Utility.setBinnacle(bitacora);
         }else{
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("No se han realizado pedidos hasta la actualidad");

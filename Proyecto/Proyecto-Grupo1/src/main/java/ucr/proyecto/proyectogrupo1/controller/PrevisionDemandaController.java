@@ -220,11 +220,13 @@ import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.BST;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -259,6 +261,7 @@ public class PrevisionDemandaController {
     private Integer clienteID;
     private ArrayList<String> reporte;
     private ObservableList<List<String>> data;
+    private AVL bitacora;
 
     @FXML
     public void initialize() {
@@ -269,7 +272,7 @@ public class PrevisionDemandaController {
         cliente = Utility.getClientSinglyLinkedList();
         clienteID = Utility.getIDClient();
         reporte = new ArrayList<String>();
-
+        bitacora = Utility.getBinnacle();
 
         this.idProducto.setCellValueFactory(data ->
                 new ReadOnlyObjectWrapper<>(data.getValue().get(0)));
@@ -333,7 +336,7 @@ public class PrevisionDemandaController {
 
             arrayList.add(String.valueOf(previsionDemanda(p, 5, proveedor.getPlazoEntrega())));
             reporte.add(String.valueOf(previsionDemanda(p, 5, proveedor.getPlazoEntrega())));
-            //Para el arbol de prevision demanda, guardamos tanto la recomendacion de stcck como el id del producto
+            //Para el arbol de prevision demanda, guardamos tanto la recomendacion de stock como el id del producto
             previsionDemandaBST.add(previsionDemanda(p,5, proveedor.getPlazoEntrega())+"_"+p.getID());
            /* if (saleDatail.contains(p)) {
                 for (int k = 0; k < product.size(); k++) {
@@ -378,7 +381,7 @@ public class PrevisionDemandaController {
 
     @FXML
     void actualizarInventarioOnAction(ActionEvent event) throws TreeException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         if (isCalculated == true){
 
             for (int i = 0; i < previsionDemandaBST.size() ; i++) {
@@ -399,6 +402,8 @@ public class PrevisionDemandaController {
                     }
                 }
             }
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se actualizó el inventario"));
+            Utility.setBinnacle(bitacora);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Stock actualizado");
             alert.showAndWait();
@@ -447,7 +452,9 @@ public class PrevisionDemandaController {
 
     @FXML
     void generarPrevisionDemandaOnAction(ActionEvent event) throws TreeException {
-
+        LocalDateTime fecha = LocalDateTime.now();
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se calculó la previsión de stock"));
+        Utility.setBinnacle(bitacora);
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setContentText("Previsión de stock calculada");
         alert.showAndWait();
