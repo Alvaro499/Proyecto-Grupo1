@@ -236,7 +236,7 @@ public class GestionPedidosController {
         //Construyo la orden
         //El costo total se mantiene en cero por mientras
         //Los detalles tambien
-        Order order = new Order(idOrder, localDateTime,"En proceso",supplierOrder.getName(), (double) 0,"");
+        Order order = new Order(idOrder, localDateTime.withNano(0)+"","En proceso",supplierOrder.getName(), (double) 0,"");
 
         //Construyo el detalle de la orden (Order Detail)
         //Nota: como el producto y el pedido es automatico, entonces se solicita un 25% del stock actual
@@ -281,7 +281,7 @@ public class GestionPedidosController {
             //Construyo la orden
             //El costo total se mantiene en cero por mientras
             //Los detalles tambien
-            Order order = new Order(idOrder, localDateTime.withNano(0),"En proceso",supplierOrder.getName(), (double) 0,"");
+            Order order = new Order(idOrder, localDateTime.withNano(0)+"","En proceso",supplierOrder.getName(), (double) 0,"");
 
             //Construyo el detalle de la orden (Order Detail)
             OrderDetail orderDetail = new OrderDetail(order.getId(),product.getID(),productQuantity.getText(),product.getPrice());
@@ -351,6 +351,7 @@ public class GestionPedidosController {
             //Guardamos los Orders y OrdersDetail en la TDA Global de Utility que invoca a su vez a JSON_Utility
             Utility.setOrder(ORDER_AVL);
             Utility.setOrderDetail(ORDER_DETAIL_AVL);
+
 
             //Creamos un PDF con los pedidos que se acaban de hacer
             PDF.crearPDF("Últimos pedidos realizados","Reporte Actual",4,todayReport);
