@@ -53,11 +53,11 @@ public class NewClientController {
     private Alert alert;
     @FXML
     public void initialize() throws ListException, TreeException {
+        instant = LocalDateTime.now().withNano(0);
         alert = FXUtility.alert("Menu Proveedor", "Desplay Proveedor");
         alert.setAlertType(Alert.AlertType.ERROR);
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
-        instant.withNano(0);
     }
 
     @FXML

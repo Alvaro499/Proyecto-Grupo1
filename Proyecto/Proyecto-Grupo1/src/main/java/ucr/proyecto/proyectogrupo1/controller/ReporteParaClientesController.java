@@ -135,7 +135,7 @@ public class ReporteParaClientesController {
         Integer n = client.size();
         for (int i = 1; i <= n; i++) {
             c = (Customer) client.getNode(i).data;
-            if (c.getID() == id) {
+            if (c.getID().equals(id)) {
                 return c;
             }
         }
@@ -151,7 +151,7 @@ public class ReporteParaClientesController {
             correos.setEmailTo(correoCliente);
             correos.setSubject("Historial de compras");
             PDF.crearPDF("Reporte_Compras","Reporte",5,reporte);
-            correos.setContent("Por favor no contestar este correo.");
+            correos.setContent("<br>Por favor no contestar este correo.");
             correos.setAttachmentFile(new File(PDF.getDocumento()));
             correos.sendEmail();
             //PDF.eliminar();
