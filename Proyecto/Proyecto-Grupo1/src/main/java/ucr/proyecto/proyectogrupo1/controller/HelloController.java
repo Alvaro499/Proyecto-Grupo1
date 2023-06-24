@@ -40,12 +40,14 @@ public class HelloController {
     private CircularLinkedList loginCircularLinkedList;
 
     private Alert alert;
+    AVL b;
 
     @FXML
     public void initialize() {
         loginCircularLinkedList = Utility.getLoginCircularLinkedList();
         alert = FXUtility.alert("Login", "Missing Information");
         alert.setAlertType(Alert.AlertType.ERROR);
+        b = Utility.getBinnacle();
     }
 
     private void loadPage(String page) {
@@ -75,10 +77,11 @@ public class HelloController {
                 if (password.equals(fieldPassword) && user.equals(fieldUser)) {
 
                     Utility.setIDClient(ID);
-                    Binnacle bt = new Binnacle(fecha.withNano(0), Utility.getIDClient(),"Ingresa al sistema");
-                    AVL binnacleAVL = Utility.getBinnacle();
-                 //   Utility.setBinnacle(binnacleAVL.add(bt));
-                    System.out.println(Utility.getIDClient());
+                    //bitacora
+                    b.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(), "Ingresa al sistema"));
+                    Utility.setBinnacle(b);
+                    System.out.println(b.InOrder());
+                    //fin bitacora
 
                     if (ID < 1000) {//admin
                         stage("menuAdministrador.fxml");
