@@ -362,6 +362,8 @@ public class MenuConsultaController {
 
     @FXML
     void exitOnAction(ActionEvent event) {
+        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"Salió del sistema" ));
+        Utility.setBinnacle(bitacora);
         System.exit(0);
     }
 
