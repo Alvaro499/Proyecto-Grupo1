@@ -8,11 +8,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import ucr.proyecto.proyectogrupo1.PDF.PDF;
 import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ControlInventarioController {
@@ -45,7 +47,7 @@ public class ControlInventarioController {
     private TextInputDialog dialog;
     private boolean isStockUpdate = false;
     private ArrayList<String> report;
-
+    private AVL bitacora;
     @FXML
     public void initialize() throws TreeException, QueueException, IOException {
 
@@ -55,6 +57,7 @@ public class ControlInventarioController {
         product = Utility.getInventaryBtree();
         supplierName = Utility.getSupplierAVL();
         report = new ArrayList<String>();
+        bitacora = Utility.getBinnacle();
 
 
         //Creamos un ObservableList a partir del AVL, donde se crearan copias
@@ -121,7 +124,7 @@ public class ControlInventarioController {
 
     @FXML
     void automaticUpdateOnAction(ActionEvent event) throws TreeException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         //Todos los checkbox se seleccionan
         //Le agregamos a cada producto un 75% de su stock minimo para evitar desabastecimiento
         for (Product p : getProduct) {
@@ -132,6 +135,8 @@ public class ControlInventarioController {
         }
         isStockUpdate = true;
         System.out.println("El stock de todos los productos ha sido actualizado");
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"El stock de todos los productos ha sido actualizado"));
+        Utility.setBinnacle(bitacora);
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.setContentText("El stock de todos los productos ha sido actualizado");
         alert.showAndWait();
@@ -142,6 +147,7 @@ public class ControlInventarioController {
 
     @FXML
     void confirmOnAction(ActionEvent event) throws TreeException, QueueException, IOException, ListException {
+        LocalDateTime fecha = LocalDateTime.now();
         if (isStockUpdate == true) {
 
             //Recorremos el la lista Observable y comparamos con el AVL cuales ID son iguales, entonces, modificadmos
@@ -157,6 +163,8 @@ public class ControlInventarioController {
                     }
                 }
             }
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se confirmaron los cambios de datos inventario "));
+            Utility.setBinnacle(bitacora);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Datos actualizados");
             alert.showAndWait();
@@ -175,7 +183,7 @@ public class ControlInventarioController {
 
     @FXML
     void updateStockOnAction(ActionEvent event) {
-
+        LocalDateTime fecha = LocalDateTime.now();
         //CREAMOS UNA NUEVA LISTA
         ObservableList<Product> productListToUpdate = FXCollections.observableArrayList();
 
@@ -212,7 +220,8 @@ public class ControlInventarioController {
             } else {
                 //Si hay al menos una casilla seleccionada y  el campo del stock es adecuado, realizar la modificacion
                 changeObservableList(productListToUpdate, Integer.parseInt(textFieldNewStock.getText()));
-
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se actualizó el stock"));
+                Utility.setBinnacle(bitacora);
                 tableView.refresh();
                 isStockUpdate = true;
             }
@@ -256,7 +265,7 @@ public class ControlInventarioController {
 
     @FXML
     void searchOnAction(ActionEvent event) throws TreeException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         //Capturamos la info del buscador
         String searchText = txtBuscar.getText().toLowerCase();
 
@@ -270,16 +279,19 @@ public class ControlInventarioController {
                 product1.getName().toLowerCase().contains(searchText));
 
         tableView.setItems(filteredList);
-
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se realizó una busquea en control de inventario"));
+        Utility.setBinnacle(bitacora);
         //Metodo Filtered
         //https://www-tabnine-com.translate.goog/code/java/methods/javafx.collections.ObservableList/filtered?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=sc&_x_tr_hist=true
     }
 
     @FXML
     void reportBtnOnAction(ActionEvent event) {
-
+        LocalDateTime fecha = LocalDateTime.now();
         //Si no se han realizado cambios en el stock original, no se puede realizar el reporte. Es decir,
         //hace reportes hasta que se hayan modificado alguno que otro stock
+        bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se realizó el reporte de control de inventario"));
+        Utility.setBinnacle(bitacora);
         PDF.crearPDF("Stock actual", "Reporte", 4, report);
     }
 }

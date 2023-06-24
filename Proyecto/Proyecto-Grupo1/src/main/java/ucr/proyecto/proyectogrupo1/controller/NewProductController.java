@@ -7,11 +7,13 @@ import javafx.scene.control.TextField;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import javax.swing.*;
+import java.time.LocalDateTime;
 
 public class NewProductController {
 
@@ -36,6 +38,7 @@ public class NewProductController {
     @FXML
     private ChoiceBox<String> choiceBoxProduct;
     private Integer nProduct;
+    private AVL bitacora;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -47,6 +50,8 @@ public class NewProductController {
             nameSupplier[i] = s.getName();
         }
         choiceBoxProduct.getItems().addAll(nameSupplier);
+
+        bitacora = Utility.getBinnacle();
     }
 
     @FXML
@@ -62,6 +67,7 @@ public class NewProductController {
 
     @FXML
     void confirmarOnAction(ActionEvent event) throws TreeException, ListException {
+        LocalDateTime fecha = LocalDateTime.now();
         for (int i = 0; i < supplier.size(); i++) {
             Supplier s = (Supplier) supplier.get(i);
             if (s.getName().equalsIgnoreCase(choiceBoxProduct.getValue())) {//si encuantra una editorial con el nombre igual que fieldSupplier, se guarda
@@ -71,6 +77,8 @@ public class NewProductController {
                 Utility.setProductAVL(product);
                 i = supplier.size();
                 encontrado = true;
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se agregó un nuevo producto"));
+                Utility.setBinnacle(bitacora);
                 JOptionPane.showMessageDialog(null,"Producto guardado");
             }
         }

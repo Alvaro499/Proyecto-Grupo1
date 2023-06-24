@@ -56,18 +56,10 @@ public class ControlDeCostosController {
 
     @FXML
     private TextArea textAreaCosto;
-    //backup
-    private AVL productBackup;
-    private AVL supplierBackup;
-    private SinglyLinkedList clienteBackup;
-
 
 
     @FXML
     public void initialize() {
-        /*productBackup = Utility.getProductAVL();
-        supplierBackup = Utility.getSupplierAVL();
-        clienteBackup*/
 
 
         product = Utility.getProductAVL();
@@ -75,7 +67,7 @@ public class ControlDeCostosController {
         cliente = Utility.getClientSinglyLinkedList();
         clienteID = Utility.getIDClient();
         reporte = new ArrayList<String>();
-
+        bitacora = Utility.getBinnacle();
 
 
         this.id.setCellValueFactory(data ->
@@ -179,7 +171,7 @@ public class ControlDeCostosController {
             }
 
             bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Calcular costo total"));
-
+            Utility.setBinnacle(bitacora);
         } catch (QueueException e) {
             throw new RuntimeException(e);
         }
@@ -199,23 +191,14 @@ public class ControlDeCostosController {
 
     @FXML
     void reporteOnAction(ActionEvent event) throws ListException {
-        /*String correoCliente = getCustomer(clienteID).getEmail().trim();
-        String mensaje = FXUtility.alertYesNo("Generador de reporte", "El reporte se enviará a: ", correoCliente);
-        if (mensaje.equalsIgnoreCase("YES")) {*/
+
 
             for (int i = 0; i < 4; i++) {
                 reporte.add("");
             }
             reporte.add(String.valueOf(costoTotalTProductos));
 
-        /*    EnvioCorreos correos = new EnvioCorreos();
-            correos.setEmailTo(correoCliente);
-            correos.setSubject("Reporte de Costos");*/
             PDF.crearPDF("Reporte_Costos","Reporte Costos",5,reporte);
-
-        //    correos.setContent("Por favor no contestar este correo.");
-            /*correos.setAttachmentFile(new File(PDF.getDocumento()));
-            correos.sendEmail();*/
         }
 
 }

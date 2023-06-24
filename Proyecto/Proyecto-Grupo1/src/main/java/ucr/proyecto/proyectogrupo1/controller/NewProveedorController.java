@@ -7,11 +7,13 @@ import javafx.scene.control.TextField;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Sale;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.LocalDateTime;
 import java.util.Random;
 
 public class NewProveedorController {
@@ -31,6 +33,7 @@ public class NewProveedorController {
 
     @FXML
     private TextField txtTelefono;
+    private AVL bitacora;
 
     @FXML
     public void initialize() throws ListException, TreeException {
@@ -39,6 +42,7 @@ public class NewProveedorController {
         txtID.setText(String.valueOf(getID()).trim());
         alert = FXUtility.alert("Menu Proveedor", "Desplay Proveedor");
         alert.setAlertType(Alert.AlertType.ERROR);
+        bitacora = Utility.getBinnacle();
     }
 
     @FXML
@@ -51,6 +55,7 @@ public class NewProveedorController {
 
     @FXML
     void confirmarOnAction(ActionEvent event) throws TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
         supplier = Utility.getSupplierAVL();
         if (completo()) {
             Supplier s = new Supplier(Integer.parseInt(txtID.getText()), txtProveedor.getText(), Integer.parseInt(txtTelefono.getText()), txtEmail.getText(), txtDireccionActual.getText());
@@ -58,6 +63,8 @@ public class NewProveedorController {
             supplier.add(s);
             System.out.println(supplier.InOrder());
             Utility.setSupplierAVL(supplier);
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se agregó un nuevo proveedor"));
+            Utility.setBinnacle(bitacora);
             alert.setHeaderText("supplier added");
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText(txtProveedor.getText());
