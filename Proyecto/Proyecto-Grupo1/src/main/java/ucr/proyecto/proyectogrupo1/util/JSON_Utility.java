@@ -742,6 +742,74 @@ public class JSON_Utility {
         }
     }
 
+    public AVL getBitacora() throws IOException {
+        String pathJSON = "bitacoraGeneral.txt";;
+        ArrayList<Binnacle> arrayList = new ArrayList<>();
+        AVL avl = new AVL();
+        file = new File(pathJSON);
+
+        if(file.exists()){
+            String output = "";
+            //leemos los datos del archivo JSON indicado
+            output = new String(Files.readAllBytes(Paths.get(pathJSON)));
+
+            if (output.equals("") || output == null){
+                //arrayList = new ArrayList<Customer>();
+                return avl;
+
+            }else{//si hay al menos un objeto en el JSON, entonces lo pasamos al ArrayList
+                ObjectMapper om = new ObjectMapper();
+                om.registerModule(new JavaTimeModule());
+                om.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+                //llenamos el ArrayList con la info del JSON file
+                //(se deserializa)
+                arrayList = om.readValue(
+                        output, new TypeReference<ArrayList<Binnacle>>(){});
+
+                for (Binnacle list: arrayList) {
+                    avl.add(list);
+                }
+                return avl;
+            }
+        }else{
+            file = new File(pathJSON);
+            file.createNewFile();
+            return avl;
+        }
+    }
+
+
+    public void saveBitacotaAVL(AVL avl) throws IOException, TreeException {
+
+        String pathJSON = "bitacoraGeneral.txt";
+        ArrayList<Binnacle> arrayList = new ArrayList<>();
+        File file = new File(pathJSON);
+
+        if (file.exists()){//se eliminar el archivo json
+            file.delete();
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }else{
+            System.out.println("El archivo " +  pathJSON + "no existe");
+            file.createNewFile();//se crear de nuevo el archivo JSON para la nueva info
+        }
+
+        //Se vacia la AVL con el metodo get()
+        for (int i = 0; i < avl.size() ; i++) {
+            arrayList.add( (Binnacle) avl.get(i));
+        }
+        ObjectMapper om = new ObjectMapper();
+        om.registerModule(new JavaTimeModule());
+        om.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS,false);
+        try {
+            om.writeValue(Paths.get(pathJSON).toFile(),arrayList);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
     //Metodo auxiliar para ayudar a recorrer los arboles
 
     public void inOrderinventoryFirst(BTree bTree, ArrayList<Product> arrayList){

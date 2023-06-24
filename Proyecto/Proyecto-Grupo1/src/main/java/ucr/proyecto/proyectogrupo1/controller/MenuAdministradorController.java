@@ -79,16 +79,5 @@ public class MenuAdministradorController {
         System.exit(0);
     }
 
-    public void carritoOnAction(ActionEvent actionEvent) {
-    }
-
-    public void buscarOnAction(ActionEvent actionEvent) {
-    }
-
-    public void gestiónOnAction(ActionEvent actionEvent) {
-    }
-
-    public void reporteOnAction(ActionEvent actionEvent) {
-    }
 }
 
