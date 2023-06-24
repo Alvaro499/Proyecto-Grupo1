@@ -1,0 +1,1 @@
+[{"id":1,"orderDate":"2023-06-24T08:22:56","orderStatus":"En proceso","supplierName":"Alianza","totalCost":59500.0,"remarks":"\nAnotaciones de pedido:\nProducto: Cuervo y otros poemas \n\nFecha de pedido: 2023-06-24T08:22:56\n\nCantidad: 5\n\nCosto total: ₡59500.0"}]
