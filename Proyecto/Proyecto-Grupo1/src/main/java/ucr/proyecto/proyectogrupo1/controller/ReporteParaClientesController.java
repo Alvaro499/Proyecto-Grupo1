@@ -13,15 +13,13 @@ import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
-import ucr.proyecto.proyectogrupo1.domain.Customer;
-import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.Sale;
-import ucr.proyecto.proyectogrupo1.domain.SaleDetail;
+import ucr.proyecto.proyectogrupo1.domain.*;
 import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.File;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +44,15 @@ public class ReporteParaClientesController {
     @FXML
     private TableColumn<List<String>, String> columnPrecioUnidad;
     private ArrayList<String> reporte;
+    private LocalDateTime hoy;
 
+    private AVL bitacora;
     @FXML
     public void initialize() throws ListException, TreeException {
+        bitacora = Utility.getBinnacle();
+
+        hoy = LocalDateTime.now().withNano(0);
+
         clientID = Utility.getIDClient();
         newSale = Utility.getSale();
         newSaleDetail = Utility.getSaleDetail();
@@ -93,7 +97,7 @@ public class ReporteParaClientesController {
                 arrayList.add(String.valueOf(sd.getQuantity()));
                 arrayList.add(String.valueOf(getProduct(sd.getProductID()).getPrice()));
 
-                //guardar la info en reportr
+                //guardar la info en reporte
                 reporte.add(String.valueOf(sd.getSaleID()));
                 reporte.add(String.valueOf(s.getSaleDate()));
                 reporte.add(getProduct(sd.getProductID()).getName());
@@ -135,7 +139,7 @@ public class ReporteParaClientesController {
         Integer n = client.size();
         for (int i = 1; i <= n; i++) {
             c = (Customer) client.getNode(i).data;
-            if (c.getID() == id) {
+            if (c.getID().equals(id)) {
                 return c;
             }
         }
@@ -150,11 +154,15 @@ public class ReporteParaClientesController {
             EnvioCorreos correos = new EnvioCorreos();
             correos.setEmailTo(correoCliente);
             correos.setSubject("Historial de compras");
-            PDF.crearPDF("Reporte_Compras","Reporte",5,reporte);
-            correos.setContent("Por favor no contestar este correo.");
+            PDF.crearPDF("Reporte_Compras", "Reporte", 5, reporte);
+            correos.setContent("<br>Por favor no contestar este correo.");
             correos.setAttachmentFile(new File(PDF.getDocumento()));
             correos.sendEmail();
             //PDF.eliminar();
+            //bitacora
+            bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"El usuario genero un reporte al correo: " + correoCliente));
+            Utility.setBinnacle(bitacora);
+            //fin bitacora
         }
     }
 }

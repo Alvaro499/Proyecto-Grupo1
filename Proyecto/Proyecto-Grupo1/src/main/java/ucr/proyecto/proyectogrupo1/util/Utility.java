@@ -40,6 +40,7 @@ public class Utility {
         productAVL = new AVL();
         order = new AVL();
         orderDetail = new AVL();
+        binnacle = new AVL();
         //llenamos los arboles
         try {
             productAVL = json.getProductAVL();
@@ -50,6 +51,7 @@ public class Utility {
             saleDetail = json.getSaleDetailAVL();
             order = json.getOrderAVL();
             orderDetail = json.getOrderDetailAVL();
+            binnacle = json.getBitacora();
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (QueueException e) {

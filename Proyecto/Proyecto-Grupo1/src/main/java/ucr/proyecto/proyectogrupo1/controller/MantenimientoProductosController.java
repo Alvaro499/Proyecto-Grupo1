@@ -132,8 +132,35 @@ public class MantenimientoProductosController {
     }
 
     @FXML
-    void btnBuscarCliente(ActionEvent event) {
+    void btnBuscarCliente(ActionEvent event) throws TreeException {
+//Capturamos la info del buscador
+        String searchText = fieldID.getText().toLowerCase();
 
+        if (searchText.isEmpty()) {
+            tableView.setItems(getData()); // Restaurar los datos originales
+            return;
+        }
+
+        //Creamos una lista que va guardando aquellos datos que conicidan con los del textField buscador
+        ObservableList<List<String>> filterList = FXCollections.observableArrayList();
+
+        //Recorremos las listas de datos de cada fila del tablewView, ya que en el getData este se settea con ArrayLists
+        //List<String> newData = getData();
+        for(List<String> nameFiltered : getData()){
+            //Obtenemos el elemento que queremos capturar, en este caso el ID del empleado
+            String actualName = nameFiltered.get(1).toLowerCase();
+
+            //Comparamos el dato de la fila con el del textField
+            if (actualName.contains(searchText)){
+                //se actualiza la lista con los datos similares
+                filterList.add(nameFiltered);
+            }
+        }
+        //setteamos nuevamente el tableView
+        tableView.setItems(filterList);
+        //tableView.refresh();
+        //https://www.w3schools.com/java/ref_string_contains.asphttps://www.w3schools.com/java/ref_string_contains.asp
+        //https://www.youtube.com/watch?v=FeTrcNBVWtg
     }
 
 

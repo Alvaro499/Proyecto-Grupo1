@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
+import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
 import ucr.proyecto.proyectogrupo1.domain.Binnacle;
@@ -40,12 +41,14 @@ public class HelloController {
     private CircularLinkedList loginCircularLinkedList;
 
     private Alert alert;
+    AVL b;
 
     @FXML
     public void initialize() {
         loginCircularLinkedList = Utility.getLoginCircularLinkedList();
         alert = FXUtility.alert("Login", "Missing Information");
         alert.setAlertType(Alert.AlertType.ERROR);
+        b = Utility.getBinnacle();
     }
 
     private void loadPage(String page) {
@@ -68,15 +71,19 @@ public class HelloController {
                 //buscamos que coincida el user y password en cada nodo del CircularLinkedList
                 Security s = (Security) loginCircularLinkedList.getNode(i).data;
                 String user = s.getUser();
-                String password = s.getPassword();
+                String password = Cryptographic.descodificar(s.getPassword()).trim();
                 String fieldUser = txtNombreUsuario.getText().trim();
                 String fieldPassword = txtContraseña.getText().trim();
                 Integer ID = s.getCustomerID();
                 if (password.equals(fieldPassword) && user.equals(fieldUser)) {
+
                     Utility.setIDClient(ID);
-                    Binnacle bt = new Binnacle(fecha.withNano(0), Utility.getIDClient(),"Ingresa al sistema");
-                    AVL binnacleAVL = Utility.getBinnacle();
-                 //   Utility.setBinnacle(binnacleAVL.add(bt));
+                    //bitacora
+                    b.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(), "Ingresa al sistema"));
+                    Utility.setBinnacle(b);
+                    System.out.println(b.InOrder());
+                    //fin bitacora
+
                     if (ID < 1000) {//admin
                         stage("menuAdministrador.fxml");
                     } else if (ID < 2000) {//consulta

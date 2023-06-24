@@ -16,15 +16,12 @@ import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
-import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
-import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class ControlDeCostosController {
 
@@ -181,7 +178,7 @@ public class ControlDeCostosController {
                 headerLinkedQueue.enQueue(headerLinkedQueue2.deQueue());
             }
 
-            bitacora.add(new Binnacle(fecha.withNano(0), Utility.getIDClient(),"Calcular costo total"));
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Calcular costo total"));
 
         } catch (QueueException e) {
             throw new RuntimeException(e);

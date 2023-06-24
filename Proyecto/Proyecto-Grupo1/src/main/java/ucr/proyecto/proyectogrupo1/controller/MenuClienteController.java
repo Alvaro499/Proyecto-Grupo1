@@ -57,7 +57,7 @@ public class MenuClienteController {
 
     @FXML
     public void initialize() throws ListException, TreeException {
-        hoy = LocalDateTime.now();
+        hoy = LocalDateTime.now().withNano(0);
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         selectedItems = tableView.getSelectionModel().getSelectedItems();
@@ -193,7 +193,7 @@ public class MenuClienteController {
                                     saleDetail.add(newSaleDetail);
 
                                     sale.remove(newSale);
-                                    newSale.setSaleDate(hoy.withNano(0));
+                                    newSale.setSaleDate(String.valueOf(hoy.withNano(0)));
                                     sale.add(newSale);
 
                                     alert.setContentText(getProduct(product).getName() + "\nCantidad: " + newSaleDetail.getQuantity());
@@ -209,7 +209,7 @@ public class MenuClienteController {
 
                     Sale newSale = new Sale( //llenar Sale
                             getIDSale(),
-                            hoy.withNano(0),
+                            String.valueOf(hoy.withNano(0)),
                             Integer.parseInt(textID.getText().substring(3).trim()),
                             IDProduct);
                     sale.add(newSale);

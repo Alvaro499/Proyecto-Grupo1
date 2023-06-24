@@ -6,8 +6,11 @@ import java.time.LocalDateTime;
 
 public class Order {
     private Integer id;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime orderDate;
+//    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+//    private LocalDateTime orderDate;
+
+
+    private String orderDate;
     private String orderStatus;
     private String supplierName;
     private Double totalCost;
@@ -17,7 +20,7 @@ public class Order {
     }
 
 
-    public Order(Integer ID, LocalDateTime orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
+    public Order(Integer ID, String orderDate, String orderStatus, String supplierName, Double totalCost, String remarks) {
         this.id = ID;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
@@ -30,7 +33,7 @@ public class Order {
         return id;
     }
 
-    public LocalDateTime getOrderDate() {
+    public String getOrderDate() {
         return orderDate;
     }
 

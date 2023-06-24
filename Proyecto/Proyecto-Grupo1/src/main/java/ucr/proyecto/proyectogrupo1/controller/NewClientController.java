@@ -7,6 +7,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
+import ucr.proyecto.proyectogrupo1.Segurity.Cryptographic;
 import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
@@ -17,7 +18,7 @@ import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 public class NewClientController {
 
@@ -47,17 +48,17 @@ public class NewClientController {
 
     @FXML
     private Button confirmar;
-    private Instant instant;
+    private LocalDateTime instant;
     private CircularLinkedList login;
     private SinglyLinkedList client;
     private Alert alert;
     @FXML
     public void initialize() throws ListException, TreeException {
+        instant = LocalDateTime.now().withNano(0);
         alert = FXUtility.alert("Menu Proveedor", "Desplay Proveedor");
         alert.setAlertType(Alert.AlertType.ERROR);
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
-        instant = Instant.now();
     }
 
     @FXML
@@ -83,7 +84,7 @@ public class NewClientController {
             String email = txtEmail.getText();
             String direccion = txtDireccion.getText();
             String usuario = txtUsuario.getText();
-            String contrasena = txtContra.getText();
+            String contrasena = Cryptographic.codificar(txtContra.getText().trim()).trim();
 
             if (!existeID(id) && !existeUser(usuario)) {
                 client.add(new Customer(id, nombre, telefono, email, direccion));

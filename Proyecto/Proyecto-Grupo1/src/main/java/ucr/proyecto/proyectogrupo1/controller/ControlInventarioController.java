@@ -9,6 +9,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import ucr.proyecto.proyectogrupo1.PDF.PDF;
 import ucr.proyecto.proyectogrupo1.TDA.*;
 import ucr.proyecto.proyectogrupo1.domain.Product;
+import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
@@ -48,7 +49,7 @@ public class ControlInventarioController {
     @FXML
     public void initialize() throws TreeException, QueueException, IOException {
 
-        //this.alert = FXUtility.alert("", "");
+        this.alert = FXUtility.alert("", "");
         //Se toman los datos de los archivos en las TDA
         //product = Utility.getProductAVL();
         product = Utility.getInventaryBtree();
@@ -130,10 +131,10 @@ public class ControlInventarioController {
             if (p.getCheckBox().isSelected()) p.getCheckBox().setSelected(false);
         }
         isStockUpdate = true;
-        //System.out.println("El stock de todos los productos ha sido actualizado");
-//        alert.setAlertType(Alert.AlertType.INFORMATION);
-//        alert.setContentText("El stock de todos los productos ha sido actualizado");
-//        alert.showAndWait();
+        System.out.println("El stock de todos los productos ha sido actualizado");
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.setContentText("El stock de todos los productos ha sido actualizado");
+        alert.showAndWait();
         textFieldNewStock.setText("");
         tableView.refresh();
         //initialize();
@@ -165,9 +166,9 @@ public class ControlInventarioController {
             initialize();
 
         } else {
-//            alert.setAlertType(Alert.AlertType.INFORMATION);
-//            alert.setContentText("No hay cambios de stock que confirmar");
-//            alert.showAndWait();
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("No hay cambios de stock que confirmar");
+            alert.showAndWait();
             //System.out.println("No hay cambios de stock que confirmar");
         }
     }
@@ -196,17 +197,17 @@ public class ControlInventarioController {
         */
         if (productListToUpdate.isEmpty()) {
 
-//            alert.setAlertType(Alert.AlertType.INFORMATION);
-//            alert.setContentText("Seleccione alguno de los productos");
-//            alert.showAndWait();
+            alert.setAlertType(Alert.AlertType.INFORMATION);
+            alert.setContentText("Seleccione alguno de los productos");
+            alert.showAndWait();
             //System.out.println("Seleccione alguno de los productos");
 
         } else {
             //Verificar restricciones del textField
             if (textFieldNewStock.getText().isEmpty() || textFieldNewStock.getText().isBlank() || !containsText(textFieldNewStock.getText())) {
-//                alert.setAlertType(Alert.AlertType.INFORMATION);
-//                alert.setContentText("Por favor, verifique que haya seleccionado alguna casilla y que el campo del stock no este vacio");
-//                alert.showAndWait();
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.setContentText("Por favor, verifique que haya seleccionado alguna casilla y que el campo del stock no este vacio");
+                alert.showAndWait();
                 //System.out.println("Por favor, verifique que haya seleccionado alguna casilla y que el campo del stock no este vacio");
             } else {
                 //Si hay al menos una casilla seleccionada y  el campo del stock es adecuado, realizar la modificacion
