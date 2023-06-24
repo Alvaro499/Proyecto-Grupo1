@@ -20,6 +20,7 @@ import ucr.proyecto.proyectogrupo1.email.EnvioCorreos;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -56,6 +57,7 @@ public class ClienteCarritoController {
     private AVL saleDetail;
     private AVL product;
     private Alert alert;
+    private AVL bitacora;
     //private Product newProduct;
     @FXML
     private Text txtCompraTotal;
@@ -64,9 +66,14 @@ public class ClienteCarritoController {
     // Obtener la lista de elementos de la TableView
     private ObservableList<List<String>> tables;
     private SinglyLinkedList client; //table client
+    private LocalDateTime hoy;
 
     @FXML
     public void initialize() throws TreeException {
+        hoy = LocalDateTime.now().withNano(0);
+
+        bitacora = Utility.getBinnacle();
+
         idClient = Utility.getIDClient();
         sale = Utility.getSale();
         saleDetail = Utility.getSaleDetail();
@@ -145,7 +152,12 @@ public class ClienteCarritoController {
                 Product newProduct = getProduct(newSaleDetail.getProductID());
                 if (newSale != null) {
                     if (disponibilidad(newSaleDetail.getProductID(), newSaleDetail.getQuantity())) { //Siempre que haya disponibilidad
-                        //Eliminamos
+                        //bitacora
+                        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"Compro el libro: " + newProduct.getID()));
+                        Utility.setBinnacle(bitacora);
+                        //fin bitacora
+
+                        //Actualizamos el estado de compra
                         newSaleDetail.setOrder_canceled(true);
                         //saleDetail.remove(newSaleDetail);
                         //sale.remove(newSale);
@@ -218,7 +230,7 @@ public class ClienteCarritoController {
         Integer n = client.size();
         for (int i = 1; i <= n; i++) {
             newCustomer = (Customer) client.getNode(i).data;
-            if (newCustomer.getID() == id) {
+            if (newCustomer.getID().equals(id)) {
                 return newCustomer;
             }
         }
