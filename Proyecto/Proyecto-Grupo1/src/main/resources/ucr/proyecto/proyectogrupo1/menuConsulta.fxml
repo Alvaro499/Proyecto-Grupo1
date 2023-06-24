@@ -18,7 +18,7 @@
 <BorderPane fx:id="bp" stylesheets="@../../../stylesheet/buttonMenuStylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ucr.proyecto.proyectogrupo1.controller.MenuConsultaController">
    <center>
       <BorderPane>
-         <right>
+         <top>
             <AnchorPane prefHeight="589.0" prefWidth="934.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox layoutX="14.0" layoutY="14.0" prefHeight="586.0" prefWidth="907.0" spacing="15.0">
@@ -94,7 +94,7 @@
                      </padding>
                   </VBox>
                </children></AnchorPane>
-         </right>
+         </top>
       </BorderPane>
    </center>
    <left>
@@ -108,7 +108,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteClientesOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Pedidos Proveedores" textFill="WHITE">
+            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteProveedoresOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Pedidos Proveedores" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
@@ -116,7 +116,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteProveedoresOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Productos" textFill="WHITE">
+            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteProductosOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Productos" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
@@ -124,7 +124,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteProductosOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Inventario" textFill="WHITE">
+            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteInventarioOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Inventario" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
