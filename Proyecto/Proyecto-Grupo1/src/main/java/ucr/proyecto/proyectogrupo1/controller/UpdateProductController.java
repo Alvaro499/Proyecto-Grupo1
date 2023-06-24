@@ -10,11 +10,13 @@ import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -48,8 +50,10 @@ public class UpdateProductController {
     private String priceBackup;
     private String stickMinBackup;
     private String detalleBakcup;
+    private AVL bitacora;
 
     public void initializeAux() throws ListException, TreeException {
+        bitacora = Utility.getBinnacle();
         this.alert = FXUtility.alert("", "");
         //Solo mostrar, no editar
         txtTitulo.setEditable(false);
@@ -84,7 +88,7 @@ public class UpdateProductController {
 
     @FXML
     void confirmarOnAction(ActionEvent event) throws TreeException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         if (isValid()){
 
             for (int i = 0; i < allProduct.size() ; i++) {
@@ -98,7 +102,10 @@ public class UpdateProductController {
                     break;
                 }
             }
-            Utility.setProductAVL(allProduct);
+
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                    "Actualización producto"));
+            Utility.setBinnacle(bitacora);            Utility.setProductAVL(allProduct);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Proveedor actualizado existosamente");
             alert.showAndWait();

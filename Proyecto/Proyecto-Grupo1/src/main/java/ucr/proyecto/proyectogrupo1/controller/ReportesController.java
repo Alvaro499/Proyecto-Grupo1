@@ -11,6 +11,7 @@ import ucr.proyecto.proyectogrupo1.domain.*;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class ReportesController {
@@ -18,9 +19,11 @@ public class ReportesController {
     private AVL pedidosCliente;
     private AVL pedidosProveedor;
     private Alert alert;
+    private AVL bitacora;
 
     @FXML
     public void initialize() throws ListException, TreeException {
+        bitacora = Utility.getBinnacle();
         inventario = Utility.getProductAVL();
         pedidosCliente = Utility.getSaleDetail();
         pedidosProveedor = Utility.getOrderDetail();
@@ -82,6 +85,7 @@ public class ReportesController {
 
     @FXML
     void onActionReporteInventario(ActionEvent event) {//reporte de todos los productos
+        LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
             Integer n = inventario.size();
@@ -99,7 +103,9 @@ public class ReportesController {
                 array.add(String.valueOf(newProduct.getCurrentStock()));
             }
             PDF.crearPDF("Reporte_Inventario", "Reporte Inventario", 5, array);
-
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                    "Reporte Inventario Creado"));
+            Utility.setBinnacle(bitacora);
             alert.setHeaderText("Report created");
             alert.setContentText(PDF.getDocumento());
             alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -111,6 +117,7 @@ public class ReportesController {
 
     @FXML
     void onActionReportePedidosProveedor(ActionEvent event) {//reporte de los pedidos al proveedor
+        LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
             Integer n = pedidosProveedor.size();
@@ -135,7 +142,9 @@ public class ReportesController {
                 array.add(String.valueOf(o.getTotalCost()));//Costo de la orden
             }
             PDF.crearPDF("Reporte_Ordenes", "Reporte Orden", 8, array);
-
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                    "Reporte Pedidos Proveedor Creado"));
+            Utility.setBinnacle(bitacora);
             alert.setHeaderText("Report created");
             alert.setContentText(PDF.getDocumento());
             alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -147,6 +156,7 @@ public class ReportesController {
 
     @FXML
     void onActionReporteProductos(ActionEvent event) {//reporte de los productos que hay y su precio; ademas del total
+        LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
             Integer n = inventario.size();
@@ -174,7 +184,9 @@ public class ReportesController {
             array.add(String.valueOf(total));
 
             PDF.crearPDF("Reporte_Costo_Producto", "Reporte Costo Producto", 6, array);
-
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                    "Reporte Productos Creado"));
+            Utility.setBinnacle(bitacora);
             alert.setHeaderText("Report created");
             alert.setContentText(PDF.getDocumento());
             alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -186,6 +198,7 @@ public class ReportesController {
 
     @FXML
     void onActionReportesPedidosClientes(ActionEvent event) {//Reporte de todos los pedidos de los clientes
+        LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
             Integer n = pedidosCliente.size();
@@ -205,7 +218,9 @@ public class ReportesController {
                 }
             }
             PDF.crearPDF("Reporte_Demanda_Producto", "Reporte Demanda", 5, array);
-
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                    "Reporte Pedidos Cliente Creado"));
+            Utility.setBinnacle(bitacora);
             alert.setHeaderText("Report created");
             alert.setContentText(PDF.getDocumento());
             alert.setAlertType(Alert.AlertType.INFORMATION);

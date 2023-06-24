@@ -107,7 +107,6 @@ public class MantenimientoProveedorController {
 
     @FXML
     void btnAgregarNuevoProveedor(ActionEvent event) {
-        LocalDateTime fecha = LocalDateTime.now();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newProveedor.fxml"));
         Scene scene = null;
         try {
