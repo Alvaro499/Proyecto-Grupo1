@@ -352,6 +352,7 @@ public class GestionPedidosController {
             Utility.setOrder(ORDER_AVL);
             Utility.setOrderDetail(ORDER_DETAIL_AVL);
 
+
             //Creamos un PDF con los pedidos que se acaban de hacer
             PDF.crearPDF("Últimos pedidos realizados","Reporte Actual",4,todayReport);
             //Setteamos los campos
