@@ -144,6 +144,7 @@ public class MantenimientoProveedorController {
                 throw new RuntimeException(e);
             }
         }
+        tableView.getItems().clear();
         if (!supplier.isEmpty()) {
             tableView.setItems(getData());
         }

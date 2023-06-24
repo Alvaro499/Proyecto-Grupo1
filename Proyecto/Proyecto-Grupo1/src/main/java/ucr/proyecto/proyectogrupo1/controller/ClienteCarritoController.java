@@ -260,8 +260,11 @@ public class ClienteCarritoController {
                 }
             }
         }
+        tableView.getItems().clear();
+
         Utility.setSale(sale);
         Utility.setSaleDetail(saleDetail);
+
         if (!sale.isEmpty()) {
             tableView.setItems(getData());
         }

@@ -62,14 +62,14 @@
                         <Insets />
                      </VBox.margin>
                   </TableView>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+                  <HBox alignment="CENTER" prefHeight="38.0" prefWidth="900.0" spacing="20.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#reportBtnOnAction" prefHeight="47.0" prefWidth="213.0" text="Generar reporte de stock">
+                        <Button mnemonicParsing="false" onAction="#reportBtnOnAction" prefHeight="38.0" prefWidth="270.0" text="Generar reporte de stock">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#automaticUpdateOnAction" prefHeight="40.0" prefWidth="224.0" text="Actulizado Automatico">
+                        <Button mnemonicParsing="false" onAction="#automaticUpdateOnAction" prefHeight="38.0" prefWidth="268.0" text="Actulizado Automatico">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
                            </font>
