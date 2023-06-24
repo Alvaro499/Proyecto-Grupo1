@@ -47,8 +47,8 @@
                               <HBox alignment="CENTER" fillHeight="false" prefHeight="35.0" prefWidth="500.0" spacing="10.0">
                                  <children>
                                     <Label prefHeight="18.0" prefWidth="83.0" />
-                                    <Button mnemonicParsing="false" onAction="#agregarOnAction" prefHeight="32.0" prefWidth="98.0" text="Agregar" />
-                                    <Button mnemonicParsing="false" onAction="#reporteOnAction" prefHeight="32.0" prefWidth="98.0" text="Reporte" />
+                                    <Button mnemonicParsing="false" onAction="#agregarOnAction" prefHeight="38.0" prefWidth="147.0" text="Agregar" />
+                                    <Button mnemonicParsing="false" onAction="#reporteOnAction" prefHeight="38.0" prefWidth="157.0" text="Reporte" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="205.0" />

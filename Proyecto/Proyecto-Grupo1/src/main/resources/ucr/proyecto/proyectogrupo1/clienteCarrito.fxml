@@ -53,13 +53,12 @@
                               </HBox>
                               <HBox prefHeight="35.0" prefWidth="306.0" spacing="10.0">
                                  <children>
-                                    <Label prefHeight="18.0" prefWidth="87.0" />
-                                    <Button mnemonicParsing="false" onAction="#eliminarOnAction" prefHeight="32.0" prefWidth="97.0" text="Eliminar">
+                                    <Button mnemonicParsing="false" onAction="#eliminarOnAction" prefHeight="38.0" prefWidth="152.0" text="Eliminar">
                                        <HBox.margin>
                                           <Insets />
                                        </HBox.margin>
                                     </Button>
-                                    <Button mnemonicParsing="false" onAction="#comprarOnAction" prefHeight="32.0" prefWidth="102.0" text="Comprar" />
+                                    <Button mnemonicParsing="false" onAction="#comprarOnAction" prefHeight="38.0" prefWidth="141.0" text="Comprar" />
                                  </children>
                                  <HBox.margin>
                                     <Insets left="50.0" />

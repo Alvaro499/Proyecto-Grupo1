@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -45,9 +44,9 @@
                         <TextField fx:id="productQuantity" prefHeight="26.0" prefWidth="478.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="750.0" spacing="50.0">
+                  <HBox alignment="TOP_CENTER" prefHeight="54.0" prefWidth="750.0" spacing="40.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#btnAddAutomatic" prefHeight="42.0" prefWidth="205.0" text="Generar automáticamente">
+                        <Button mnemonicParsing="false" onAction="#btnAddAutomatic" prefHeight="38.0" prefWidth="298.0" text="Generar automáticamente">
                            <font>
                               <Font name="Century Schoolbook" size="15.0" />
                            </font>
@@ -76,14 +75,13 @@
                         <TableColumn fx:id="orderTotalCost" prefWidth="110.0" text="Total" />
                      </columns>
                   </TableView>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
+                  <HBox prefHeight="100.0" prefWidth="200.0" spacing="300.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#btnHistoricReport" prefHeight="38.0" prefWidth="244.0" text="Generar Reporte Histórico">
+                        <Button mnemonicParsing="false" onAction="#btnHistoricReport" prefHeight="38.0" prefWidth="308.0" text="Generar Reporte Histórico">
                            <font>
                               <Font size="18.0" />
                            </font>
                         </Button>
-                        <Pane prefHeight="35.0" prefWidth="371.0" />
                         <Button mnemonicParsing="false" onAction="#btnConfirmOrders" prefHeight="63.0" prefWidth="216.0" style=": ;" text="Confirmar Pedido">
                            <font>
                               <Font name="Century Schoolbook" size="18.0" />
