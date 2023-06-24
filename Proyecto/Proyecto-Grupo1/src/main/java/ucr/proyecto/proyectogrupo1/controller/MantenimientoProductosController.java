@@ -80,7 +80,6 @@ public class MantenimientoProductosController {
                 new ReadOnlyStringWrapper(data.getValue().get(6)));
 
         this.img.setCellFactory(col -> new ImageTableCell<>());
-
         if (!product.isEmpty()) {
             tableView.setItems(getData());
         }
@@ -157,6 +156,7 @@ public class MantenimientoProductosController {
                 throw new RuntimeException(e);
             }
         }
+        tableView.getItems().clear();
         if (!product.isEmpty()) {
             try {
                 tableView.setItems(getData());
