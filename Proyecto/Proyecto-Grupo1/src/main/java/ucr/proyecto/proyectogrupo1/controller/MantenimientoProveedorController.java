@@ -17,6 +17,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Supplier;
@@ -24,6 +25,7 @@ import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,12 +48,15 @@ public class MantenimientoProveedorController {
     @FXML
     private TextField fieldID;
     private Alert alert;
+    private AVL bitacora;
     private ObservableList<List<String>> selectedItems;
 
     @FXML
     public void initialize() throws ListException, TreeException {
         product = Utility.getProductAVL();
         supplier = Utility.getSupplierAVL();
+        bitacora = Utility.getBinnacle();
+
 
         selectedItems = tableView.getSelectionModel().getSelectedItems();
 
@@ -102,6 +107,7 @@ public class MantenimientoProveedorController {
 
     @FXML
     void btnAgregarNuevoProveedor(ActionEvent event) {
+        LocalDateTime fecha = LocalDateTime.now();
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newProveedor.fxml"));
         Scene scene = null;
         try {
@@ -117,7 +123,7 @@ public class MantenimientoProveedorController {
 
     @FXML
     void btnBuscarCliente(ActionEvent event) throws TreeException {
-//Capturamos la info del buscador
+        //Capturamos la info del buscador
         String searchText = fieldID.getText().toLowerCase();
 
         if (searchText.isEmpty()) {
@@ -149,6 +155,7 @@ public class MantenimientoProveedorController {
 
     @FXML
     void btnEliminar(ActionEvent event) throws TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
         for (List<String> s : selectedItems) {
             Supplier supplier = getProveedor(s.get(0));
             try {
@@ -161,8 +168,10 @@ public class MantenimientoProveedorController {
                     AVL deleteSupplier = Utility.getSupplierAVL();
                     deleteSupplier.remove(supplier);
                     Utility.setSupplierAVL(deleteSupplier);
-
-                    alert.setHeaderText("the supplier " + supplier.getName());
+                    bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                            "Se elimina un proveedor"));
+                    Utility.setBinnacle(bitacora);
+                    alert.setHeaderText("The supplier " + supplier.getName());
                     alert.setContentText("was eliminated");
                     alert.setAlertType(Alert.AlertType.INFORMATION);
                     alert.show();
@@ -181,7 +190,7 @@ public class MantenimientoProveedorController {
 
     @FXML
     void btnActualizarProveedor(ActionEvent event) throws IOException, ListException, TreeException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         selectedItems = tableView.getSelectionModel().getSelectedItems();
 
         //Si no hay nada seleccionado, no abrir la ventana

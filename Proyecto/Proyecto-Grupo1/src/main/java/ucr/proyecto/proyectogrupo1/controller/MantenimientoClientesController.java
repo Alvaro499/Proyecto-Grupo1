@@ -11,16 +11,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
-import ucr.proyecto.proyectogrupo1.TDA.CircularLinkedList;
-import ucr.proyecto.proyectogrupo1.TDA.ListException;
-import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
-import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.TDA.*;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.domain.Security;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,12 +45,14 @@ public class MantenimientoClientesController {
     @FXML
     private TextField fieldID;
     private Alert alert;
-
+    private AVL bitacora;
     @FXML
     public void initialize() throws ListException, TreeException {
         this.alert = FXUtility.alert("", "");
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+        bitacora = Utility.getBinnacle();
 
         login = Utility.getLoginCircularLinkedList();
         client = Utility.getClientSinglyLinkedList();
@@ -100,6 +101,8 @@ public class MantenimientoClientesController {
 
     @FXML
     void btnEliminarCliente(ActionEvent event) throws ListException {//revizar
+        LocalDateTime fecha = LocalDateTime.now();
+
         for (List<String> s : selectedItems) {
             int l = login.size();
             int c = client.size();
@@ -114,6 +117,9 @@ public class MantenimientoClientesController {
             for (int i = 1; i <= c; i++) {
                 Customer customer = (Customer) client.getNode(i).data;
                 if (Integer.parseInt(s.get(0).trim()) == customer.getID()) {
+                    bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                            "Se elimina un cliente"));
+                    Utility.setBinnacle(bitacora);
                     client.remove(customer);
                     Utility.setClientSinglyLinkedList(client);
                     break;
@@ -130,6 +136,8 @@ public class MantenimientoClientesController {
 
     @FXML
     void btnAgregarNuevoCliente(ActionEvent event) {
+        LocalDateTime fecha = LocalDateTime.now();
+
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newClient.fxml"));
         Scene scene = null;
         try {
@@ -145,6 +153,8 @@ public class MantenimientoClientesController {
 
     @FXML
     public void btnBuscarCliente(ActionEvent actionEvent) throws ListException {
+        LocalDateTime fecha = LocalDateTime.now();
+
         //Capturamos la info del buscador
         String searchText = fieldID.getText().toLowerCase();
 
@@ -177,6 +187,7 @@ public class MantenimientoClientesController {
 
     @FXML
     void btnActualizarCliente(ActionEvent event) throws ListException, IOException, TreeException {
+        LocalDateTime fecha = LocalDateTime.now();
 
         selectedItems = tableView.getSelectionModel().getSelectedItems();
 
@@ -205,9 +216,7 @@ public class MantenimientoClientesController {
 
             updateClientController.initializeAux();
 
-//            if (!stage.isShowing()){
-//                initialize();
-//            }
+
         }else{
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Por favor seleccione alguno de los clientes");
