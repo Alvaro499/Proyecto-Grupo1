@@ -3,7 +3,7 @@ package ucr.proyecto.proyectogrupo1.domain;
 import javafx.scene.control.CheckBox;
 import javafx.scene.image.Image;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import ucr.proyecto.proyectogrupo1.util.Utility;
 
 
 public class Product {
@@ -15,6 +15,8 @@ public class Product {
     private Integer minimunStock;
     private Double price;
     private String url_img;
+
+    private int ventaAlDia;
 
 
     //Ignorar estos atributos al momento de la serializacion con Jackson JSON
@@ -35,6 +37,7 @@ public class Product {
         this.minimunStock = minimunStock;
         this.price = price;
         checkBox = new CheckBox();
+        ventaAlDia = Utility.random(10);
     }
 
     public Product(String ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
@@ -46,6 +49,9 @@ public class Product {
         this.minimunStock = minimunStock;
         this.price = price;
         this.url_img = url_img;
+    }
+    public int getVentaAlDia() {
+        return ventaAlDia;
     }
 
     public CheckBox getCheckBox() {
@@ -113,7 +119,7 @@ public class Product {
         return image;
     }
 
-    @Override
+/*    @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
@@ -124,6 +130,22 @@ public class Product {
                 ", minimunStock=" + minimunStock +
                 ", price=" + price +
                 ", url_img='" + url_img + '\'' +
+                '}';
+    }
+    */
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id='" + id + '\'' +
+                ", supplierID=" + supplierID +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", currentStock=" + currentStock +
+                ", minimunStock=" + minimunStock +
+                ", price=" + price +
+                ", url_img='" + url_img + '\'' +
+                ", ventaAlDia=" + ventaAlDia +
                 '}';
     }
 
