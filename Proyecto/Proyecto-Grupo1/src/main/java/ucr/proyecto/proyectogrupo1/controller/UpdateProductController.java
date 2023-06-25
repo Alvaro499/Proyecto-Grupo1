@@ -8,11 +8,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
-import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
 import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
-import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
@@ -59,7 +57,6 @@ public class UpdateProductController {
         txtTitulo.setEditable(false);
         txtProveedor.setEditable(false);
         txtCodigo.setEditable(false);
-        txtDetalles.setEditable(false);
 
         detalleBakcup = txtDetalles.getText();
         priceBackup = txtPrice.getText();
@@ -94,11 +91,14 @@ public class UpdateProductController {
             for (int i = 0; i < allProduct.size() ; i++) {
                 Product actualProduct = (Product) allProduct.get(i);
                 if (actualProduct.getID().equals(txtCodigo.getText())){
-
+                    /*
                     //Acedemos al cliente desde la TDA para una modficacion rapida
                     ((Product) allProduct.get(i)).setMinimunStock(Integer.valueOf(txtStockMin.getText()));
                     ((Product) allProduct.get(i)).setPrice(Double.valueOf(txtPrice.getText()));
-                    //((Product) allProduct.get(i)).setDescription(txtDetalles.getText());
+                    ((Product) allProduct.get(i)).setDescription(txtDetalles.getText());*/
+                    allProduct.remove(actualProduct);
+                    actualProduct = new Product(txtPrice.getText(), actualProduct.getSupplierID(), txtDetalles.getText(), actualProduct.getName(),Double.parseDouble(txtPrice.getText().trim()),actualProduct.getCurrentStock(),Integer.parseInt(txtStockMin.getText()),actualProduct.getUrl_img());
+                    allProduct.add(actualProduct);
                     break;
                 }
             }

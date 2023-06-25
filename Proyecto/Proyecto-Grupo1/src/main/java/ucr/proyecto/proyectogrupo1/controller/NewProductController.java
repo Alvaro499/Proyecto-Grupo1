@@ -15,7 +15,6 @@ import ucr.proyecto.proyectogrupo1.domain.Supplier;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
-import javax.swing.*;
 import java.time.LocalDateTime;
 
 public class NewProductController {
@@ -79,7 +78,7 @@ public class NewProductController {
                 Supplier s = (Supplier) supplier.get(i);
                 if (s.getName().equalsIgnoreCase(choiceBoxProduct.getValue())) {//si encuantra una editorial con el nombre igual que fieldSupplier, se guarda
                     product.add(new Product(fieldID.getText(), s.getID(), fielDesc.getText(), fieldName.getText(), Double.parseDouble(fieldPrice.getText()), Integer.parseInt(fieldStock.getText()), Integer.parseInt(fieldStickmin.getText()), fieldURL.getText()));
-                    System.out.println(s);
+                    //System.out.println(s);
                     borrarOnAction(new ActionEvent());
                     Utility.setProductAVL(product);
                     i = supplier.size();
