@@ -18,7 +18,7 @@
    <center>
       <AnchorPane prefHeight="652.0" prefWidth="933.0" style="-fx-background-color: beige;">
          <children>
-            <VBox alignment="TOP_CENTER" prefHeight="652.0" prefWidth="934.0" spacing="50.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <VBox alignment="TOP_CENTER" prefHeight="652.0" prefWidth="934.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                <padding>
                   <Insets bottom="50.0" left="50.0" right="50.0" top="50.0" />
                </padding>

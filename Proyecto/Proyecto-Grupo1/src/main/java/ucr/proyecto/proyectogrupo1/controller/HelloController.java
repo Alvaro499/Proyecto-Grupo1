@@ -81,7 +81,6 @@ public class HelloController {
                     //bitacora
                     b.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(), "Ingresa al sistema"));
                     Utility.setBinnacle(b);
-                    System.out.println(b.InOrder());
                     //fin bitacora
 
                     if (ID < 1000) {//admin
