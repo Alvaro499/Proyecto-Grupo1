@@ -46,7 +46,7 @@
                   </TableView>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#ReporteOnAction" prefHeight="32.0" prefWidth="166.0" text="Generar Reporte" />
+                        <Button mnemonicParsing="false" onAction="#ReporteOnAction" prefHeight="38.0" prefWidth="226.0" text="Generar Reporte" />
                      </children>
                   </HBox>
                </children>

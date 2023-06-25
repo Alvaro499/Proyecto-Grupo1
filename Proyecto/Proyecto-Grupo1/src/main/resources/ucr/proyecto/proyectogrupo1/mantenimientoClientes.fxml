@@ -36,7 +36,7 @@
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
-                        <TextField fx:id="fieldID" prefHeight="42.0" prefWidth="381.0" promptText="ID">
+                        <TextField fx:id="fieldID" prefHeight="42.0" prefWidth="381.0" promptText="Nombre">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>

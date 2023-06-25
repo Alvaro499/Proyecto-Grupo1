@@ -88,28 +88,35 @@ public class ReportesController {
         LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
-            Integer n = inventario.size();
-            array.add("Codigo");
-            array.add("Nombre");
-            array.add("Descripcion");
-            array.add("Editorial");
-            array.add("Stock");
-            for (int i = 0; i < n; i++) {
-                Product newProduct = (Product) inventario.get(i);
-                array.add(newProduct.getID());
-                array.add(newProduct.getName());
-                array.add(newProduct.getDescription());
-                array.add(getSupplier(newProduct.getSupplierID()).getName());
-                array.add(String.valueOf(newProduct.getCurrentStock()));
+            if (!inventario.isEmpty()) {
+                Integer n = inventario.size();
+                array.add("Codigo");
+                array.add("Nombre");
+                array.add("Descripcion");
+                array.add("Editorial");
+                array.add("Stock");
+                for (int i = 0; i < n; i++) {
+                    Product newProduct = (Product) inventario.get(i);
+                    array.add(newProduct.getID());
+                    array.add(newProduct.getName());
+                    array.add(newProduct.getDescription());
+                    array.add(getSupplier(newProduct.getSupplierID()).getName());
+                    array.add(String.valueOf(newProduct.getCurrentStock()));
+                }
+                PDF.crearPDF("Reporte_Inventario", "Reporte Inventario", 5, array);
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                        "Reporte Inventario Creado"));
+                Utility.setBinnacle(bitacora);
+                alert.setHeaderText("Report created");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
+            }else {
+                alert.setHeaderText("Inventario está vacío");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
             }
-            PDF.crearPDF("Reporte_Inventario", "Reporte Inventario", 5, array);
-            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
-                    "Reporte Inventario Creado"));
-            Utility.setBinnacle(bitacora);
-            alert.setHeaderText("Report created");
-            alert.setContentText(PDF.getDocumento());
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.show();
         } catch (TreeException e) {
             throw new RuntimeException(e);
         }
@@ -120,35 +127,42 @@ public class ReportesController {
         LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
-            Integer n = pedidosProveedor.size();
-            array.add("Codigo de la Orden");
-            array.add("Editorial");
-            array.add("Nombre del Libro");
-            array.add("Codigo del Libro");
-            array.add("Cantidad Comprada");
-            array.add("Fecha de la Orden");
-            array.add("Estado de la Orden");
-            array.add("Costo de la Orden");
-            for (int i = 0; i < n; i++) {
-                OrderDetail od = (OrderDetail) pedidosProveedor.get(i);
-                Order o = getOrder(od.getOrderID());
-                array.add(String.valueOf(od.getOrderID()));//Codigo de la Orden
-                array.add(o.getSupplierName());//Editorial
-                array.add(getProduct(od.getProductID()).getName());//Nombre del Libro
-                array.add(od.getProductID());//Codigo del Libro
-                array.add(od.getQuantity());//Cantidad comprada
-                array.add(o.getOrderDate());//Fecha de la orden
-                array.add(o.getOrderStatus());//Estado de la orden
-                array.add(String.valueOf(o.getTotalCost()));//Costo de la orden
+            if (!pedidosProveedor.isEmpty()) {
+                Integer n = pedidosProveedor.size();
+                array.add("Codigo de la Orden");
+                array.add("Editorial");
+                array.add("Nombre del Libro");
+                array.add("Codigo del Libro");
+                array.add("Cantidad Comprada");
+                array.add("Fecha de la Orden");
+                array.add("Estado de la Orden");
+                array.add("Costo de la Orden");
+                for (int i = 0; i < n; i++) {
+                    OrderDetail od = (OrderDetail) pedidosProveedor.get(i);
+                    Order o = getOrder(od.getOrderID());
+                    array.add(String.valueOf(od.getOrderID()));//Codigo de la Orden
+                    array.add(o.getSupplierName());//Editorial
+                    array.add(getProduct(od.getProductID()).getName());//Nombre del Libro
+                    array.add(od.getProductID());//Codigo del Libro
+                    array.add(od.getQuantity());//Cantidad comprada
+                    array.add(o.getOrderDate());//Fecha de la orden
+                    array.add(o.getOrderStatus());//Estado de la orden
+                    array.add(String.valueOf(o.getTotalCost()));//Costo de la orden
+                }
+                PDF.crearPDF("Reporte_Ordenes", "Reporte Orden", 8, array);
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                        "Reporte Pedidos Proveedor Creado"));
+                Utility.setBinnacle(bitacora);
+                alert.setHeaderText("Report created");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
+            }else {
+                alert.setHeaderText("No se han realizado pedidos a proveedores");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
             }
-            PDF.crearPDF("Reporte_Ordenes", "Reporte Orden", 8, array);
-            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
-                    "Reporte Pedidos Proveedor Creado"));
-            Utility.setBinnacle(bitacora);
-            alert.setHeaderText("Report created");
-            alert.setContentText(PDF.getDocumento());
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.show();
         } catch (TreeException e) {
             throw new RuntimeException(e);
         }
@@ -159,38 +173,45 @@ public class ReportesController {
         LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
-            Integer n = inventario.size();
-            Double total = 0.0;
-            array.add("Editorial");
-            array.add("Codigo del Libro");
-            array.add("Nombre del Libro");
-            array.add("Cantidad Disponible");
-            array.add("Precio Unidad");
-            array.add("Total Colones");
-            for (int i = 0; i < n; i++) {
-                Product newProduct = (Product) inventario.get(i);
-                Double totalLibro = newProduct.getCurrentStock() * newProduct.getPrice();
-                array.add(getSupplier(newProduct.getSupplierID()).getName());//Editorial del libro
-                array.add(newProduct.getID());//Codigo Libro
-                array.add(newProduct.getName());//Nombre Libro
-                array.add(String.valueOf(newProduct.getCurrentStock()));//Cantidad Stock Disponible
-                array.add(String.valueOf(newProduct.getPrice()));//Precio Libro
-                array.add(String.valueOf(totalLibro));//Precio de todas las copias del mismo libro
-                total += totalLibro;
-            }
-            for (int i = 0; i < 5; i++) {
-                array.add("----");
-            }
-            array.add(String.valueOf(total));
+            if (!inventario.isEmpty()) {
+                Integer n = inventario.size();
+                Double total = 0.0;
+                array.add("Editorial");
+                array.add("Codigo del Libro");
+                array.add("Nombre del Libro");
+                array.add("Cantidad Disponible");
+                array.add("Precio Unidad");
+                array.add("Total Colones");
+                for (int i = 0; i < n; i++) {
+                    Product newProduct = (Product) inventario.get(i);
+                    Double totalLibro = newProduct.getCurrentStock() * newProduct.getPrice();
+                    array.add(getSupplier(newProduct.getSupplierID()).getName());//Editorial del libro
+                    array.add(newProduct.getID());//Codigo Libro
+                    array.add(newProduct.getName());//Nombre Libro
+                    array.add(String.valueOf(newProduct.getCurrentStock()));//Cantidad Stock Disponible
+                    array.add(String.valueOf(newProduct.getPrice()));//Precio Libro
+                    array.add(String.valueOf(totalLibro));//Precio de todas las copias del mismo libro
+                    total += totalLibro;
+                }
+                for (int i = 0; i < 5; i++) {
+                    array.add("----");
+                }
+                array.add(String.valueOf(total));
 
-            PDF.crearPDF("Reporte_Costo_Producto", "Reporte Costo Producto", 6, array);
-            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
-                    "Reporte Productos Creado"));
-            Utility.setBinnacle(bitacora);
-            alert.setHeaderText("Report created");
-            alert.setContentText(PDF.getDocumento());
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.show();
+                PDF.crearPDF("Reporte_Costo_Producto", "Reporte Costo Producto", 6, array);
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                        "Reporte Productos Creado"));
+                Utility.setBinnacle(bitacora);
+                alert.setHeaderText("Report created");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
+            }else {
+                alert.setHeaderText("Inventario está vacío");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
+            }
         } catch (TreeException e) {
             throw new RuntimeException(e);
         }
@@ -201,30 +222,37 @@ public class ReportesController {
         LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
-            Integer n = pedidosCliente.size();
-            array.add("Fecha factura");
-            array.add("Codigo factura");
-            array.add("Cliente");
-            array.add("Codigo libro");
-            array.add("Cantidad del libro");
-            for (int i = 0; i < n; i++) {
-                SaleDetail newSaleDetail = (SaleDetail) pedidosCliente.get(i);
-                if (newSaleDetail.getOrder_canceled()) {//Solo si la factura esta pagada
-                    array.add(getSale(newSaleDetail.getSaleID()).getSaleDate());//Fecha de la factura
-                    array.add(String.valueOf(newSaleDetail.getSaleID()));//Codigo de la factura
-                    array.add(String.valueOf(getSale(newSaleDetail.getSaleID()).getCustomerID()));//Cedula Cliente
-                    array.add(newSaleDetail.getProductID());//Codigo del libro
-                    array.add(String.valueOf(newSaleDetail.getQuantity()));//Cantidad del libro
+            if (!pedidosCliente.isEmpty()) {
+                Integer n = pedidosCliente.size();
+                array.add("Fecha factura");
+                array.add("Codigo factura");
+                array.add("Cliente");
+                array.add("Codigo libro");
+                array.add("Cantidad del libro");
+                for (int i = 0; i < n; i++) {
+                    SaleDetail newSaleDetail = (SaleDetail) pedidosCliente.get(i);
+                    if (newSaleDetail.getOrder_canceled()) {//Solo si la factura esta pagada
+                        array.add(getSale(newSaleDetail.getSaleID()).getSaleDate());//Fecha de la factura
+                        array.add(String.valueOf(newSaleDetail.getSaleID()));//Codigo de la factura
+                        array.add(String.valueOf(getSale(newSaleDetail.getSaleID()).getCustomerID()));//Cedula Cliente
+                        array.add(newSaleDetail.getProductID());//Codigo del libro
+                        array.add(String.valueOf(newSaleDetail.getQuantity()));//Cantidad del libro
+                    }
                 }
+                PDF.crearPDF("Reporte_Demanda_Producto", "Reporte Demanda", 5, array);
+                bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                        "Reporte Pedidos Cliente Creado"));
+                Utility.setBinnacle(bitacora);
+                alert.setHeaderText("Report created");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
+            }else {
+                alert.setHeaderText("No hay Pedidos Clientes");
+                alert.setContentText(PDF.getDocumento());
+                alert.setAlertType(Alert.AlertType.INFORMATION);
+                alert.show();
             }
-            PDF.crearPDF("Reporte_Demanda_Producto", "Reporte Demanda", 5, array);
-            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
-                    "Reporte Pedidos Cliente Creado"));
-            Utility.setBinnacle(bitacora);
-            alert.setHeaderText("Report created");
-            alert.setContentText(PDF.getDocumento());
-            alert.setAlertType(Alert.AlertType.INFORMATION);
-            alert.show();
         } catch (TreeException e) {
             throw new RuntimeException(e);
         }
