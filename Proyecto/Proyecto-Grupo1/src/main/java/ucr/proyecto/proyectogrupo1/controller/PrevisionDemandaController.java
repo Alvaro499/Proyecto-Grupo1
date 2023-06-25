@@ -105,7 +105,6 @@ public class PrevisionDemandaController {
 
 
         for (int i = 0; i < product.size(); i++) {
-            System.out.println("CANTIDAD DE LIBROS: " + product.size());
             List<String> arrayList = new ArrayList<>();
             Product p = (Product) product.get(i);
             arrayList.add(String.valueOf(p.getID()));
@@ -139,17 +138,6 @@ public class PrevisionDemandaController {
 
 
 
-//    private String previsionDemanda(Product product, int demandaDiaria, int plazoEntrga) {
-//        //Punto de pedido = (demanda diaria * plazo de entrega) + stock de seguridad(stock min)
-//        //Stock de segruidad = P máximo de entrega - Plazo de entrega) * Demanda diaria
-//
-//        int puntoPedido = 0;
-//        int stockSeguridad = product.getMinimunStock();
-//
-//        puntoPedido = (demandaDiaria * plazoEntrga) + stockSeguridad;
-//
-//        return puntoPedido;
-//    }
 
     private int previsionDemanda(Product product, int demandaDiaria, int plazoEntrga) {
         //Punto de pedido = (demanda diaria * plazo de entrega) + stock de seguridad(stock min)
@@ -195,21 +183,7 @@ public class PrevisionDemandaController {
             //Actualizamos el archivo de productos con la TDA ya actualizada con el stock nuevo
             Utility.setProductAVL(product);
             initialize();
-    /*    try {
-            for (int j = 0; j < product.size() ; j++) {
-                for (int i = 0; i < data.size(); ++i){
 
-                    Product actualProductoAVL = (Product) product.get(j);
-                    if (data.get(i).getId().equals(actualProductoAVL.getID())){
-                        //le pasamos el stock modificado al AVL
-                        ((Product) product.get(j)).setCurrentStock(data.get(i).getCurrentStock());
-                    }
-                }
-            }
-
-        } catch (TreeException e) {
-            throw new RuntimeException(e);
-        }*/
 
         }else{
             alert.setAlertType(Alert.AlertType.INFORMATION);

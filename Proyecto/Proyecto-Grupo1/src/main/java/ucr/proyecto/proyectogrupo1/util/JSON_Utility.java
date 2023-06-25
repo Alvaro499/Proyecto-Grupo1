@@ -94,9 +94,9 @@ public class JSON_Utility {
                 directoryList = subcarpetas;
 
 
-                for (File subcarpeta : subcarpetas) {
+               /* for (File subcarpeta : subcarpetas) {
                     System.out.println(subcarpeta.getName());
-                }
+                }*/
 
                 getPath();
             } else {
@@ -122,13 +122,13 @@ public class JSON_Utility {
 
         // Verificar si la carpeta de origen existe y es un directorio
         if (!oldPathLink.exists() || !oldPathLink.isDirectory()) {
-            System.out.println("La carpeta de origen no existe o no es un directorio vÃ¡lido");
+            System.out.println("La carpeta de origen no existe o no es un directorio válido");
             return;
         }
 
         // Verificar si la carpeta de destino existe y es un directorio
         if (!newPathLink.exists() || !newPathLink.isDirectory()) {
-            System.out.println("La carpeta de destino no existe o no es un directorio vÃ¡lido");
+            System.out.println("La carpeta de destino no existe o no es un directorio válido");
             return;
         }
 

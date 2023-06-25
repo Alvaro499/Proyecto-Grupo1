@@ -222,7 +222,7 @@ public class ReportesController {
         LocalDateTime fecha = LocalDateTime.now();
         ArrayList<String> array = new ArrayList<>();
         try {
-            if (!pedidosCliente.isEmpty()) {
+            if (pedidosCliente.root != null || pedidosCliente.isEmpty()) {
                 Integer n = pedidosCliente.size();
                 array.add("Fecha factura");
                 array.add("Codigo factura");
