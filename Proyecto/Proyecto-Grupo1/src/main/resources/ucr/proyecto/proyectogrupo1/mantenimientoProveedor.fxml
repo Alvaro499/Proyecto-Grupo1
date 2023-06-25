@@ -39,7 +39,7 @@
                            </cursor>
                         </Button>
                         <Label prefHeight="26.0" prefWidth="14.0" />
-                        <TextField fx:id="fieldID" prefHeight="63.0" prefWidth="388.0" promptText="ID">
+                        <TextField fx:id="fieldID" prefHeight="63.0" prefWidth="388.0" promptText="Nombre">
                            <cursor>
                               <Cursor fx:constant="TEXT" />
                            </cursor>

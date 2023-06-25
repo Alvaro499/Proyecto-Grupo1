@@ -29,3 +29,4 @@ Uso de Librerias:
 Añadir las librerias que están en el WinRar.lib y la dependencia com.itextpdf.text
 
 Si da error el email ir al module info y comentar la línea donde esté // requires javax.mail.api;
+Para ingresar un nuevo cliente es necesario que el correo ingresado sea real y que esté bien escrito, incluya @  .com y un dominio real.

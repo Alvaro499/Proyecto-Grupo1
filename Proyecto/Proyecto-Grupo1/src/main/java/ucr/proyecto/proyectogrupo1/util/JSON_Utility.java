@@ -90,12 +90,9 @@ public class JSON_Utility {
             File[] subcarpetas = fileFather.listFiles(File::isDirectory);
 
             if (subcarpetas != null && subcarpetas.length > 0) {
-                System.out.println("La carpeta contiene las siguientes subcarpetas:");
 
                 directoryList = subcarpetas;
-                System.out.println("Informacion de directoylIST: " + directoryList[0]);
-                System.out.println("Informacion de directoylIST: " + directoryList[1]);
-                System.out.println("Informacion de directoylIST: " + directoryList[2]);
+
 
                 for (File subcarpeta : subcarpetas) {
                     System.out.println(subcarpeta.getName());
@@ -106,7 +103,7 @@ public class JSON_Utility {
                 System.out.println("La carpeta no contiene subcarpetas.");
             }
         } else {
-            System.out.println("La carpeta no existe o no es una carpeta vÃ¡lida.");
+            System.out.println("La carpeta no existe o no es una carpeta válida.");
         }
     }
 
@@ -204,7 +201,7 @@ public class JSON_Utility {
                 throw new RuntimeException(e);
             }
         } else {
-            System.out.println("Archivo no existe, se crea");
+
             file = new File(pathJSON);
             file.createNewFile();
             return circularLinkedList;
