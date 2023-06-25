@@ -14,11 +14,13 @@ import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.SinglyLinkedList;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Customer;
 import ucr.proyecto.proyectogrupo1.util.FXUtility;
 import ucr.proyecto.proyectogrupo1.util.Utility;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,6 +53,8 @@ public class UpdateClientController {
     private String adressBackup;
     private String emailBakcup;
 
+    private AVL bitacora;
+
 //    @FXML
 //    public void initialize() throws ListException, TreeException {
 //        this.alert = FXUtility.alert("", "");
@@ -60,6 +64,7 @@ public class UpdateClientController {
 //    }
 
     public void initializeAux() throws ListException, TreeException {
+        bitacora = Utility.getBinnacle();
         this.alert = FXUtility.alert("", "");
         //Solo mostrar, no editar
         txtNombre.setEditable(false);
@@ -81,7 +86,7 @@ public class UpdateClientController {
 
     @FXML
     void confirmarOnAction(ActionEvent event) throws TreeException, ListException {
-
+        LocalDateTime fecha = LocalDateTime.now();
         if (isValid()){
 
             for (int i = 1; i <= allCustomer.size() ; i++) {
@@ -96,6 +101,9 @@ public class UpdateClientController {
                 }
             }
             Utility.setClientSinglyLinkedList(allCustomer);
+            bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),
+                    "Actualización usuario"));
+            Utility.setBinnacle(bitacora);
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Usuario actualizado existosamente");
             alert.showAndWait();

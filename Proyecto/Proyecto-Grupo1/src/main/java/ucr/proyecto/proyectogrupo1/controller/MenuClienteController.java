@@ -18,6 +18,7 @@ import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.TDA.ListException;
 import ucr.proyecto.proyectogrupo1.TDA.TreeException;
+import ucr.proyecto.proyectogrupo1.domain.Binnacle;
 import ucr.proyecto.proyectogrupo1.domain.Product;
 import ucr.proyecto.proyectogrupo1.domain.Sale;
 import ucr.proyecto.proyectogrupo1.domain.SaleDetail;
@@ -55,9 +56,12 @@ public class MenuClienteController {
     private LocalDateTime hoy;
     private Alert alert;
 
+    private AVL bitacora;
+
     @FXML
     public void initialize() throws ListException, TreeException {
         hoy = LocalDateTime.now().withNano(0);
+        bitacora = Utility.getBinnacle();
         // Configurar el modo de selección múltiple
         tableView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         selectedItems = tableView.getSelectionModel().getSelectedItems();
@@ -171,6 +175,9 @@ public class MenuClienteController {
 
         alert.setHeaderText("Item added to cart: ");
         alert.setAlertType(Alert.AlertType.INFORMATION);
+
+        bitacora.add(new Binnacle(String.valueOf(hoy),Utility.getIDClient(),"Se agrego al carrito un libro: " ));
+        Utility.setBinnacle(bitacora);
 
         for (List<String> s : selectedItems) {//de todos los productos seleccionados
             String IDProduct = s.get(0);

@@ -136,7 +136,6 @@ public class MantenimientoClientesController {
 
     @FXML
     void btnAgregarNuevoCliente(ActionEvent event) {
-        LocalDateTime fecha = LocalDateTime.now();
 
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("newClient.fxml"));
         Scene scene = null;
@@ -153,7 +152,6 @@ public class MantenimientoClientesController {
 
     @FXML
     public void btnBuscarCliente(ActionEvent actionEvent) throws ListException {
-        LocalDateTime fecha = LocalDateTime.now();
 
         //Capturamos la info del buscador
         String searchText = fieldID.getText().toLowerCase();
@@ -187,7 +185,6 @@ public class MantenimientoClientesController {
 
     @FXML
     void btnActualizarCliente(ActionEvent event) throws ListException, IOException, TreeException {
-        LocalDateTime fecha = LocalDateTime.now();
 
         selectedItems = tableView.getSelectionModel().getSelectedItems();
 
