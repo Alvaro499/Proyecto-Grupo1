@@ -217,7 +217,7 @@ public class GestionPedidosController {
         alert.setContentText("Pedidos automaticos generados");
         alert.showAndWait();
         setColumns();
-        //System.out.println("Pedidos automaticos generados");
+
     }
 
     private void addRandomProduct(Product actualProduct) throws TreeException {

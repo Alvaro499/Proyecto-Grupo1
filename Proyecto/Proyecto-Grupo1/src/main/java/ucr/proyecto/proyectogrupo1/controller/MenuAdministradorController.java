@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.text.Text;
 import ucr.proyecto.proyectogrupo1.HelloApplication;
 import ucr.proyecto.proyectogrupo1.TDA.AVL;
 import ucr.proyecto.proyectogrupo1.domain.Binnacle;
@@ -23,14 +24,17 @@ public class MenuAdministradorController {
 
     @FXML
     private TextField txtNombreUsuario1;
+
+    @FXML
+    private Text nombreLibreria;
     private AVL bitacora;
     LocalDateTime fecha;
 
     @FXML
     public void initialize(){
+        nombreLibreria.setText(Utility.getNombreLibreria());
         bitacora = Utility.getBinnacle();
     }
-
 
     private void loadPage(String page) {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource(page));

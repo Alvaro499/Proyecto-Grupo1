@@ -64,7 +64,6 @@ public class EnvioCorreos extends javax.swing.JFrame {
 
             // Adjuntar el archivo
             if (attachmentFile != null) {
-                System.out.println("El correo se envio con archivo adjunto");
                 MimeBodyPart messageBodyPart = new MimeBodyPart();
                 messageBodyPart.attachFile(attachmentFile);
                 Multipart multipart = new MimeMultipart();

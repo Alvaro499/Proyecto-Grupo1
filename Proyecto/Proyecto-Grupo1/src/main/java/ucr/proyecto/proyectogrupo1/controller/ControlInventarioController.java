@@ -53,7 +53,6 @@ public class ControlInventarioController {
 
         this.alert = FXUtility.alert("", "");
         //Se toman los datos de los archivos en las TDA
-        //product = Utility.getProductAVL();
         product = Utility.getInventaryBtree();
         supplierName = Utility.getSupplierAVL();
         report = new ArrayList<String>();
@@ -134,7 +133,6 @@ public class ControlInventarioController {
             if (p.getCheckBox().isSelected()) p.getCheckBox().setSelected(false);
         }
         isStockUpdate = true;
-        System.out.println("El stock de todos los productos ha sido actualizado");
         bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"El stock de todos los productos ha sido actualizado"));
         Utility.setBinnacle(bitacora);
         alert.setAlertType(Alert.AlertType.INFORMATION);
@@ -168,7 +166,7 @@ public class ControlInventarioController {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Datos actualizados");
             alert.showAndWait();
-            //System.out.println("Se han confirmado los datos actualizados");
+
             Utility.setInventaryBtree(product);//actualizamos la lista global
             textFieldNewStock.setText("");
             initialize();
@@ -177,7 +175,7 @@ public class ControlInventarioController {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("No hay cambios de stock que confirmar");
             alert.showAndWait();
-            //System.out.println("No hay cambios de stock que confirmar");
+
         }
     }
 
@@ -195,9 +193,7 @@ public class ControlInventarioController {
                 productListToUpdate.add(bean);
             }
         }
-        for (Product p : productListToUpdate) {
-            System.out.println(p.toString());
-        }
+
 
         /*Verificar:
             1-Si hay contenido en el textField del stock
@@ -208,7 +204,7 @@ public class ControlInventarioController {
             alert.setAlertType(Alert.AlertType.INFORMATION);
             alert.setContentText("Seleccione alguno de los productos");
             alert.showAndWait();
-            //System.out.println("Seleccione alguno de los productos");
+
 
         } else {
             //Verificar restricciones del textField
@@ -281,8 +277,6 @@ public class ControlInventarioController {
         tableView.setItems(filteredList);
         bitacora.add(new Binnacle(String.valueOf(fecha.withNano(0)), Utility.getIDClient(),"Se realizó una busquea en control de inventario"));
         Utility.setBinnacle(bitacora);
-        //Metodo Filtered
-        //https://www-tabnine-com.translate.goog/code/java/methods/javafx.collections.ObservableList/filtered?_x_tr_sl=en&_x_tr_tl=es&_x_tr_hl=es&_x_tr_pto=sc&_x_tr_hist=true
     }
 
     @FXML

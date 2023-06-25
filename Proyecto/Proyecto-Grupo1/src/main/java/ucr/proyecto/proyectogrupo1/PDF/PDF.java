@@ -68,7 +68,7 @@ public class PDF {
             if (document != null && document.isOpen()) {
                 document.close();
             }
-            System.err.println("Ocurrió un error al crear el archivo");
+
             e.printStackTrace();
         }
     }

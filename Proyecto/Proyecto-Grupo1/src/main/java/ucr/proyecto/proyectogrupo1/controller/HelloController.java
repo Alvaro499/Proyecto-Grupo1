@@ -124,8 +124,6 @@ public class HelloController {
 
     @FXML
     void show(KeyEvent event) {
-        if (event.getCode() == KeyCode.ENTER) {
-            btnEntrar(new ActionEvent());
-        }
+
     }
 }
