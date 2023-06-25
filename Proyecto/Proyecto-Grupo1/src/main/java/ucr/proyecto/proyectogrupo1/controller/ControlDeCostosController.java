@@ -97,7 +97,7 @@ public class ControlDeCostosController {
             }
         }
 
-        alert = FXUtility.alert("Menu Reporte", "Desplay Reporte");
+        alert = FXUtility.alert("Control Costos", "Desplay Costos");
         alert.setAlertType(Alert.AlertType.ERROR);
     }
 
@@ -191,14 +191,16 @@ public class ControlDeCostosController {
 
     @FXML
     void reporteOnAction(ActionEvent event) throws ListException {
-
-
             for (int i = 0; i < 4; i++) {
                 reporte.add("");
             }
             reporte.add(String.valueOf(costoTotalTProductos));
 
             PDF.crearPDF("Reporte_Costos","Reporte Costos",5,reporte);
+        alert.setHeaderText("Se ha creado el reporte de costos");
+        alert.setContentText(PDF.getDocumento());
+        alert.setAlertType(Alert.AlertType.INFORMATION);
+        alert.show();
         }
 
 }
