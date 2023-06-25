@@ -23,6 +23,26 @@
                <children>
                   <VBox layoutX="14.0" layoutY="14.0" prefHeight="586.0" prefWidth="907.0" spacing="15.0">
                      <children>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="200.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte Pedidos Cliente">
+                                 <font>
+                                    <Font name="Century Schoolbook" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte Inventario">
+                                 <font>
+                                    <Font name="Century Schoolbook" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
                         <HBox prefHeight="277.0" prefWidth="582.0" spacing="15.0">
                            <children>
                               <TableView fx:id="tableViewReporteDemanda" prefHeight="273.0" prefWidth="597.0" tableMenuButtonVisible="true">
@@ -53,6 +73,23 @@
                            <padding>
                               <Insets top="5.0" />
                            </padding>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" spacing="180.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte Productos">
+                                 <font>
+                                    <Font name="Century Schoolbook" size="30.0" />
+                                 </font>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reporte Pedidos Proveedor">
+                                 <font>
+                                    <Font name="Century Schoolbook" size="30.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
                         </HBox>
                         <HBox prefHeight="277.0" prefWidth="582.0" spacing="15.0">
                            <children>
@@ -108,7 +145,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteCostoProductosOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Productos" textFill="WHITE">
+            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteInventarioOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Inventario" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>
@@ -116,7 +153,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteInventarioOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Inventario" textFill="WHITE">
+            <Button lineSpacing="5.0" mnemonicParsing="false" onAction="#reporteCostoProductosOnAction" prefHeight="46.0" prefWidth="183.0" text="Reporte Productos" textFill="WHITE">
                <font>
                   <Font name="Century Schoolbook" size="12.0" />
                </font>

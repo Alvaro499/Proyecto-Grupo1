@@ -408,6 +408,4 @@ public class MenuConsultaController {
         alert.setAlertType(Alert.AlertType.INFORMATION);
         alert.show();
     }
-
-
 }
