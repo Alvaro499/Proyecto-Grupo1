@@ -43,13 +43,23 @@ public class Product {
     public Product(String ID, Integer supplierID, String description, String name, Double price, Integer currentStock, Integer minimunStock, String url_img) {
         this.id = ID;
         this.supplierID = supplierID;
-        this.description = description;
+        this.description = getSaltos(description);
         this.name = name;
         this.currentStock = currentStock;
         this.minimunStock = minimunStock;
         this.price = price;
         this.url_img = url_img;
     }
+
+    private String getSaltos(String texto) {
+        String s = "";
+        String[] tokens = texto.split("@"); // Dividir la cadena en tokens usando el espacio como delimitador
+        for (String token : tokens) {
+            s = s + token + "\n";
+        }
+        return s;
+    }
+
     public int getVentaAlDia() {
         return ventaAlDia;
     }
@@ -149,7 +159,7 @@ public class Product {
                 '}';
     }
 
-    public String toStringChoiceBox(){
+    public String toStringChoiceBox() {
         return name;
     }
 }
