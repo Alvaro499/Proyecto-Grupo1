@@ -520,4 +520,9 @@ public class Utility {
         //return list[(int) (Math.random() * 31 - 1)];
         return list[random(25)];
     }
+
+    public static boolean validarNumeros(String datos){
+
+        return datos.matches("\\d*");
+    }
 }

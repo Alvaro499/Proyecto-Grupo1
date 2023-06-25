@@ -51,7 +51,7 @@ public class UpdateSupplierController {
     private String phoneBackup;
     private String adressBackup;
     private String emailBakcup;
-    private String plazoEntregaBakcup;
+ //   private String plazoEntregaBakcup;
     private AVL bitacora;
 
     public void initializeAux() throws ListException, TreeException {
@@ -83,7 +83,7 @@ public class UpdateSupplierController {
         txtDireccion.setText(adressBackup);
         txtEmail.setText(emailBakcup);
         txtTelefono.setText(phoneBackup);
-        txtPlazoEntrega.setText(plazoEntregaBakcup);
+     //   txtPlazoEntrega.setText(plazoEntregaBakcup);
     }
 
     @FXML
