@@ -16,9 +16,63 @@
    <center>
       <BorderPane>
          <right>
-            <AnchorPane prefHeight="589.0" prefWidth="934.0" BorderPane.alignment="CENTER">
-
-</AnchorPane>
+            <AnchorPane prefHeight="589.0" prefWidth="934.0" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="182.0" fitWidth="218.0" layoutX="549.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/logo.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="153.0" fitWidth="255.0" layoutX="517.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../images/UCR.png" />
+                     </image>
+                  </ImageView>
+                  <VBox layoutX="19.0" layoutY="16.0" prefHeight="578.0" prefWidth="426.0" spacing="30.0" AnchorPane.bottomAnchor="18.0" AnchorPane.leftAnchor="19.0" AnchorPane.rightAnchor="490.0" AnchorPane.topAnchor="16.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Universidad de Costa Rica Recinto de Paraíso " wrappingWidth="295.2033996582031">
+                           <font>
+                              <Font name="Century Schoolbook" size="23.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Algoritmos y estructuras de datos Grupo 021  ">
+                           <font>
+                              <Font name="Century Schoolbook" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="I Semestre 2023">
+                           <font>
+                              <Font name="Century Schoolbook" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Proyecto Laberinto de Libros">
+                           <font>
+                              <Font name="Century Schoolbook" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Profesor: Gilberth Chaves Avila. ">
+                           <font>
+                              <Font name="Century Schoolbook" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Paula Yislania Chaves Rivera C02231">
+                           <font>
+                              <Font name="Century Schoolbook" size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Alvaro Alexander Siles Quesada C27507 ">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="JeanCarlo Zuñiga Quesada C18780">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
          </right>
       </BorderPane>
    </center>
